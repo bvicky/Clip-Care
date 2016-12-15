@@ -1,0 +1,434 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en">
+<title>Master Referral</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stylesvitalbeat.css">
+
+</head> -->
+<!-- <body> -->
+    <!-- <header ng-include="'includes/header.html'"></header> -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Referral Master</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+    <div class="container" ng-controller="referralMasterController">
+        <!--Modal section/Popup section-->
+        <div class="modal fade abcd" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">List of Referrals</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 margin_div">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#listHospital" aria-controls="home" role="tab" id="listHospital" data-toggle="tab">Hospitals</a></li>
+                                    <li role="presentation"><a href="#listdoc" id="docTab" aria-controls="profile" role="tab" data-toggle="tab">Doctors</a></li>
+                                    <li role="presentation"><a href="#listSC" aria-controls="messages" role="tab" id="scHomesTab" data-toggle="tab">S.C Homes</a></li>
+                                    <li role="presentation"><a href="#listNgo" aria-controls="messages" role="tab" id="NgosTab" data-toggle="tab">NGO's</a></li>
+                                    <li role="presentation"><a href="#listBank" aria-controls="messages" role="tab" id="BanksTab" data-toggle="tab">Banks</a></li>
+                                    <li role="presentation"><a href="#listAss" aria-controls="messages" role="tab" id="AssociationTab" data-toggle="tab">Associations</a></li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in active height_margin" id="listHospital">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="HospitalList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>HospitalId001</td>
+                                                <td>Hospital Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>HospitalId002</td>
+                                                <td>Hospital Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>HospitalId003</td>
+                                                <td>Hospital Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in height_margin" id="listdoc">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="DoctorList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>DoctorId01</td>
+                                                <td>Doctor Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>DoctorId02</td>
+                                                <td>Doctor Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>DoctorId03</td>
+                                                <td>Doctor Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in height_margin" id="listSC">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="ScList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>SCHId01</td>
+                                                <td>SCH Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SCHId02</td>
+                                                <td>SCH Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SCHId03</td>
+                                                <td>SCH Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in height_margin" id="listNgo">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="NgoList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>NGOId01</td>
+                                                <td>NGO Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>NGOId02</td>
+                                                <td>NGO Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>NGOId03</td>
+                                                <td>NGO Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in height_margin" id="listBank">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="BankList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>BankId01</td>
+                                                <td>Bank Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>BankId02</td>
+                                                <td>Bank Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>BankId03</td>
+                                                <td>Bank Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="col-sm-12 col-md-12 tab-pane fade in height_margin" id="listAss">
+                                    <div class="col-sm-12 col-md-12 table-responsive begin-top">
+                                        <table class="table  table-bordered table-hover" id="AssoList">
+                                            <tr>
+                                                <th class="widthName">Id</th>
+                                                <th class="widthName">Name</th>
+                                                <th class="widthName">options</th>
+                                            </tr>
+                                            <tr>
+                                                <td>AssociationId01</td>
+                                                <td>Association Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>AssociationId02</td>
+                                                <td>Association Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>AssociationId03</td>
+                                                <td>Association Name</td>
+                                                <td><button class="btn btn-sm btn-primary">Edit</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="header1">
+            <h2 class="thin_border"> Master for Referrals </h2>
+        </div>
+        <div class="col-sm-12 col-md-5">
+            <form class="form-horizontal" role="form" method="post" action="/api/createReferralCateogry">
+              <div class="row">
+                <div class="col-md-4 col-sm-4">
+                  <label class="control-label">Create Category:</label></div>
+                <div class="col-md-6 col-sm-6">
+                  <input type="text" class="form-control input-sm field_color" ng-model="referralList" name="referralList" placeholder="Name of the Category">
+                </div>
+                <div class="col-md-2 col-sm-2">
+                  <button type="submit" class="btn btn-primary btn-sm height_margin">Create</button>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-7">
+          <div class="category">
+                  <div class="col-md-2 col-sm-3">
+                      <label class="control-label">Search:</label></div>
+                  <div class="col-md-6 col-sm-4">
+                      <input type="text" class="form-control input-sm field_color" name="listReferral" placeholder="list">
+                  </div>
+                  <div class="col-md-1 col-sm-3">
+                      <input type="button" class="btn btn-primary btn-sm   height_margin" name="SearchReferral" value="Search">
+                  </div>
+                  <div class="col-md-1 col-sm-2">
+                      <input type="button" class="btn btn-primary btn-sm   height_margin" name="ListAllReferal" value="List-All" data-toggle="modal" data-target=".abcd">
+                  </div>
+
+          </div>
+        </div>
+
+        <form class="form-horizontal" role="form" method="post" ng-submit="addreferral()">
+            <!-- <div class="category">
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+
+                        <label class="control-label">Create Category:</label></div>
+                    <div class="col-md-2 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" ng-model="categoryList" name="category" placeholder="Name of the Category">
+                    </div>
+                    <div class="col-md-1 col-sm-3">
+                        <button type="button" class="btn btn-primary btn-sm height_margin"  ng-click="'/api/createReferralCateogry'" name="create">Create</button>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1 col-sm-3">
+
+                        <label class="control-label">Search:</label></div>
+                    <div class="col-md-2 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="listReferral" placeholder="list">
+                    </div>
+                    <div class="col-md-1 col-sm-3">
+                        <input type="button" class="btn btn-primary btn-sm   height_margin" name="SearchReferral" value="Search">
+                    </div>
+                    <div class="col-md-1 col-sm-2">
+                        <input type="button" class="btn btn-primary btn-sm   height_margin" name="ListAllReferal" value="List-All" data-toggle="modal" data-target=".abcd">
+                    </div>
+                </div>
+
+            </div> -->
+
+            <div class="margin_div">
+                <div class="col-sm-3 col-md-2">
+                    <label class="control-label">Select Category</label>
+                </div>
+                <div class="col-sm-5 col-md-4" ng-init="categories()">
+                  <select class="form-control input-sm" ng-model="referral.referralType" ng-options="list.referralList as list.referralList for list in categories">
+                 </select>
+                </div>
+            </div>
+
+            <div class="row"><label></label></div>
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label">Name:</label>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" ng-model="referral.referralInformation.name" name="referralName" placeholder="Name">
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" ng-model= "referral.referralInformation.branch" name="referralbranch" placeholder="Branch">
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="contactPerson ">
+
+                      <div class="col-md-2 col-sm-3">
+                          <label class="control-label">Contact Persons:</label></div>
+
+                      <div class="col-md-3 col-sm-4">
+                          <input type="text" class="form-control input-sm field_color" ng-model="referral.referralInformation.referredPerson[0].personname" name="ConPersonName" placeholder="Contact Person">
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                          <input type="text" class="form-control input-sm field_color" ng-model="referral.referralInformation.refferedPerson[0].designation" name="ConPersonDesig" placeholder="Designation">
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                          <input type="text" class="form-control input-sm field_color"  ng-model="referral.referralInformation.refferedPerson[0].mobileNumber" name="ConPersonPH" placeholder="Mobile Number">
+                      </div>
+                      <div class="col-md-3 col-sm-1">
+                          <span class="glyphicon glyphicon-plus glyph_size addContactPerson" aria-hidden="true"></span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label">Contact No :</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="ContactMob" placeholder="Mobile Number">
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="ContactLL" placeholder="Landline Number">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label"> E-mail Id:</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="EmailId1" placeholder="E-mail Id">
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="EmailId2" placeholder="E-mail Id">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label"> Address:</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <textarea class="form-control input-sm field_color" rows="3" name="address" placeholder="Address"></textarea>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="Area" placeholder="Company's Website">
+                        <input type="text" class="form-control input-sm field_color" name="landmark" placeholder="*Landmark">
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label"> City/State:</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="city" placeholder="City/District.">
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" name="state" class="form-control input-sm field_color" placeholder="State">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label">Country:</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="country" placeholder="Country">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label class="control-label"> Pin Code:</label></div>
+                    <div class="col-md-3 col-sm-4">
+                        <input type="text" class="form-control input-sm field_color" name="PinCode" placeholder="Pin code">
+                    </div>
+                    <div class="col-md-1 col-sm-1 ">
+                        <input type="submit" class="btn btn-primary btn-sm  height_margin " name="SAVE" value="Save">
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </form>
+    </div>
+    <div class="footer">
+        <div class="row">
+            <div class="footimg">
+                <img src="images/Alogo.gif" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <a href="#">Home</a>| <a href="#">About</a>| <a href="#">Products</a>| <a href="#">Solutions</a>| <a href="#">Partner</a>| <a href="#">News</a>| <a href="#">Trial </a> | <a href="#">Contacts</a>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <p>Copyright© 2006-2012 Aventyn, Inc. All Rights Reserved</p>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.js"></script>
+    <script>
+    $(document).ready(function(){
+
+
+
+    });
+
+    </script>
+<!-- </body>
+</html> -->

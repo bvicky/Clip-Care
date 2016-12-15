@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Appointment</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/stylesvitalbeat.css">
+    <link href='css/fullcalendar.css' rel='stylesheet' />
+    <link href='css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <style>
+    body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        font-size: 14px;
+    }
+    
+    #calendar {
+        margin: 0 auto;
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-logo row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <img src="images/logo.png" class="col-xs-6 col-sm-10 col-md-6 col-lg-4 img-responsive">
+            </div>
+        </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://www.aventyn.com/">Aventyn</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home </a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="referral_master.html">Referral</a></li>
+                                <li><a href="masterspayment.html">Payment</a></li>
+                                <li><a href="masterscareplan.html">Care Plan</a></li>
+                                <li><a href="NewVitalsMaster.html">Vitals </a></li>
+                                <li><a href="mastershistory.html">History </a></li>
+                                <li><a href="master_for_services.html">Lab Test </a></li>
+                                <li><a href="master_medication.html">Medication</a></li>
+                                <li><a href="teamformation.html">Care Team</a></li>
+                                <li><a href="Physical_Examination.html">Physical Examination</a></li>
+                                <li><a href="mastersbilling.html">Billing</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="registration.html">Registration</a></li>
+                                <li><a href="careplan.html">Care Plan</a></li>
+                                <li><a href="vitals.html">Vitals</a></li>
+                                <li><a href="medications.html">Medications</a></li>
+                                <li><a href="teamscheduling.html">Team Scheduling </a></li>
+                                <li><a href="fasttrackbilling.html">Fast Track Billing </a></li>
+                                <li><a href="billing_module.html">Billing </a></li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="registration.html">Registration</a></li>
+                                <li>
+                                    <a href="#"> </a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Appointments<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="appointment.html">Appointment</a></li>
+                                <li>
+                                    <a href="appointmentDashboardConsolidated.html">Appointment Dashboard </a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doctors<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="doc_appointment.html">Appointment</a></li>
+                                <li><a href="doctorsdashboard.html">Dashboard</a></li>
+                                <li><a href="asoap-icd.html">ICD </a></li>
+                                <li><a href="medinfo.html">Medication Information</a></li>
+                                <li><a href="medstat.html">Vital History</a></li>
+                                <li><a href="medicationhistory.html">Medication History</a></li>
+                                <li><a href="patienthistoryandvitals.html">Vitals and History</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="News.html">Contact Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="pull-right">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <div class="container data">
+        <form class="form-horizontal" id="appointment_registrationform">
+            <div class="row">
+                <div class=" col-sm-12 col-md-12">
+                    <h3>Appointment</h3>
+                    <hr style="border : dotted 1px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-2">
+                    <label class="control-label" for="type">Select Type :</label>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="appnt_type" checked="checked" id="onSubscription" value="subscription">Subscription
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="appnt_type" id="onCallradio" value="oncall">On-Call
+                    </label>
+                </div>
+            </div>
+            <div id="Subscription">
+                <div class="row">
+                    <div class="col-sm-10 col-md-5 border_div">
+                        <div class="row">
+                            <center>
+                                <label>Search Patient</label>
+                            </center>
+                        </div>
+                        <div class=" row">
+                            <div class="col-md-3 col-sm-4">
+                                <label class="control-label pull-left" for="regno" name="reg_no" id="regsno">Reg.No.: </label>
+                            </div>
+                            <div class=" col-md-9 col-sm-8">
+                                <input type="text" name="search_reg_no" id="search_reg_no" class="form-control input-sm field_color" placeholder="Registration No">
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <label>Or</label>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 col-sm-4">
+                                <label class="control-label">Name:</label>
+                            </div>
+                            <div class=" col-md-9 col-sm-8">
+                                <input type="text" name="Name_input_search" id="Name_input_search" class="form-control input-sm field_color" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 col-sm-4">
+                                <label class="control-label">DOB:</label>
+                            </div>
+                            <div class=" col-md-9 col-sm-8">
+                                <input type="date" name="dob_input_search" id="dob_input_search" class="form-control input-sm field_color" placeholder="D.O.B (DD-MM-YYYY)">
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 col-sm-4">
+                                <label class="control-label">Contact:</label>
+                            </div>
+                            <div class=" col-md-9 col-sm-8">
+                                <input type="text" name="contact_input_search" id="contact_input_search" class="form-control input-sm field_color" placeholder="Contact">
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-3 col-sm-4">
+                                <label class="control-label">Email:</label>
+                            </div>
+                            <div class=" col-md-9 col-sm-8">
+                                <input type="text" name="Email_input_search" id="Email_input_search" class="form-control input-sm field_color" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-6"></div>
+                            <div class="col-md-5 col-sm-5">
+                                <input type="button" name="search" id="search_btn" class="form-control input-sm button_color height_margin" value="Search">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label></label>
+                        </div>
+                    </div>
+                    <!-- div registration id search and find code -->
+                    <div class=" col-sm-10 col-md-5 border_div" id="reg_id_search">
+                        <div class="row">
+                            <center>
+                                <label>Patient Records</label>
+                            </center>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_no00" name="reg_no00" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_1" name="reg_disp_1" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n01" name="reg_n01" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_2" name="reg_disp_2" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_2">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n02" name="reg_n02" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_3" name="reg_disp_3" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_3">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n03" name="reg_n03" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_4" name="reg_disp_4" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_4">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n04" name="reg_n04" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_5" name="reg_disp_5" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n05" name="reg_n05" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_6" name="reg_disp_6" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_6">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n06" name="reg_n06" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_7" name="reg_disp_7" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_7">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n07" name="reg_n07" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_8" name="reg_disp_8" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_8">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n08" name="reg_n08" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_9" name="reg_disp_9" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_9">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <input type="text" disabled="disabled" id="reg_n09" name="reg_n09" class="form-control input-sm field_color2" placeholder="Reg No.">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" disabled="disabled" id="reg_disp_10" name="reg_disp_10" class="form-control input-sm field_color2" placeholder="Patient Name">
+                                </div>
+                                <div class="col-md-2 col-sm-1">
+                                    <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_10">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_patient_details" class="row margin_div">
+                    <div class="col-md-11 col-sm-11 table-responsive">
+                        <table class="table table-hover table-bordered ">
+                            <center><b><thead>Patient Record found</thead></b></center>
+                            <tr>
+                                <th>Patient ID </th>
+                                <th>Patient Name </th>
+                                <th>Age</th>
+                                <th>Sex</th>
+                                <th>Area</th>
+                                <th>Contact</th>
+                                <th>Reffered From</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>BMS0001</td>
+                                <td>Johny Samy</td>
+                                <td>66</td>
+                                <td> Male</td>
+                                <td>Jp nagar</td>
+                                <td>1234567890</td>
+                                <td>BMS Trust</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info" id="detailsbtn001">Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BMS0002</td>
+                                <td>Arun Smith</td>
+                                <td>26</td>
+                                <td> Male</td>
+                                <td>Sadashivnagar</td>
+                                <td>2548654723</td>
+                                <td>BMS Trust</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info" id="detailsbtn002">Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>BMS0003</td>
+                                <td>Michal Warn</td>
+                                <td>33</td>
+                                <td>Female</td>
+                                <td>Ashok Nagar</td>
+                                <td>5865478956</td>
+                                <td>BMS Trust</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info" id="detailsbtn003">Details</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" id="PreviousHistory">
+                    <div class="col-md-11 col-sm-11">
+                        <table class="table table-hover table-bordered ">
+                            <center><b><thead>Previous Appointment History</thead></b></center>
+                            <tr>
+                                <th>Date </th>
+                                <th>Plan</th>
+                                <th>Doctor Visited</th>
+                                <th>Team</th>
+                                <th>Treated For</th>
+                                <th>Remarks</th>
+                            </tr>
+                            <tr>
+                                <td>02/04/2015</td>
+                                <td>Subscription</td>
+                                <td>Dr. Sashi Kala</td>
+                                <td>Team yyzz</td>
+                                <td>Hypertension</td>
+                                <td>Next Visit on may 10</td>
+                            </tr>
+                            <tr>
+                                <td>10/05/2015</td>
+                                <td>Subscription</td>
+                                <td>Dr. Sashi Kala</td>
+                                <td>Team yyzz</td>
+                                <td>Hypertension</td>
+                                <td>Next Visit on june 03</td>
+                            </tr>
+                            <tr>
+                                <td>03/06/2015</td>
+                                <td>Subscription</td>
+                                <td>Dr. Sashi Kala</td>
+                                <td>Team yyzz</td>
+                                <td>Hypertension</td>
+                                <td>Next Visit on July 06</td>
+                            </tr>
+                            <tr>
+                                <td>06/07/2015</td>
+                                <td>On-Call</td>
+                                <td>Dr. Sashi Kala</td>
+                                <td>Team yyzz</td>
+                                <td>Hypertension</td>
+                                <td>Next Visit on aug 10</td>
+                            </tr>
+                            <tr>
+                                <td>10/08/2015</td>
+                                <td>Subscription /On-Call</td>
+                                <td>Dr. Sashi Kala</td>
+                                <td>Team yyzz</td>
+                                <td>Hypertension</td>
+                                <td>Next Visit on sept 05</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="oncall">
+                <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                        <h3>Patient Information</h3>
+                        <hr style="border : dotted 1px">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                        <label for="Name">Name :</label>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <select class="form-control input-sm select-color select-width" id="prefix" name="">
+                            <option>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Mast.</option>
+                            <option>Miss.</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <input type="text" class="form-control input-sm field_color" id="fname" name="" placeholder="First  Name">
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <input type="text" class="form-control input-sm field_color" id="mname" name="" placeholder="Middle  Name">
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <input type="text" class="form-control input-sm field_color" id="lname" name="" placeholder="Last  Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="dob">Date of Birth :</label>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <input type="date" class="form-control input-sm field_color" id="dob" name="" placeholder="">
+                    </div>
+                    <div class="col-sm-2 col-md-1">
+                        <input type="text" class="form-control input-sm field_color" id="age" name="" placeholder="Age">
+                    </div>
+                    <div class="col-sm-6 col-md-1">
+                        <label class="control-label" for="gender">Gender :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="patient_gender" value="male">Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="patient_gender" value="female">Female
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="patient_gender" value="Others">Others
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="mobnum">Mobile Number :</label>
+                    </div>
+                    <div class="col-sm-3 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="mobnum1" name="" placeholder="Mobile Number">
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="llnum">Landline Number :</label>
+                    </div>
+                    <div class="col-sm-3 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="unregllnum" name="" placeholder="Landline Number">
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="email">E-mail ID :</label>
+                    </div>
+                    <div class="col-sm-3 col-md-2">
+                        <input type="text" class="form-control input-sm field_color" id="email1" name="" placeholder="E-mail Address">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-12">
+                    <h3>Book an Appointment</h3>
+                    <hr style="border : dotted 1px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-3">
+                    <input type="radio" name="radio" id="checkDoctor">
+                    <label class="control-label">Doctors</label>
+                </div>
+                <div class="col-md-2 col-sm-3">
+                    <input type="radio" name="radio" id="checkProcedure">
+                    <label class="control-label">Procedure</label>
+                </div>
+                <div class="col-md-2 col-sm-3">
+                    <input type="radio" name="radio" id="checklab">
+                    <label class="control-label">Lab</label>
+                </div>
+            </div>
+            <div id="doctorsDiv">
+                <div class="row height_margin">
+                    <div class="col-md-2 col-sm-2">
+                        <label class="control-label">Department</label>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <select class="form-control input-sm field_color2 selectDepartment">
+                            <option>--Select Department--</option>
+                            <option value="option1">General Surgary</option>
+                            <option value="option2">Orthology</option>
+                            <option value="option3">E.N.T</option>
+                            <option value="option4">GYN</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row margin_doctor_department">
+                    <div class="col-md-2 col-sm-2">
+                        <label class="control-label">Doctors:</label>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <select class="form-control input-sm field_color2 selectDoctor">
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-2"></div>
+                    <div class="col-md-3 col-sm-4">
+                        <label class="control-label" id="workingDays">Working Days: <span id="daysField"></span></label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-md-3 col-sm-4">
+                        <label class="control-label" id="workingTiming">Timing: <span id="timeFrom"></span> to <span id="timeTo"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row height_margin">
+                <div class="col-sm-12 col-md-12 ">
+                    <div class="row ">
+                        <div class="col-sm-12 col-md-12 ">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                    <div class="row buttons">
+                        <br/>
+                        <div class="col-sm-12 col-md-12 text-center">
+                            <button class="btn btn-default button" id="save">Save</button>
+                            <button class="btn btn-default button" id="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Select Time Slot</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="input-group">
+                                        <input type="radio" name="radiobtn" id="radio_one">
+                                        <label class="control-label">15 min slot</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="input-group">
+                                        <input type="radio" name="radiobtn" id="radio_two">
+                                        <label class="control-label">30 min slot</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4">
+                                    <input type="radio" name="radiobtn" id="radio_three">
+                                    <label class="control-label">45 min slot</label>
+                                </div>
+                                <div class="col-sm-4 col-md-3">
+                                    <input type="radio" name="radiobtn" id="radio_four">
+                                    <label class="control-label">1 hour slot</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <label class="control-label">Name:</label>
+                                </div>
+                                <div class="col-md-6 col-sm-9">
+                                    <label class="control-label" id="dummy_name">Dummy Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <label class="control-label">Age:</label>
+                                </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <label class="control-label" id="dummy_age">xxyy</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <label class="control-label">Sex:</label>
+                                </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <label class="control-label" id="dummy_sex">Male/Female</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <label class="control-label">Contact:</label>
+                                </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <label class="control-label" id="dummy_contact">1234567897</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <label class="control-label">Email:</label>
+                                </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <label class="control-label" id="dummy_email">abc@xyz.com</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-5">
+                                    <label class="control-label">Appointment Type:</label>
+                                </div>
+                                <div class="col-md-4 col-sm-5">
+                                    <select class="form-control input-sm" id="dummy_app" name="select_appointment">
+                                        <option value="abc">Walk In</option>
+                                        <option value="def">Online</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="goNext" class="btn btn-primary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src='js/jquery.min.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/date.js"></script>
+    <script src='js/moment.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <!-- <script src='js/gcal.js'></script> -->
+    <script>
+    var match_timeFrom, match_timeTo, fcOpts;
+    var stratTime, endTime;
+
+    var selectValues = {
+        "option1": {
+            "--Select Doctor--": {},
+            "Doctor general 1": {
+                "days": ["Mon", "Wed", "Fri"],
+                "timef": "4:00 pm",
+                timet: "6:00 pm"
+            },
+            "Doctor General 2": {
+                "days": ["Tue", "Thu", "Sat"],
+                "timef": "6:00 pm",
+                timet: "8:00 pm"
+            },
+        },
+        "option2": {
+            "--Select Doctor--": {},
+            "Doctor Ortho 1": {
+                "days": ["Sun", "Wed", "Thu"],
+                "timef": "8:00 am",
+                timet: "6:00 pm"
+            },
+            "Doctor Ortho 2": {
+                "days": ["Mon", "Tue", "Fri"],
+                "timef": "10:00 am",
+                timet: "2:00 pm"
+            },
+        },
+        "option3": {
+            "--Select Doctor--": {},
+            "Doctor Ortho 1": {
+                "days": ["Sun", "Mon", "Thu"],
+                "timef": "12:00 pm",
+                timet: "4:00 pm"
+            },
+            "Doctor Ortho 2": {
+                "days": ["Mon", "Tue", "Fri"],
+                "timef": "10:00 am",
+                timet: "2:00 pm"
+            },
+        },
+        "option4": {
+            "--Select Doctor--": {},
+            "Doctor Ortho 1": {
+                "days": ["Sun", "Wed", "Thu"],
+                "timef": "8:00 am",
+                timet: "6:00 am"
+            },
+            "Doctor Ortho 2": {
+                "days": ["Mon", "Tue", "Fri"],
+                "timef": "10:00 am",
+                timet: "2:00 pm"
+            },
+        }
+    };
+
+    $(document).ready(function() {
+        fcOpts = {
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            slotDuration: '00:5:00',
+            slotLabelFormat: 'h(:mm) a',
+            slotLabelInterval: '00:5:00',
+            selectable: true,
+            selectHelper: true,
+            dayClick: changeView,
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events    
+        };
+        console.log(fcOpts);
+        $("#calendar").fullCalendar(fcOpts);
+
+        $("#onSubscription").click(function() {
+            $("#Subscription").show();
+            $("#oncall").hide();
+            $("#PreviousHistory").hide();
+        });
+        $("#onCallradio").click(function() {
+
+            $("#oncall").show();
+            $("#Subscription").hide();
+            $("#PreviousHistory").hide();
+        });
+        $("#detailsbtn001").click(function() {
+            $("#PreviousHistory").show();
+        });
+
+        $("#checkDoctor").click(function() {
+            $("#doctorsDiv").show();
+
+        });
+
+        $(function() {
+
+            var $department = $("select.selectDepartment");
+            var $doctor = $("select.selectDoctor");
+            $department.change(function() {
+
+                $doctor.empty().append(function() {
+                    var output = '';
+
+                    $.each(selectValues[$department.val()], function(key, value) {
+                        output += '<option>' + key + '</option>';
+                    });
+                    console.log("pointer is here??0");
+                    return output;
+
+                });
+
+                $doctor.change(function() {
+
+                    console.log("pointer is here??3");
+                    $("#workingDays").show();
+                    $("#workingTiming").show();
+                    $("#daysField").empty();
+
+
+                    //  $("#daysField").empty().append(selectValues[$department.val()][$doctor.val()].days[0]);
+                    $("#timeFrom").empty().append(selectValues[$department.val()][$doctor.val()].timef);
+                    $("#timeTo").empty().append(selectValues[$department.val()][$doctor.val()].timet);
+                    console.log("yes it is");
+                    match_timeFrom = selectValues[$department.val()][$doctor.val()].timef;
+                    match_timeTo = selectValues[$department.val()][$doctor.val()].timet;
+                    minTime = moment(match_timeFrom, "h:mm a");
+                    maxTime = moment(match_timeTo, "h:mm a");
+                    // currentDate = view.calendar.getDate();
+
+                    $("#calendar").fullCalendar('destroy');
+                    $("#calendar").fullCalendar(
+                        $.extend(fcOpts, {
+
+                            minTime: minTime,
+                            maxTime: maxTime
+
+                        })
+                    );
+                    var myArray = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+                    $.each(selectValues[$department.val()][$doctor.val()].days, function(key, value) {
+                        $("#daysField").append(value).append("  ");
+                        console.log("this is the value in lower case" + value);
+                        value = value.toLowerCase();
+                        $(".fc-" + value).css('background-color', '#E5F0E4');
+                        $(".fc-" + value).css('border-color', 'black');
+                        $(".fc-" + value).css('text-color', 'red');
+                        myArray = myArray.filter(function(x) {
+                            return value.indexOf(x) < 0
+                        })
+
+                        console.log(myArray);
+
+                    });
+                    for (var i = 0; i < myArray.length; i++) {
+
+                        $(".fc-" + myArray[i]).css('background-color', '#FFE3E4');
+                        $(".fc-" + myArray[i]).css('border-color', 'black');
+                    }
+                });
+
+            }).change();
+
+        });
+
+
+
+
+        $("#goNext").click(function() {
+            $("#myModal").modal('hide');
+            if (document.getElementById('radio_one').checked) {
+                var title, Age, sex, contact, email, app_type;
+                title = $("#dummy_name").text();
+                Age = $("#dummy_age").text();
+                sex = $("#dummy_sex").text();
+                contact = $("#dummy_contact").text();
+                email = $("#dummy_email").text();
+                var e = document.getElementById("dummy_app");
+                app_type = e.options[e.selectedIndex].text;
+                var eventData;
+                if (title) {
+
+                    eventData = {
+
+                        title: "Patient Name:\t\t" + title + "\t||\t Age:\t\t" + Age + "\t||\tSex:\t\t" + sex + "\t||\tContact:\t\t " + contact + "\t||\tEmail:\t\t" + email + "\t||\t Appointment Type:\t\t" + app_type,
+                        backgroundColor: '#ff4d4d',
+
+                        start: stratTime,
+                        end: stratTime + 900000,
+
+
+                    };
+
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+
+                }
+                //$('#calendar').fullCalendar('unselect');
+
+            } else if (document.getElementById('radio_two').checked) {
+                var title, Age, sex, contact, email, app_type;
+                title = $("#dummy_name").text();
+                Age = $("#dummy_age").text();
+                sex = $("#dummy_sex").text();
+                contact = $("#dummy_contact").text();
+                email = $("#dummy_email").text();
+                var e = document.getElementById("dummy_app");
+                app_type = e.options[e.selectedIndex].text;
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: "Patient Name:\t\t" + title + "\t||\t Age:\t\t" + Age + "\t||\tSex:\t\t" + sex + "\t||\tContact:\t\t " + contact + "\t||\tEmail:\t\t" + email + "\t||\t Appointment Type:\t\t" + app_type,
+                        start: stratTime,
+                        end: stratTime + 1800000,
+                        backgroundColor: '#ff4d4d',
+
+                    };
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                //$('#calendar').fullCalendar('unselect');
+            } else if (document.getElementById('radio_three').checked) {
+                var title, Age, sex, contact, email, app_type;
+                title = $("#dummy_name").text();
+                Age = $("#dummy_age").text();
+                sex = $("#dummy_sex").text();
+                contact = $("#dummy_contact").text();
+                email = $("#dummy_email").text();
+                var e = document.getElementById("dummy_app");
+                app_type = e.options[e.selectedIndex].text;
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: "Patient Name:\t\t" + title + "\t||\t Age:\t\t" + Age + "\t||\tSex:\t\t" + sex + "\t||\tContact:\t\t " + contact + "\t||\tEmail:\t\t" + email + "\t||\t Appointment Type:\t\t" + app_type,
+                        start: stratTime,
+                        end: stratTime + 2700000,
+                        backgroundColor: '#ff4d4d',
+
+
+
+                    };
+
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                //$('#calendar').fullCalendar('unselect');
+            } else if (document.getElementById('radio_four').checked) {
+                var title, Age, sex, contact, email, app_type;
+                title = $("#dummy_name").text();
+                Age = $("#dummy_age").text();
+                sex = $("#dummy_sex").text();
+                contact = $("#dummy_contact").text();
+                email = $("#dummy_email").text();
+                var e = document.getElementById("dummy_app");
+                app_type = e.options[e.selectedIndex].text;
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: "Patient Name:\t\t" + title + "\t||\t Age:\t\t" + Age + "\t||\tSex:\t\t" + sex + "\t||\tContact:\t\t " + contact + "\t||\tEmail:\t\t" + email + "\t||\t Appointment Type:\t\t" + app_type,
+                        start: stratTime,
+                        end: stratTime + 3600000,
+                        backgroundColor: '#ff4d4d',
+
+                    };
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                //$('#calendar').fullCalendar('unselect');
+            }
+        });
+
+    });
+
+
+    changeView = function(date, jsevent, view) {
+        console.log(view.name);
+
+
+
+        if ($.inArray(moment(date).format("ddd"), selectValues[$("select.selectDepartment").val()][$("select.selectDoctor").val()].days) > -1) {
+
+            console.log("Present" + moment(date).format("ddd"));
+            if (view.name == "month") {
+                $('#calendar').fullCalendar('changeView', 'agendaDay');
+                $('#calendar').fullCalendar('gotoDate', date);
+
+
+            } else if (view.name == "agendaDay") {
+                //                        Date.parseExact(match_timeFrom, "hh:mm tt");
+                //                        Date.parseExact(match_timeTo, "hh:mm tt");
+                //                        
+                //                        minTime= moment(match_timeFrom, "h:mm a"),
+                //                        maxTime= moment(match_timeTo, "h:mm a"),
+                //                            
+                //                        
+                //                            console.log("mintime"+ minTime);
+                //                            console.log("maxtime"+maxTime);
+                //                          
+                //                           console.log("time inside"+moment(date).format('h:mm a'));
+                $('#myModal').modal('toggle');
+                stratTime = date;
+                console.log(stratTime);
+                //                        $.fullCalendar.parseDate( caltime ) -> Date;
+                //                        $.fullCalendar.parseDate( match_timeFrom ) -> Date;
+                //                        Date.parseExact(match_timeFrom, "hh:mm tt");
+                //                        Date.parseExact(match_timeTo, "hh:mm tt");
+                //                        Date.parseExact(caltime, "hh:mm tt");
+                //console.log("time is" + match_timeFrom);
+                //console.log("clicked time is" +caltime);
+                // console.log("time to is" +moment(match_timeFrom,"h:mm a"));
+
+                //                        if(date >= moment(match_timeFrom) ){
+                //                           
+                //                        }else{
+                //                        console.log("please select correct timing");
+                //                        alert("please select correct timing");
+                //                        }
+            }
+        } else {
+
+            console.log("wrong code");
+            alert("doctor is not available on this day");
+            element.css('background-color', '#FFB347');
+        }
+
+
+
+    }
+    </script>
+</body>
+
+</html>

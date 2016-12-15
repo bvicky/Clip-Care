@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Master Billing</title>
+ 
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-switch.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+</head>
+
+<body>
+
+     <header>
+        <div class="header-logo row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <img src="images/logo.png" class="col-xs-6 col-sm-10 col-md-6 col-lg-4 img-responsive">
+            </div>
+        </div>
+          <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.aventyn.com/">Aventyn</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home </a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="referral_master.html">Referral</a></li>
+                                <li><a href="masterspayment.html">Payment</a></li>
+                                <li><a href="masterscareplan.html">Care Plan</a></li>
+                                <li><a href="NewVitalsMaster.html">Vitals </a></li>
+                                <li><a href="mastershistory.html">History </a></li>
+                                <li><a href="master_for_services.html">Lab Test </a></li>
+                                <li><a href="master_medication.html">Medication</a></li> <li><a href="teamformation.html">Care Team</a></li>
+                                <li><a href="Physical_Examination.html">Physical Examination</a></li>
+                                <li><a href="mastersbilling.html">Billing</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="registration.html">Registration</a></li>
+                                <li><a href="careplan.html">Care Plan</a></li>
+                                <li><a href="vitals.html">Vitals</a></li>
+                                <li><a href="medications.html">Medications</a></li>
+                                <li><a href="teamscheduling.html">Team Scheduling </a></li>
+                                <li><a href="fasttrackbilling.html">Fast Track Billing </a></li>
+                                <li><a href="billing_module.html">Billing </a></li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Pages <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="registration.html">Registration</a></li>
+                                <li>
+                                    <a href="#"> </a></li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Appointments<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="appointment.html">Appointment</a></li>
+                                <li>
+                                    <a href="appointmentDashboardConsolidated.html">Appointment Dashboard </a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </li>
+						
+						 <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doctors<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="doc_appointment.html">Appointment</a></li>
+                                <li><a href="doctorsdashboard.html">Dashboard</a></li>
+                                <li><a href="asoap-icd.html">ICD </a></li>
+                                <li><a href="medinfo.html">Medication Information</a></li>
+                                <li><a href="medstat.html">Vital History</a></li>
+                                <li><a href="medicationhistory.html">Medication History</a></li>
+                                <li><a href="patienthistoryandvitals.html">Vitals and History</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li><a href="News.html">Contact Us</a></li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="pull-right">Logout</a></li>
+                    </ul>
+                </div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+    </header>
+
+
+    <form class="form-horizontal" id="registrationform">
+
+        <div class="container data">
+
+            <div class="row begin-top">
+                <div class="col-sm-12 col-md-12">
+                    <div class="btn-group btn-group-md" role="group" aria-label="...">
+
+                        <button type="button" class="btn btn-default btn-info" id="devicebtn">Device</button>
+                        <button type="button" class="btn btn-default btn-info" id="servicebtn">Service</button>
+                        <button type="button" class="btn btn-default  btn-info" id="investigatontn">Investigation</button>
+                        <button type="button" class="btn btn-default  btn-info" id="othersbtn">Others</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="device">
+                <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                        <h3>Device Details</h3>
+                        <hr style="border : dotted 1px">
+                    </div>
+                </div>
+                <div class="row begin-top">
+                    <div class="col-sm-6 col-md-2">
+                        <label for="devicecode">Device Code :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="devicecode" name="" placeholder="Device Code">
+                    </div>
+
+                    <div class="col-sm-6 col-md-2">
+                        <label for="devicenum">Device Number :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="devicenum" name="" placeholder="Device Number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-2">
+                        <label for="description">Description :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <textarea class=" form-control textarea-color" rows="3" id="desc" placeholder="Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="datefrom">Date From :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <input type="date" class="form-control input-sm field_color" id="datefrom" name="" placeholder="">
+                    </div>
+
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="dateto">Date To :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <input type="date" class="form-control input-sm field_color" id="dateto" name="" placeholder="">
+                    </div>
+
+                </div>
+
+                <div class="row ">
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="amount">Amount :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="amount" name="" placeholder="Amount">
+                    </div>
+
+                    <div class="col-sm-6 col-md-2">
+                        <label class="control-label" for="cp">Cost Price :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 ">
+                        <input type="text" class="form-control input-sm field_color" id="cp" name="" placeholder="Cost Price">
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <button class="btn btn-default btn-sm button" id="">Add</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                        <h3>Consolidated Details</h3>
+                        <hr style="border : dotted 1px">
+                    </div>
+                </div>
+                <div class="row begin-top">
+                    <div class="table-responsive col-sm-12 col-md-12">
+                        <table class="table table-bordered" id="table_billingdevice" name="table_billingdevice">
+                            <thead>
+                                <th>#</th>
+                                <th>Device Code</th>
+                                <th>Device Number</th>
+                                <th>Description</th>
+                                <th>Duration From</th>
+                                <th>Duration To</th>
+                                <th>Amount</th>
+                                <th>Cost Price</th>
+                                <th>Others</th>
+                                <th>Delete</th>
+                            </thead>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="glyphicon glyphicon-trash"></span></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div id="service">
+                <div class="row begin-top">
+                    <div class="col-sm-12 col-md-12">
+                        <div id="drop_consultation_services" style="background-" class="form-group col-sm-12">
+
+                            <span style="font-size:25px; color: #993333">Consultation Services</span>
+                            <img src="images/1.png" class="img-responsive pull-right" id="consultant_img" style="width:25px">
+                            <hr style="border : dotted 1px">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="consultaion">
+                    <div class="row begin-top">
+                        <div class="col-sm-6 col-md-2">
+                            <label for="servicecode">Serivce Code :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="servicecode" name="" placeholder="Service Code">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label for="servicenum">Service Number :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="servicenum" name="" placeholder="Service Number">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="servicefrom">Service From :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="date" class="form-control input-sm field_color" id="servicefrom" name="" placeholder="">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="serviceto">Date To :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="date" class="form-control input-sm field_color" id="serviceto" name="" placeholder="">
+                        </div>
+
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="amount">Amount :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="amount" name="" placeholder="Amount">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="cp">Cost Price :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="cp" name="" placeholder="Cost Price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2">
+                            <label class="control-label">Type:</label>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <select class="form-control input-sm select-color" id="consultationtupe" name="">
+                                <option>In House</option>
+                                <option>Outsourced</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="otherservices">Others :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="text" class="form-control input-sm field_color" id="otherservices" name="" placeholder="Other Services">
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <button class="btn btn-default btn-sm button" id="">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="row begin-top">
+                        <div class="table-responsive col-sm-12 col-md-12">
+                            <table class="table table-bordered" id="table_billingdevice" name="table_billingdevice">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Device Code</th>
+                                    <th>Device Number</th>
+                                    <th>Description</th>
+                                    <th>Duration From</th>
+                                    <th>Duration To</th>
+                                    <th>Amount</th>
+                                    <th>Cost Price</th>
+                                    <th>Others</th>
+                                    <th>Delete</th>
+                                </thead>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+
+                        <hr style="border : dotted 1px">
+                    </div>
+                </div>
+
+                <div class="row begin-top">
+                    <div class="col-sm-12 col-md-12">
+                        <div id="drop_consultation_services" style="background-" class="form-group col-sm-12">
+
+                            <span style="font-size:25px; color: #993333">Clinical Services</span>
+                            <img src="images/1.png" class="img-responsive pull-right" id="clinical_img" style="width:25px">
+                            <hr style="border : dotted 1px">    
+                        </div>
+                    </div>
+                </div>
+
+                <div id="clinical">
+                    <div class="row begin-top">
+                        <div class="col-sm-6 col-md-2">
+                            <label for="servicecode">Serivce Code :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="servicecode" name="" placeholder="Service Code">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label for="servicenum">Service Number :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="servicenum" name="" placeholder="Service Number">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="servicefrom">Service From :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="date" class="form-control input-sm field_color" id="servicefrom" name="" placeholder="">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="serviceto">Date To :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="date" class="form-control input-sm field_color" id="serviceto" name="" placeholder="">
+                        </div>
+
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="amount">Amount :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="amount" name="" placeholder="Amount">
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="cp">Cost Price :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2 ">
+                            <input type="text" class="form-control input-sm field_color" id="cp" name="" placeholder="Cost Price">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-2 col-md-2">
+                            <label class="control-label">Type:</label>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <select class="form-control input-sm select-color" id="clinicaltype" name="">
+                                <option>In House</option>
+                                <option>Outsourced</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="otherservices">Others :</label>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <input type="text" class="form-control input-sm field_color" id="otherservices" name="" placeholder="Other Services">
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <button class="btn btn-default btn-sm button" id="">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="row begin-top">
+                        <div class="table-responsive col-sm-12 col-md-12">
+                            <table class="table table-bordered" id="table_billingdevice" name="table_billingdevice">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Device Code</th>
+                                    <th>Device Number</th>
+                                    <th>Description</th>
+                                    <th>Duration From</th>
+                                    <th>Duration To</th>
+                                    <th>Amount</th>
+                                    <th>Cost Price</th>
+                                    <th>Others</th>
+                                    <th>Delete</th>
+                                </thead>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="others">
+                 <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                        <h3>Additional Details</h3>
+                        <hr style="border : dotted 1px">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-4 col-sm-4 col-md-2">
+                        <label class="control-label" for="create">Create Category :</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-2">
+                        <input type="text" class="form-control field_color" id="create" name="">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <button class="btn btn-default btn-sm button" id="add"> Add</button>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class=" col-sm-4 col-md-2">
+                        <label class="control-label" for="specialdesc">Special Description :</label>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                    <textarea class=" form-control textarea-color" rows="3" placeholder="Description"></textarea>
+                        </div>
+                </div>
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row buttons">
+                    <div class="col-sm-12 col-md-12 text-center">
+                        <button class="btn btn-default button" id="save">Save</button>
+                        <button class="btn btn-default button" id="reset">Reset</button>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+    </form>
+    <script src="js/jquery.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/bootstrap-filestyle.min.js"></script>
+    <script>
+        $('ul.nav li.dropdown').hover(function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        }, function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#devicebtn").click(function () {
+                $("#device").show();
+                $("#service").hide();
+                $("#others").hide();
+
+            });
+            $("#servicebtn").click(function () {
+                $("#device").hide();
+                $("#service").show();
+               
+                $("#others").hide();
+
+            });
+
+             $("#othersbtn").click(function () {
+                $("#device").hide();
+                $("#service").hide();
+               
+                $("#others").show();
+
+            });
+
+            $("#consultant_img").click(function () {
+                $("#consultaion").fadeToggle();
+            });
+            $("#clinical_img").click(function () {
+                $("#clinical").fadeToggle();
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>

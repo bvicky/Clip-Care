@@ -1,0 +1,225 @@
+.mtop20{
+    margin-top: 20px;
+}
+
+
+
+body{
+    font-family: Georgia;
+}
+label{
+    color: #5d5d5d;
+}
+.headerright ul{
+    float: right;
+}
+.headerright ul li {
+    display: inline;
+    list-style: none;
+    padding-right: 25px;
+    font-size: 16px;
+}
+.headerright ul li:nth-child(3) {    
+    padding-right: 5px;
+    
+}
+.planname ul{
+    float: right;
+}
+.planname ul li:nth-child(odd) {
+    display: inline;
+    list-style: none;
+    padding-right: 25px;
+    font-size: 20px;
+    color: #0a6086;
+}
+.planname ul li:nth-child(even){
+    list-style: none;
+    padding-right: 5px;
+    font-size: 20px;
+    color: #2268a5;
+}
+.planname .fa{
+    color: #003952;
+    font-size: 20px;
+}
+
+.navbar-nav li{
+   
+    
+}
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+    padding-top : 4px;
+}
+.main h2{ 
+    color: #385d7c;
+}
+
+.box{
+    display: inline-block;
+    border: 0px solid black;
+}
+.box h3{
+    text-align: center;
+    font-size: 28px;
+    color: orange;
+}
+.box h5{
+    text-align: center;
+    color: #0a6086;
+}
+.box h5:nth-child(3){
+    color: #777;
+    font-size: 15px;
+}
+.asidebox{
+    border: 1px solid black;
+    margin-bottom: 25px;
+}
+.asidesearch{
+    border: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.patientmtmheading h2{
+    color: #383838;
+}
+.patientmtmheading p{
+    color: #777;
+    margin-bottom: 15px;
+}
+#mtmpatient th{
+    background-color: #1b4e79;
+    color: white;
+}
+.patientmtm h5 a{
+    text-decoration: none;
+}
+.search .input-group-addon{
+    background-color: white;
+    
+}
+.search input{
+    border-left: 0px;
+}
+#mtmclaims th{
+    background-color: #1b4e79;
+    color: white;
+    height: 45px;
+    
+}
+
+.remove h5{
+    padding-top: 20px;
+}
+.infoclaim h5{
+    color: saddlebrown;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    border-top: 5px solid #23527c;
+    border-bottom: 0px;
+}
+.nav-tabs>li>a{
+    font-size: 18px;
+}
+.tab-content>.active{
+    padding: 25px;
+   border: 1px solid #eee;
+  
+    
+}
+#todo h4{
+    color: #2268a5 ;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.response p{
+    
+    padding-top: 15px;
+    padding-left: 25px;
+}
+.tip p{
+    padding-top: 15px;
+    padding-left: 25px;    
+}
+
+#basic h4{
+    color: #2268a5 ;
+    font-weight: bold;
+    line-height: 24px;
+    text-decoration: underline;
+    
+}
+.patientinfo{
+   
+    margin-right: 20px;
+    border: 1px solid #eee;
+   
+}
+.patientinfo>div{
+    margin-bottom: 20px;
+    
+}
+.mtm-info {
+    border: 1px solid #eee;
+}
+.mtm-info>div {
+    margin-bottom: 20px;
+    
+}
+#rx th{
+    background-color: #1b4e79;
+    color: white;
+    height: 45px;
+    
+}
+#claims th{
+    background-color: #1b4e79;
+    color: white;
+    height: 45px;
+    
+}
+#medication h3{
+    color: #2268a5 ;
+    font-weight: bold;
+    line-height: 24px;
+    
+    
+}
+#medication th{
+    background-color: #1b4e79;
+    color: white;
+    height: 45px;
+    
+}
+.help h5{
+    float: right;
+    padding-right: 15px;
+    color: #23527c;
+    padding-top: 10px;
+}
+.help h5 span{
+    padding-right: 10px;
+}
+#cmr h4{
+    color: #2268a5;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.question{
+    font-size: 15px;
+    color: #777;
+    line-height: 24px;
+}
+.question i{
+    color: #3c8795;
+    padding-right: 10px;
+}
+.probtable th{
+    background-color: #1b4e79;
+    color: white;
+    height: 45px;
+}

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<title>{{title}}</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.css">
+   
+    <!-- Calendar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.css">
+   
+    <!-- Angular -->
+    <link rel="stylesheet" href="css/angular-toggle-switch.css">    
+    <link rel="stylesheet" href="css/nganimate.css">    
+    
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <!-- <link rel="stylesheet" href="css/stylesvitalbeat.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.css"> -->
+    
+    <!-- <link rel="stylesheet" href="css/angular-bootstrap-calendar.css"> -->
+
+
+
+</head>
+
+<body>
+    <div class="col-sm-12">
+    <header ng-include="'includes/header.html'"> </header>
+    </div>
+    <div class="clearfix"></div>
+    <ng-view></ng-view>
+    
+
+    <!-- Jquery & Bootstrap -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+
+    <!-- Moment JS -->
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/moment-timezone.min.js"></script>
+
+    <script src="js/mask.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/debfad90ab.js"></script>
+
+    <!-- Full Calendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/gcal.js"></script>
+    
+    
+
+
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.js"></script>
+    <script src="js/angular-message.js"></script>
+
+    <script src="js/calender.js"></script>
+    
+    <!-- Angular Bootstrap -->
+    <script src="js/ui-bootstrap.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/bootstrap-datetimepicker-directive.js"></script>
+    <script src="js/angular-toggle-switch.min.js"></script>
+    <script src="js/angular-bootstrap-multiselect.js"></script>
+
+    <!-- Smart Table -->
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.js"></script>
+    
+    <!-- Google Maps -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCC-7IBPlf3APqYJBud27uhWoHv_DJAP4&libraries=places"></script>
+
+    <!-- ng-File-upload -->
+    <script src="js/ng-file-upload-shim.js"></script>
+    <script src="js/ng-file-upload.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/appointmentDashboard.js"></script>
+    <script src="js/controllers/doctorMaster.js"></script>
+    <script src="js/controllers/masterBillingController.js"></script>
+    <script src="js/controllers/patientDashboard.js"></script>
+    <script src="js/controllers/referralMaster.js"></script>
+    <script src="js/controllers/registration.js"></script>
+    <script src="js/controllers/receptionDashboard.js"></script>
+    
+
+    <!-- <script src="js/smart-table.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js"></script> -->
+    <!-- <script src="js/angular-bootstrap-calendar-tpls.js"></script> -->
+
+    
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+.header-logo {
+    margin-top: 1%;
+}
+.navbar-default {
+    margin-top: 2%;
+    font-size: 15px;
+    font-family: Georgia;
+    font-weight: 100;
+
+}
+
+
+body{
+                font-family: Georgia;
+                color: #003366;
+            }
+
+            .header{
+                margin-top: 50px;
+
+
+            }
+            .header-img{
+                padding-left: 25px;
+
+            }
+
+            .banimg{
+                padding-left:25px;
+                padding-right: 20px;
+            }
+             .container{
+
+                margin-top: 5%;
+                box-shadow: 1px 1px 25px;
+                padding-bottom: 30px;
+                color: #006699;
+                 min-height: 500px;
+            }
+
+            h2{
+                color: #003366;
+                padding: 10px;
+            }
+           #buttonGRP_for_category{
+
+
+               padding-top:2%;
+            }
+.footer{
+                padding-top: 20px;
+                margin-left: 16%;
+            }
+            .footimg{
+                padding-left: 74%;
+            }
+.field_color2{
+     color:#006699;
+       margin-top: 2%;
+
+}
+.field_color{
+    color:#006699;
+    height:25px;
+    margin-top:2%;
+
+}
+.button_color{
+     background-color: #BEC1C2;
+                color: #006699;
+
+
+}
+.height_margin{
+
+    margin-top:2%;
+}
+.padding_label{
+    padding: 0 0 0 0;
+}
+h1{
+
+                padding: 10px;
+            }
+.glyph_size{
+    font-size: 22px;
+    margin-top: 2%;
+}
+/* masters-Payment Css */
+
+/* Care-Plan css */
+
+#reg_id_search{
+
+        overflow:scroll;
+    overflow-x: hidden;
+    height:265px;
+
+
+}
+#chronic_diseases{
+
+    overflow-y:scroll;
+    overflow-x: hidden;
+    height:200px;
+
+
+}
+#trauma_div{
+
+    overflow:scroll;
+    overflow-x: hidden;
+    height:200px;
+
+
+}
+#infection_div{
+
+    overflow:scroll;
+    overflow-x: hidden;
+    height:200px;
+
+
+}
+#degenrative_div{
+
+    overflow:scroll;
+    overflow-x: hidden;
+    height:200px;
+
+
+}
+.border_div{
+    border: 2px solid black;
+    margin-left:5%;
+    background-color:#FAFAFA;
+    margin-top: 3%;
+}
+
+.margin_div{
+    margin-top: 5%;
+}
+.button_add{
+    margin-top:5%;
+}
+/* css for mastervitals*/
+.field_NO_height{
+        color:#006699;
+
+    margin-top:10px;
+}
+.label_font_color{
+    margin-top: 3px;
+    font-size: 20px;
+    color: red;
+}
+.unit_side{
+    font-size: 10px;
+    color: black;
+}
+
+/* masters history */
+.border_template{
+    border: 2px solid black;
+    margin-right: 2%;
+}
+#templates_histroy {
+
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+}
+#templates_histroy2 {
+
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+}
+#templates_histroy3 {
+
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+}
+#templates_histroy4 {
+
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+}
+/* master physical examination css */
+
+.border_line{
+     border-bottom: 2px solid #006699;
+}
+.font_size{
+    font-size: 20px;
+    font-weight: 700;
+}
+.margin_label{
+    margin-top: 6px;
+}
+.thin_border{
+    margin-top: 2%;
+    border-bottom: 2px dotted #006699;
+}
+.fieldPhysical{
+    color: #006699;
+}
+.marginBtnPhy{
+    margin-top: 2px;
+}
+
+/* new vital masters*/
+
+/* billing css*/
+.border_billing{
+    border: 2px solid black;
+    background-color: #FAFAFA;
+}
+#billing_subscription{
+    display: none;
+}
+.padding_billing{
+    padding: 5px;
+}
+/* lab-test css */
+.border_top{
+    border-top: 1px dotted #006699;
+}
+.header_span{
+    font-size:25px; color: #993333;
+}
+#div_haemotology{
+    display:  none;
+}
+#div_Biochemistry{
+    display:  none;
+}
+#div_Serology{
+    display:  none;
+}
+#div_Cytology{
+    display:  none;
+}
+#div_Histopathology{
+    display:  none;
+}
+#div_Endocrinology{
+    display:  none;
+}
+#div_radio{
+    display: none;
+}
+/*  master for radiology css*/
+.color_text{
+     color:#006699;
+margin-top: 1%;
+
+}
+.btn_margin{
+    margin_top:1%;
+}
+#radilogy_div{
+    display: none;
+}
+#div_xray{
+    display: none;
+}
+#div_usg{
+    display: none;
+}
+#div_dopp{
+    display: none;
+}
+#div_ct{
+    display: none;
+}
+#div_mri{
+    display: none;
+}
+#div_xrayprodu{
+    display: none;
+}
+/* CALENDAR*/
+#div_radio{
+    display: none;
+}
+#oncall{
+    display: none;
+}
+#PreviousHistory{
+    display: none;
+}
+.margin_doctor_department{
+    margin-top: 3px;
+}
+#workingDays{
+    display: none;
+}
+#workingTiming{
+    display: none;
+}
+#doctorsDiv{
+    display: none;
+}
+.calendardash{
+    display: none;
+}
+.docDetails{
+    font-size: 12px;
+    color: darkgray;
+}
+.docName{
+    font-weight:700;
+}
+.docQualification{
+    color: dimgray;
+    font-size: 13px;
+}
+.widthName{
+    width: 200px;
+
+}
+.daysColor{
+    color:darkseagreen;
+}
+.daysWidth{
+    width: 200px;
+    text-align: center;
+}
+.slotcolor{
+    color: darkgreen;
+}
+.tdStyle{
+    text-align: center;
+}
+.holiday{
+    color: crimson;
+}
+.slotBar{
+    border-right: 4px solid green;
+    margin-left: 1.4%;
+}
+/* Physical Examination*/
+.headingSection{
+    font-size: 22px;
+    font-weight: 600;
+    color: #993333;
+}
+.forNormal{
+    color:#006699;
+    font-weight: 400;
+    font-size: 18px;
+}
+.crossMargin {
+    margin-left: 8px;
+}

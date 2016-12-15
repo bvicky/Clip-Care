@@ -1,0 +1,170 @@
+body{
+	font-family : sans-serif;
+}
+h1, h2, h3, h4{
+	color: #993300;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bold;
+}
+
+h1.normal, h2.normal, h3.normal, h4.normal{
+	color: black;
+	text-decoration: none;
+	font-style: normal;
+	
+}
+.mtop15{
+	margin-top: 15px;
+}
+.mtop25{
+	margin-top: 25px;
+}
+.form-group{
+	margin-top: 10px;
+}
+label{
+	color: #006699;
+	font-weight: 600;
+}
+/*Validation Codes*/
+.validationmsg{
+    color: #D8000C;
+    font-size: 10px;
+}
+.form-horizontal .ng-pristine{
+    border-color: #ccc;
+}
+.form-horizontal .ng-invalid.ng-touched{
+    border-color: #FA787E;
+}
+.form-horizontal .ng-valid.ng-touched.ng-dirty{
+    border-color: #78FA89;
+}
+
+/*Validation Code Ends*/
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type = text]{
+	text-transform: capitalize !important;
+}
+
+table.data th{
+	background-color : #006699;
+	color: white;
+	text-align: center;
+	border: 1px solid #ddd !important;
+}
+
+table.data th a,table.data th a:focus, table.data th a:hover {
+	color: white;
+	text-decoration: none;
+}
+table.data th a span{
+   color: white;
+ }
+ table.data td {
+	 text-align: center;
+ }
+ .delete{
+    color: red;
+}
+
+
+/*Doctor Master*/
+.nav-tabs{
+	border-bottom : 1px solid #337ab7;
+}
+.nav-tabs>li>a{
+	border-top : 5px solid #337ab7;
+	margin-right: 0px;
+	border-right : 1px solid #337ab7;
+	border-left : 1px solid #337ab7;
+}
+.nav-tabs>li>a:hover{
+	border-top : 5px solid #337ab7;
+	background-color: #fff;
+	margin-right: 0px;
+	border-right : 1px solid #337ab7;
+	border-left : 1px solid #337ab7;
+	
+}
+.nav-tabs>li>a:active{
+	border-top : 5px solid #337ab7;
+	background-color: #337ab7;
+	color: #fff;
+	margin-right: 0px;
+	border-right : 1px solid #337ab7;
+	border-left : 1px solid #337ab7;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	border-top : 5px solid #337ab7;
+	background-color: #337ab7;
+	color: #fff;
+	margin-right: 0px;
+	border-right : 1px solid #337ab7;
+	border-left : 1px solid #337ab7;
+
+}
+.tab-pane.active {
+	border : 1px solid #337ab7;
+	padding: 35px;
+}
+
+.item{
+	width : 400px;
+	height : 400px;
+	background-color: white;
+	box-shadow: 1px 1px 10px gray; 
+}
+
+
+/*Appointment Calender*/
+
+.appointmentCalender h2{
+	font-style: normal;
+	color: #000;
+	text-decoration: none;
+}
+
+
+/*Appointment Dashboard*/
+.shiftdays{
+	margin-top: 20px;
+}
+p.shiftdays:first-child{
+	margin-top: 0;
+}
+.shifttime{
+	width: 5%;
+}
+.shifttime p{
+	margin-top: 10px;
+}
+.shifttime p:first-child{
+	margin-top: 0;
+
+}
+
+/*Claendar */
+.calendar{
+	border : 1px solid #ddd;
+}
+.calendar h2{
+	font-style: normal;
+	color: #000;
+	text-decoration: none;
+}
+
+#Cal{
+	display : none;
+}
+
+.fc-time-grid .fc-slats td {
+	height : 5em;
+}

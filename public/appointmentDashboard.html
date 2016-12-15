@@ -1,0 +1,703 @@
+<div class="container-fluid" ng-controller="appointmentDashboardController">
+	<div class="row">
+		<div class="col-sm-12 col-md-3">
+			<div class="panel panel-primary">
+			    <div class="panel-heading">
+			      <h3 class="panel-title">Patient Information/ Registration</h3>
+		    	</div>
+			    <div class="panel-body">
+			    	<div class="form-group">
+			    		<label class="radio-inline"><input type="radio" ng-model="appointment.visitType" name="visitType" value="Walk-In">Walk-In</label>
+						<label class="radio-inline"><input type="radio" ng-model="appointment.visitType" name="visitType" value="On-Call">On-Call</label>
+						<label class="checkbox-inline"><input type="checkbox" ng-model="appointment.referral" name="visitType" value="Referral">Referral</label>
+			    	</div>
+			    	<div class="row">
+			    		<div class="form-group">
+				          <div class="col-sm-12">
+				            <div class="alert alert-warning alert-dismissible" role="alert" ng-if="message.length> 1">
+				                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="text-center"> {{message}}</h4>
+				            </div>
+				          </div>
+				        </div>
+			    	</div>
+			    	<div class="row">
+				    	<div class="form-group">
+				    		
+	                    
+				    		<div class="col-sm-6">
+				    			<label for="search">Search Patient</label>
+				    			<div class="input-group">
+									<input type="search" class="form-control" placeholder="Search"  ng-model="patientdatafilter ">
+									<span class="btn btn-primary input-group-addon glyphicon glyphicon-search" style="top: 0" data-toggle="modal" data-target=".Patlist" ng-click="fetchPatientRecord()"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+				    			<label for="search">Search Referral</label>
+				    			<div class="input-group">
+									<input type="search" class="form-control" placeholder="Search"  ng-model="referraldatafilter ">
+									<span class="btn btn-primary input-group-addon glyphicon glyphicon-search" style="top: 0" data-toggle="modal" data-target=".Reflist" ng-click="fetchReferralRecord()"></span>
+								</div>
+	                    	</div>
+	                    </div>
+	                </div>
+
+                    <div class="form-group">
+                    	<label for="referralName">Referral Name </label>
+                        <input type="text" class="form-control" name="referralName" ng-model="referral.name" placeholder="Referral Name">
+		            </div>
+
+                    <form class="form-horizontal" name="registrationform" ng-submit="savePatient()">
+                    	<div class="form-group">
+		                    <div class="col-sm-12">
+		                    	<label for="pid">Patient Id </label>
+		                        <input type="text" class="form-control" name="pid" ng-model="patient._id" placeholder="Patient Id" disabled>
+		                    </div>
+                    	</div>
+                    	<!-- <div class="form-group">
+                    		
+                    	</div> -->
+	                    <div class="form-group">
+	                    	<div class="col-sm-3" >
+								<label for="prefox">Prefix</label>
+								<select class="form-control" name="prefix" id="prefix" ng-model="patient.prefix" required>
+									<option value="">-Title-</option>
+									<option value="Mr.">Mr.</option>
+									<option value="Mrs.">Mrs.</option>
+									<option value="Mast.">Mast.</option>
+									<option value="Miss.">Miss.</option>
+									<option value="Mx.">Mx.</option>
+								</select>
+					         </div>
+	                    	<div class="col-sm-9">
+		                    	<label for="fname">First Name </label>
+		                        <input type="text" class="form-control" name="fname" ng-model="patient.firstName" placeholder="First Name" required>
+		                    </div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-6">
+	                    		<label for="mname">Middle Name </label>
+		                        <input type="text" class="form-control" name="mname" ng-model="patient.middleName" placeholder="Middle Name" required>
+	                    	</div>
+	                    	<div class="col-sm-6">
+	                    		<label for="lname">Last Name </label>
+		                        <input type="text" class="form-control" name="lname" ng-model="patient.lastName" placeholder="Last Name" required>
+	                    	</div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-9">
+		                    	<label for="dob">Date of Birth </label>
+		                        <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}" name="dob" ng-model="patient.dob" placeholder="MM/DD/YYYY" ng-blur="ageCalc()" required>
+		                    </div>
+		                    <div class="col-sm-3">
+		                    	<label for="age">Age </label>
+		                        <input type="text" class="form-control" name="age" ng-model="patient.age" placeholder="Age" ng-change="dobCalc()" required>
+		                    </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                    	<div class="col-sm-7">
+		                    	<label for="gender">Gender </label>
+		                        <div class="">
+					                <label class="radio-inline">
+					                    <input type="radio" ng-model="patient.gender" name="gender" value="male" ng-required="!patient.gender">Male
+					                </label>
+					                <label class="radio-inline">
+					                    <input type="radio" ng-model="patient.gender" value="female" ng-required="!patient.gender">Female
+					                </label>
+					                <label class="radio-inline">
+					                    <input type="radio" ng-model="patient.gender" value="Others" ng-required="!patient.gender">Others
+					                </label>
+		                    	</div>
+		                    </div>
+		                    <div class="col-sm-5">
+		                    	<label for="name">Mobile Number </label>
+		                        <input type="number" class="form-control" name="name" ng-model="patient.mobNumber" placeholder="Mobile Number" required>
+		                	</div>
+	                    </div>
+
+	                    
+	                    <div class="form-group">
+	                    	<div class="col-sm-5">
+					            <label  for="llnum">Landline Number :</label>
+				            	<input type="number" class="form-control " name="llnum1" ng-minlength="10" ng-maxlength="12" ng-model="patient.landline" placeholder="Landline Number" required>
+				            </div>
+				            <div class="col-sm-7">
+		                        <label for="email">E-mail ID </label>
+		                        <input type="email" class="form-control " id="email1" name="email1" ng-model="patient.emailId" placeholder="E-mail Address" required>
+		                    </div>
+	                    </div>
+
+	                    <div class="form-group" ng-if="patient._id==null">
+	                    	<div class="col-sm-12">
+	                    		<button type="submit" class="btn btn-success">Register</button>
+	                    	</div>
+	                    </div>
+	                </form>
+
+	                <form class="form-horizontal" name="previousVisitRecord">
+	                	<div class="form-group">
+	                    	<hr/>
+	                    	<div class="col-sm-8">
+	                    		<h4 style="text-decoration: none; font-style: normal;">Patient Previous Visit</h4>
+	                    	</div>
+	                    	<div class="col-sm-4">
+	                    		<button type="button" class="btn btn-primary">All Previous Visit</button>
+	                    	</div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-6">
+	                    		<label for="visitDate">Visit Date</label>
+	                    		<input type="text" class="form-control">
+	                    	</div>
+	                    	<div class="col-sm-6">
+	                    		<label for="plan">Plan</label>
+	                    		<input type="text" class="form-control">
+	                    	</div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-6">
+	                    		<label for="doctorVisited">Doctor Visited</label>
+	                    		<input type="text" class="form-control" >
+	                    	</div>
+	                    	<div class="col-sm-6">
+	                    		<label for="team">Team</label>
+	                    		<input type="text" class="form-control" >
+	                    	</div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-12">
+	                    		<label for="treatment">Treated For</label>
+	                    		<textarea  class="form-control"></textarea>
+	                    	</div>
+	                    </div>
+	                    <div class="form-group">
+	                    	<div class="col-sm-12">
+	                    		<label for="remarks">Remarks</label>
+	                    		<textarea  class="form-control"></textarea>
+	                    	</div>
+	                    </div>
+	                </form>
+
+			    </div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-md-9">
+			<div class="panel panel-primary">
+			    <div class="panel-heading">
+			    	<h3 class="panel-title" class="col-sm-6">Appointment Dashboard</h3>
+		    	</div>
+			    <div class="panel-body table-responsive" ng-init="getDoctorsDashboardList()">
+
+			    	<div id="appointmentDash">
+			    		<div class="pull-left">
+			    			<button type="button" class="btn btn-warning">Go To Calendar</button>
+			    		</div>
+				    	<div class="pull-right">
+					    	<button class="btn btn-primary" ng-click="prevWeek()">Previous</button>
+					    	<button class="btn btn-primary" ng-click="nextWeek()">Next</button>
+					    </div>
+
+				    	<table class="table table-bordered data" ng-init="actualWeek()">
+				    		<thead id="thdate">
+				    			<th>Doctors</th>
+				    			<th ng-repeat='curDate in currentWeek track by $index' class="{{curDate | date:'EEEE'}}">
+				    				<div>{{curDate | date:'EEEE'}} </div>
+				    				<div>{{ curDate | date:'dd-MM-yyyy'}}</div>
+				    			</th>
+				    		</thead>
+						    <tbody>
+						    	<tr ng-repeat="doc in docList">
+						    		<td><p>{{"Dr. " +doc.firstName + " " + doc.lastName}}<br/>{{doc.designation}} </p>
+						    			<p class="glyphicon glyphicon-pencil pull-right" ng-click="editDocTime(doc._id)" data-toggle="modal" data-target="#editDoctorShifts"></p>
+						    		</td>
+
+						    		<td ng-repeat="workDay in workingDays">
+						    			<div ng-repeat="shift in appCal[doc._id][workDay]">
+						    				<button class="btn btn-primary" style="margin-bottom: 5px;" ng-click="docTime(shift.workFrom, shift.workTo, doc.firstName, doc._id, workDay, shift.maxSlots); fetchAppointments()">{{shift.workFrom | date : 'hh:mm a'}} - {{shift.workTo | date : 'hh:mm a'}}</button>
+						    				
+						    			</div>
+
+						    			
+						    		</td>
+						    		 
+						    	</tr>
+						    </tbody>
+				    	</table>
+				    </div>
+
+
+			    	<div id="Cal">
+			    		<div class="col-sm-12">
+			    			<button type="button" class="btn btn-info pull-right " ng-click="appointmentDash()"><i class="fa fa-angle-double-left" aria-hidden="true" style="margin-right:5px;font-size:15px"></i><span style="font-size:14px;"  aria-hidden="true">Back To Doctor</span></button>
+			    		</div>
+				    	<div class="form-group">
+				    		<div class="col-sm-4 col-md-3">
+				    			<label for ="docName">Doctor Name</label>
+				    			<input type="text" ng-model="docName" class="form-control">
+				    		</div>
+				    		<div class="col-sm-4 col-md-3">
+				    			<label for ="docName">Date</label>
+				    			<input type="text" ng-model="docDate" class="form-control">
+				    		</div>
+				    		<div class="col-sm-4 col-md-3">
+				    			<label for ="docTimeFrom">Time From</label>
+				    			<input type="text" ng-model="docTimeFrom" class="form-control">
+				    		</div>
+				    		<div class="col-sm-4 col-md-3">
+				    			<label for ="docTimeTo">Time To</label>
+				    			<input type="text" ng-model="docTimeTo" class="form-control">
+				    		</div>
+				    	</div>
+
+
+				    	<div class="form-group">
+					    	<div class="col-sm-12 mtop25">
+					    		<div ui-calendar="uiConfig.calendar" class="calendar" calendar="calendar" ng-model="appointment.eventSources" id="calender"></div>
+					    	</div>
+					    </div>
+
+					</div>
+			    </div>
+			</div>
+		</div>
+
+
+	  
+	    
+
+
+
+	<!-- Patient List -->
+	<div class="modal fade Patlist" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+				
+				<div class="modal-dialog modal-lg" role="document">
+				    <div class="modal-content">
+				        <div class="modal-header">
+				            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            <h4 class="modal-title" id="gridSystemModalLabel">List of Patients</h4>
+				        </div>
+				        <div class="modal-body table-responsive">
+				            <div class="col-sm-4 pull-right ">
+				                <input type="text " ng-model="patientdatafilter " class="form-control  ">
+				            </div>
+				            <div class="col-sm-12 begin-top ">
+				                <table class="table table-hover table-bordered data">
+						             <thead>
+						                <th><a href="javascript:void(0) " ng-click="sortType='_id' ; sortReverse=! sortReverse ">Patient Id
+						                        <span ng-show="sortType=='_id' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+						                        <span ng-show="sortType=='_id' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+						                    </a>
+						                </th>
+						                <th><a href="javascript:void(0) " ng-click="sortType='firstName' ; sortReverse=! sortReverse ">Name
+						                        <span ng-show="sortType=='firstName' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+						                        <span ng-show="sortType=='firstName' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+						                    </a></th>
+						                <th><a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse ">E-mail Id
+						                        <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+						                        <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+						                    </a></th>
+						                <th><a href="javascript:void(0) " ng-click="sortType='mobNumber' ; sortReverse=! sortReverse ">Mobile Number
+						                        <span ng-show="sortType=='mobNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+						                        <span ng-show="sortType=='mobNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+						                    </a></th>
+						                <th>Select</th>
+						            </thead>
+						            <tr ng-repeat = "patients in patientData | filter :patientdatafilter | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize  | orderBy:sortType:sortReverse">
+						                    <td>{{patients._id}}</td>
+						                    <td>{{patients.firstName + " " +patients.middleName + " " +patients.lastName}}</td>
+						                    <td>{{patients.emailId}}</td>
+						                    <td>{{patients.mobNumber}}</td>                    
+						                    <td><p class="glyphicon glyphicon-check" ng-click="viewPatientRecord(patients._id)" data-dismiss="modal"></td>
+						                </tr>
+						            </tbody>
+						        </table>
+				            </div>
+
+				            <div class="col-sm-12 ">
+				                <ul uib-pagination total-items="referredlist.length " ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>﻿
+				            </div>
+				        </div>
+				        <div class="modal-footer">
+				            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				    </div>
+				    <!-- /.modal-content -->
+				</div>
+	</div>
+	<!-- /.Patient List -->
+
+	<!-- Referral List -->
+	<div class="modal fade Reflist" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" ng-if ="appointment.referral">
+			<div class="modal-dialog modal-lg" role="document">
+				    <div class="modal-content">
+				        <div class="modal-header">
+				            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            <h4 class="modal-title" id="gridSystemModalLabel">List of Referrals</h4>
+				        </div>
+				        <div class="modal-body table-responsive">
+				            <div class="col-sm-4 pull-left">
+				                <button class="btn btn-info" data-toggle="modal" data-target="#addReferral" data-dismiss="modal">Add New Referral</button>
+				            </div>
+				            <div class="col-sm-4 pull-right ">
+				                <input type="text " ng-model="referraldatafilter" class="form-control  ">
+				            </div>
+				            <div class="col-sm-12 begin-top ">
+				                <table class="table table-bordered table-hover referralTable mtop25 data">
+				                    <thead>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='referralType' ; sortReverse=! sortReverse ">Category Type
+				                            <span ng-show="sortType=='referralType' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='referralType' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='prefix' ; sortReverse=! sortReverse ">Prefix
+				                            <span ng-show="sortType=='prefix' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='prefix' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='name' ; sortReverse=! sortReverse ">Name
+				                            <span ng-show="sortType=='name' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='name' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='branch' ; sortReverse=! sortReverse ">Branch
+				                            <span ng-show="sortType=='branch' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='branch' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='mobileNumber' ; sortReverse=! sortReverse ">Contact Number
+				                            <span ng-show="sortType=='mobileNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='mobileNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse">E-mail
+				                            <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes"></span>
+				                            <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th><a href="javascript:void(0) " ng-click="sortType='isActive' ; sortReverse=! sortReverse">Status
+				                            <span ng-show="sortType=='isActive' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+				                            <span ng-show="sortType=='isActive' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+				                            </a>
+				                        </th>
+				                        <th>Select</th>
+				                        
+				                    </thead>
+				                    <tr ng-repeat="referred in referredlist | filter :referraldatafilter | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize | orderBy:sortType:sortReverse ">
+				                        <td>{{referred.referralType}}</td>
+				                        <td>{{referred.prefix}}</td>
+				                        <td>{{referred.name}}</td>
+				                        <td>{{referred.branch}}</td>
+				                        <td>{{referred.mobileNumber}}</td>
+				                        <td>{{referred.emailId}}</td>
+				                        <td>{{referred.isActive == true ? 'Active' : 'Inactive'}}</td>
+				                        <td><span class="glyphicon glyphicon-check" ng-click="viewReferralRecord(referred._id)" data-dismiss="modal"></span></td>
+				                        
+				                        
+				                    </tr>
+				                </table>
+				            </div>
+
+				            <div class="col-sm-12 ">
+				                <ul uib-pagination total-items="referredlist.length " ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>﻿
+				            </div>
+				        </div>
+
+
+				        <div class="modal-footer">
+				            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				    </div>
+				</div>
+	</div>
+	<!-- /.Refrral List -->
+
+	<!-- Appointment -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title normal" id="myModalLabel">Book Your Appointment</h4>
+	            </div>
+	            <div class="modal-body">
+	                <div class="form-group">
+	                    <div class="col-sm-6 col-md-6">
+	                    	<div>
+	                    	<label for="slotTime">Slot Time</label>
+	                    	</div>
+	                        <label class="radio-inline">
+	                            <input type="radio" name="slotEndTime" ng-model="appointment.timeDuration" value="900000">15 Minutes</label>
+	                        <label class="radio-inline">
+	                            <input type="radio" name="slotEndTime" ng-model="appointment.timeDuration" value="1800000">30 Minutes</label>
+	                        <label class="radio-inline">
+	                            <input type="radio" name="slotEndTime" ng-model="appointment.timeDuration" value="2700000">45 Minutes</label>
+	                        <label class="radio-inline">
+	                            <input type="radio" name="slotEndTime" ng-model="appointment.timeDuration" value="3600000">60 Minutes</label>
+	                    </div>
+	                    <div class="col-sm-6 col-md-6">
+	                    	<label for="appointmentType">Appointment Type</label>
+	                    	<input type="text" class="form-control" name="appointmentType" ng-model="appointment.visitType" disabled>
+	                    </div>
+	                </div>
+	                <div class="clearfix"></div>
+	                <div class="form-group">
+	                	<div class="col-sm-4 col-md-4">
+		                	<label for="id">PatientId</label>
+		                	<input type="text" class="form-control" name="id" ng-model="patient._id" disabled>
+		                </div>
+	                </div>
+	                <div class="clearfix"></div>
+	                <div class="form-group">
+	                    <div class="col-sm-4 col-md-4">
+	                        <label for="firstName">First Name</label>
+	                        <input type="text" class="form-control name=="firstName" ng-model="patient.firstName" disabled>
+	                    </div>
+	                    <div class="col-sm-4 col-md-4">
+	                        <label for="firstName">Middle Name</label>
+	                        <input type="text" class="form-control" name="lastName" ng-model="patient.middleName" disabled>
+	                    </div>
+	                    <div class="col-sm-4 col-md-4">
+	                        <label for="firstName">Last Name</label>
+	                        <input type="text" class="form-control" name="lastName" ng-model="patient.lastName" disabled>
+	                    </div>
+	                </div>
+	                <div class="clearfix"></div>
+	                <div class="form-group">
+	                	<div class="col-sm-2 col-md-2" >
+	                		<label for="age">Age</label>
+	                		<input type="text" class="form-control" name="age" ng-model="patient.age" disabled>
+
+	                	</div>
+	                	<div class="col-sm-2 col-md-2" >
+	                		<label for="gender">Gender</label>
+	                		<input type="text" class="form-control" name="gender" ng-model="patient.gender" disabled>
+
+	                	</div>
+	                	<div class="col-sm-4 col-md-4" >
+	                		<label for="mobileNumber">Mobile Number</label>
+	                		<input type="text" class="form-control" name="mobileNumber" ng-model="patient.mobNumber" disabled>
+
+	                	</div>
+	                	<div class="col-sm-4 col-md-4" >
+	                		<label for="emailId">Email ID</label>
+	                		<input type="text" class="form-control" name="emailId" ng-model="patient.emailId" disabled>
+
+	                	</div>
+	                </div>
+	            </div>
+	            <div class="clearfix"></div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                <button type="submit" class="btn btn-primary" ng-click="saveAppointment(appointment.timeDuration)">Save changes</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- /.Appointment -->
+	
+
+	<!-- Edit Doctor Shift Time -->
+	<div class="modal fade" id="editDoctorShifts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title normal" id="myModalLabel">Edit Doctor Work Time</h4>
+	            </div>
+	            <div class="modal-body"> 
+
+                   <pre>{{doctor.firstName}}</pre>
+
+                    <div class="row mtop15">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered data">
+
+                                <thead>
+                                    <th>Shift Days</th>
+                                    <th colspan="2">Session Time</th>
+                                    <th>Strict Session Status</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr class="workTime" ng-repeat="worktime in doctor.shift track by $index">
+                                <td>
+                                     <multiselect  options="weekdays" ng-model ="doctor.shift[$index].workDay" name="weekdays" show-select-all="true" show-unselect-all="true" required></multiselect>
+                                     
+                                </div>
+                                   
+                                </td>
+                                <td >
+                                    <div class="input-group col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" ng-model ="doctor.shift[$index].workFrom" name="workFrom" datetimepicker datetimepicker-options="{{timepicker_options}}" required>
+                                        <span class="input-group-addon" >
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>                                                
+                                    </div>
+                                    <div class="validationmsg " ng-messages="doctormasterform.workFrom.$error " ng-if="doctormasterform.workFrom.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Your Time of Commencement</div>
+                                        </div>
+                                    
+                                </td>
+                                <td>
+                                    <div class="input-group col-md-12 col-sm-12">  
+                                    
+                                        <input type="text" class="form-control" ng-model ="doctor.shift[$index].workTo" datetimepicker datetimepicker-options="{{timepicker_options}}" name="workTo" style="margin-left: 5px;" required>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>                                                
+                                    </div>
+                                     <div class="validationmsg " ng-messages="doctormasterform.workTo.$error " ng-if="doctormasterform.workTo.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Your Time of Closure</div>
+                                        </div>
+                                </td>
+
+
+                                <td>
+                                    <toggle-switch  ng-model="doctor.shift[$index].strictSessionStatus" on-label="locked" off-label="Unlocked"></toggle-switch>
+                                    
+                                </td>
+                                        <td><button type="button" class="btn btn-primary glyphicon glyphicon-plus" ng-click="addWorkTime($index)" ng-class="$index==0? 'btn-primary glyphicon glyphicon-plus': 'btn-warning glyphicon glyphicon-minus' "></button></td>
+                                    </tr>
+                                    <!-- End ng-repeat -->
+                                </tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+	            </div>
+	            <div class="clearfix"></div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                <button type="submit" class="btn btn-primary" ng-click="">Save changes</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- /.Edit Doctor Shift Time -->
+
+
+	<!-- Add New Referral -->
+
+	<div class="modal fade" id="addReferral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title normal" id="myModalLabel">Add New Referral</h4>
+	            </div>
+	            <form class="form-horizontal" name="addReferralForm" role="form" ng-submit="addreferral(addReferralForm)" novalidate>
+					<div class="modal-body">
+				    
+				        <div class="form-group">
+				            <div class="col-sm-6 col-md-3" ng-init="categories()">
+				                <label for="referrlaType">Select Category</label>
+				                <select class="form-control  " ng-model="referral.referralType" name="referraltype" ng-options="list.referralList as list.referralList for list in categoriesList" required>
+				                    <option value="">--Select Category--</option>
+				                </select>
+				                <div class="validationmsg" ng-messages="addReferralForm.referraltype.$error" ng-if="addReferralForm.referraltype.$dirty" role="alert">
+				                    <div ng-message="required">You did not enter a field</div>
+				                </div>
+				            </div>
+				            <div class="col-sm-6 col-md-3">
+				                <label for="Name">Name:</label>
+				                <input type="text " class="form-control   " ng-model="referral.name " name="referralName " placeholder="Name " required>
+				                <div class="validationmsg " ng-messages="addReferralForm.referralName.$error " ng-if="addReferralForm.referralName.$touched " role="alert ">
+				                    <div ng-message="required ">Please Enter Your Name</div>
+				                </div>
+				            </div>
+				            <div class="col-sm-6 col-md-3">
+				                <label for="Branch">Branch:</label>
+				                <input type="text " class="form-control   " ng-model="referral.branch " name="referralbranch " placeholder="Branch " required>
+				                <div class="validationmsg " ng-messages="addReferralForm.referralbranch.$error " ng-if="addReferralForm.referralbranch.$touched " role="alert ">
+				                    <div ng-message="required ">Please Enter Your Branch</div>
+				                </div>
+				            </div>
+				            <div class="col-sm-6 col-md-3">
+				                <label for="referrlaStatus">Referral Status</label>
+				                <div class="">
+				                    <toggle-switch ng-init="referral.isActive = true" ng-model="referral.isActive" on-label="Active" off-label="Inactive"></toggle-switch>
+				                </div>
+				                <!--  <select class="form-control   " ng-model="referral.isActive " name="isActive "  ng-options="value as key for (key, value) in { 'Active' : true, 'Inactive' : false} " required>
+				                   
+				                    {{referral.isActive}}
+				                    <div class="validationmsg " ng-messages="addReferralForm.isActive.$error " ng-if="addReferralForm.isActive.$dirty " role="alert ">
+				                        <div ng-message="required ">You did not enter a field</div>
+				                    </div> -->
+				            </div>
+				        </div>
+				        <div class="clearfix"></div>
+				        <div class="form-group" ng-repeat="contactPerson in referral.contactPersons track by $index">
+				            <div class="contactPerson">
+				                <div class="col-sm-4 col-md-3">
+				                    <label for="contactperson ">Contact Person Name:</label>
+				                    <input type="text " class="form-control   " ng-model="referral.contactPersons[$index].personName " name="ConPersonName[$index]" placeholder="Contact Person" required>
+				                    <div class="validationmsg " ng-messages="addReferralForm.ConPersonName[$index].$error " ng-if="addReferralForm.ConPersonName[$index].$touched " role="alert ">
+				                        <div ng-message="required ">Please Enter Contact Person's Name</div>
+				                    </div>
+				                </div>
+				                <div class="col-sm-4 col-md-3">
+				                    <label for="contactperson ">Contact Person Designation:</label>
+				                    <input type="text " class="form-control   " ng-model="referral.contactPersons[$index].designation " name="ConPersonDesig[$index]" placeholder="Designation " required>
+				                    <div class="validationmsg " ng-messages="addReferralForm.ConPersonDesig[$index].$error " ng-if="addReferralForm.ConPersonDesig[$index].$touched " role="alert ">
+				                        <div ng-message="required ">Please Enter Contact Person's Designation</div>
+				                    </div>
+				                </div>
+				                <div class="col-sm-3 col-md-3">
+				                    <label for="contactperson]">Contact Person Mobile Number:</label>
+				                    <input type="number " class="form-control   " ng-model="referral.contactPersons[$index].mobileNumber" ng-minlength="10 " ng-maxlength="12 " name="ConPersonPH[$index]" placeholder="Mobile Number " required>
+				                    <div class="validationmsg " ng-messages="addReferralForm.ConPersonPH[$index].$error " ng-if="addReferralForm.ConPersonPH[$index].$touched " role="alert ">
+				                        <div ng-message="required ">Please Enter Contact Person's Mobile Number</div>
+				                        <div ng-message="minlength ">Your Mobile Number is too short</div>
+				                        <div ng-message="maxlength ">Your Mobile Number is too long</div>
+				                    </div>
+				                </div>
+				                <div class="col-sm-1 mtop25">
+				                    <label class="control-label"></label>
+				                    <button type="button" class="btn btn-primary glyphicon glyphicon-plus glyph_size addContactPerson " ng-class="$index==0? 'btn-primary glyphicon glyphicon-plus': 'btn-warning glyphicon glyphicon-minus' " aria-hidden="true " ng-click="addRemoveContactPerson($index) "></button>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				            <div class="col-sm-6 col-md-3">
+				                <label for="contactnumber">Contact Number</label>
+				                <input type="number " class="form-control   " ng-minlength="10 " ng-maxlength="12 " ng-model="referral.mobileNumber " name="ContactMob " placeholder="Mobile Number " required>
+				                <div class="validationmsg " ng-messages="addReferralForm.ContactMob.$error " ng-if="addReferralForm.ContactMob.$touched " role="alert ">
+				                    <div ng-message="required ">Please Enter Contact Person's Mobile Number</div>
+				                    <div ng-message="minlength ">Your Mobile Number is too short</div>
+				                    <div ng-message="maxlength ">Your Mobile Number is too long</div>
+				                </div>
+				            </div>
+				           
+				            <div class="col-sm-6 col-md-3">
+				                <label for="emailid">Email Id</label>
+				                <input type="email " class="form-control   " ng-model="referral.emailId " name="EmailId1 " placeholder="E-mail Id " required>
+				                <div class="validationmsg " ng-messages="addReferralForm.EmailId1.$error " ng-if="addReferralForm.EmailId1.$touched && addReferralForm.EmailId1.$invalid " role="alert ">
+				                    <div ng-message="required ">Please Enter Your Email Address</div>
+				                    <div ng-message="email ">Must be a valid Email Address</div>
+				                </div>
+				            </div>
+				            
+				        </div>				       
+				        <!-- <div class="text-center mtop25">
+				            <button type="submit " class="btn btn-primary btn-sm height_margin " ng-disabled="addReferralForm.$invalid " name="SAVE ">Save/ Edit Referral</button>
+				            <button type="button" class="btn btn-primary btn-sm height_margin " ng-click="resetButton(addReferralForm) ">Reset</button>
+				        </div> -->				    
+					</div>
+
+	            	<div class="clearfix"></div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                <button type="submit " class="btn btn-primary btn-sm height_margin " ng-disabled="addReferralForm.$invalid " name="SAVE ">Save/ Edit Referral</button>
+		            </div>
+		        </form>
+	        </div>
+	    </div>
+	</div>
+
+
+</div>
+
+	

@@ -1,0 +1,454 @@
+<div class="container-fluid" ng-controller="registrationController">
+    <form class="form-horizontal" id="registrationform" name="registrationform" role="form" ng-init="recordfetched()" ng-submit="addPatient()" novalidate>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Registration</h3>
+            </div>
+            <div class="panel-body">
+                <h4>Hospital Information</h4>
+                <div class="form-group">
+                    <div class="col-sm-4 col-md-4">
+                        <label for="loc_name">Location</label>
+                        <input type="text" class="form-control " id="loc_name" name="hospitalLocation" ng-model="patient.hospitalLocation" placeholder="Location Name" disabled="disabled">
+                        <div class="validationmsg " ng-messages="registrationform.hospitalLocation.$error " ng-if="registrationform.hospitalLocation.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Location</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <label for="hosp_name">Hospital Name</label>
+                        <input type="text" class="form-control " id="hsop_name" name="hospitalName" ng-model="patient.hospitalName" placeholder="Hospital Name" disabled="disabled">
+                        <div class="validationmsg " ng-messages="registrationform.hospitalName.$error " ng-if="registrationform.hospitalName.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter the Hospital Name</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <label for="branch">Branch </label>
+                        <input type="text" class="form-control " id="branch" name="hospitalBranch" ng-model="patient.hospitalBranch" placeholder="Branch Location" disabled="disabled">
+                        <div class="validationmsg " ng-messages="registrationform.hospitalBranch.$error " ng-if="registrationform.hospitalBranch.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter the Hospital Branch</div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <h4>Patient Basic Details</h4>
+                <div class="form-group">
+                     <div class="col-sm-3 col-md-3">
+                        <label for="pid">Patient ID </label>
+                        <input type="text" class="form-control " id="pid" ng-model="patient._id " placeholder="Patient ID" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="prefox">Prefix </label>
+                        <select class="form-control" name="prefix" id="prefix" ng-model="patient.prefix" required>
+                            <option value="">--Select Prefix--</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Mast.">Mast.</option>
+                            <option value="Miss.">Miss.</option>
+                            <option value="Mx.">Mx.</option>
+                        </select>
+                        <div class="validationmsg " ng-messages="registrationform.prefix.$error " ng-if="registrationform.prefix.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Prefix</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-control " id="fname" name="fname" ng-model="patient.firstName" placeholder="First  Name" required>
+                        <div class="validationmsg " ng-messages="registrationform.fname.$error " ng-if="registrationform.fname.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your First Name</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="mname">Middle Name</label>
+                        <input type="text" class="form-control " id="mname" name="mname" ng-model="patient.middleName" placeholder="Middle  Name">
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control " id="lname" name="lname" ng-model="patient.lastName" placeholder="Last  Name" required>
+                        <div class="validationmsg " ng-messages="registrationform.lname.$error " ng-if="registrationform.lname.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Last Name</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label class="control-label" for="dob">Date of Birth </label>
+                        <div class="input-group datetime" datetimepicker>
+                            <input type="text" class="form-control input-sm" placeholder="MM/DD/YYY" datetimepicker datetimepicker-options="{{datetimepicker_options}}" ng-model="patient.dob" name="dob" id="dob" ng-blur="ageCalc()" required>
+                            <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <div class="validationmsg " ng-messages="registrationform.dob.$error " ng-if="registrationform.dob.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Date of Birth</div>
+                            <div ng-message="valid">The entered value is not a date</div>
+                            <div ng-message="maxdate">Date Exceeds the Current Date!</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-1">
+                        <label for="age">Age</label>
+                        <input type="number" class="form-control " id="age" name="age" ng-change="dobCalc()" ng-model="patient.age" placeholder="Age" required>
+                        <div class="validationmsg " ng-messages="registrationform.age.$error " ng-if="registrationform.age.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your age</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <label class="control-label" for="gender">Gender </label>
+                        <div class="">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="patient.gender" name="gender" value="male" ng-required="!patient.gender">Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="patient.gender" value="female" ng-required="!patient.gender">Female
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="patient.gender" value="Others" ng-required="!patient.gender">Others
+                            </label>
+                            <div class="validationmsg" ng-messages="registrationform.gender.$error" ng-if="registrationform.gender.$touched">
+                                <div ng-message="required">Please Slect Your Gender</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-6">
+                        <label for="minor">In Case of Minor</label>
+                        <toggle-switch class="switch-small" ng-model="patient.isMinor" on-label="Yes" off-label="No" ng-change="minortoogle()" style="margin-left: 30px"></toggle-switch>
+                    </div>
+                </div>
+                <div id=minorinfo ng-show="patient.isMinor == true">
+                    <div class="form-group">
+                        <div class="col-sm-5 col-md-5">
+                            <label for="patientGuardianId">Parent/Guardian Id :</label>
+                            <input type="text" class="form-control " name="parentMName" ng-model="patient.parent._id" placeholder="Parent Id" disabled="disabled">
+                        </div>
+                        <div class="col-sm-1  col-md-1 mtop25">
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal"></button>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="patientRelation">Relationship With the Patient :</label>
+                            <input type="text" class="form-control " name="patientRelation" ng-model="patient.parent.patientRelation" placeholder="Relation" ng-required="patient.isMinor == true">
+                            <div class="validationmsg " ng-messages="registrationform.patientRelation.$error " ng-if="registrationform.patientRelation.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Relationn With the Patient</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-3">
+                            <label for="Name">Parent/Guardian Name :</label>
+                            <select class="form-control" id="prefix" name="parentPrefix" ng-model="patient.parent.prefix" ng-required="patient.isMinor == true">
+                                <option value="">--Select Prefix</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mast.">Mast.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Miss.">Miss.</option>
+                                <option value="Mx.">Mx.</option>
+                            </select>
+                            <div class="validationmsg " ng-messages="registrationform.parentPrefix.$error " ng-if="registrationform.parentPrefix.$touched " role="alert ">
+                                <div ng-message="required ">Please Select Parent Prefix</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="pfname">Parent First Name</label>
+                            <input type="text" class="form-control " id="pgfname" name="parentFName" ng-model="patient.parent.firstName" placeholder="First  Name" ng-required="patient.isMinor == true">
+                            <div class="validationmsg " ng-messages="registrationform.parentFName.$error " ng-if="registrationform.parentFName.$touched " role="alert ">
+                                <div ng-message="required ">Please Select Parent's First Name</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="pmname">Parent Middle Name</label>
+                            <input type="text" class="form-control " name="parentMName" ng-model="patient.parent.middleName" placeholder="Middle  Name">
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="plname">Parent Last Name</label>
+                            <input type="text" class="form-control " id="pglname" name="parentLName" ng-model="patient.parent.lastName" placeholder="Last  Name" ng-required="patient.isMinor == true">
+                            <div class="validationmsg " ng-messages="registrationform.parentLName.$error " ng-if="registrationform.parentLName.$touched " role="alert ">
+                                <div ng-message="required ">Please Select Parent's Last Name</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6  col-md-3">
+                            <label for="mobnum">Mobile Number :</label>
+                            <input type="number" class="form-control " name="parentMobNum" id="mobnum1" ng-minlength="10" ng-maxlength="12" ng-model="patient.parent.mobNumber" placeholder="Mobile Number" ng-required="patient.isMinor == true">
+                            <div class="validationmsg " ng-messages="registrationform.parentMobNum.$error " ng-if="registrationform.parentMobNum.$touched " role="alert ">
+                                <div ng-message="required ">Please Select Parent's Mobile Number</div>
+                                <div ng-message="minlength ">Your Mobile Number is too short</div>
+                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="altmobnum">Alternate Mobile Number :</label>
+                            <input type="number" class="form-control " name="parentAltNnum" id="mobnum2" ng-minlength="10" ng-maxlength="12" ng-model="patient.parent.alternateMobNumber" placeholder="Mobile Number">
+                            <div class="validationmsg " ng-messages="registrationform.parentAltNnum.$error " ng-if="registrationform.parentAltNnum.$touched " role="alert ">
+                                <div ng-message="minlength ">Your Landline Number is too short</div>
+                                <div ng-message="maxlength ">Your Landline Number is too long</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="email">E-mail ID </label>
+                            <input type="email" class="form-control " name="parentEmail" id="email1" ng-model="patient.parent.emailId" placeholder="E-mail Address" ng-required="patient.isMinor == true">
+                            <div class="validationmsg " ng-messages="registrationform.parentEmail.$error " ng-if="registrationform.parentEmail.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Parent's Email Address</div>
+                                <div ng-message="email ">Must be a valid Email Address</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="altemail">Alternate E-mail ID </label>
+                            <input type="email" class="form-control " name="parentAltEmail" id="email2" ng-model="patient.parent.alternateEmailId" placeholder="E-mail Address">
+                            <div class="validationmsg " ng-messages="registrationform.parentAltEmail.$error " ng-if="registrationform.parentAltEmail.$touched " role="alert ">
+                                <div ng-message="email ">Must be a valid Email Address</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4>Patient Contact Details</h4>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="mobnum">Mobile Number</label>
+                        <input type="number" class="form-control " id="mobnum1" name="mobnum1" ng-minlength="10" ng-maxlength="12" ng-model="patient.mobNumber" placeholder="Mobile Number" required>
+                        <div class="validationmsg " ng-messages="registrationform.mobnum1.$error " ng-if="registrationform.mobnum1.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Mobile Number</div>
+                            <div ng-message="minlength ">Your Mobile Number is too short</div>
+                            <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="altmobnum">Alternate Mobile Number</label>
+                        <input type="number" class="form-control " id="mobnum2" ng-model="patient.alternateMobNumber" placeholder="Mobile Number">
+                        <div class="validationmsg " ng-messages="registrationform.mobnum2.$error " ng-if="registrationform.mobnum2.$touched" role="alert ">
+                            <div ng-message="minlength ">Your Mobile Number is too short</div>
+                            <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="llnum">Landline Number </label>
+                        <input type="number" class="form-control " name="llnum1" ng-minlength="10" ng-maxlength="12" ng-model="patient.landline" placeholder="Landline Number" required>
+                        <div class="validationmsg " ng-messages="registrationform.llnum1.$error " ng-if="registrationform.llnum1.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Landline</div>
+                            <div ng-message="minlength ">Your Landline Number is too short</div>
+                            <div ng-message="maxlength ">Your Landline Number is too long</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="altllnum">Alternate Landline Number </label>
+                        <input type="number" class="form-control " name="llnum2" ng-model="patient.alternateLandline" placeholder="Landline Number">
+                        <div class="validationmsg " ng-messages="registrationform.llnum2.$error " ng-if="registrationform.llnum2.$touched " role="alert ">
+                            <div ng-message="minlength ">Your Landline Number is too short</div>
+                            <div ng-message="maxlength ">Your Landline Number is too long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="email">E-mail ID </label>
+                        <input type="email" class="form-control " id="email1" name="email1" ng-model="patient.emailId" placeholder="E-mail Address" required>
+                        <div class="validationmsg " ng-messages="registrationform.email1.$error " ng-if="registrationform.email1.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Email Address</div>
+                            <div ng-message="email ">Must be a valid Email Address</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="altemail">Alternate E-mail ID </label>
+                        <input type="email" class="form-control " name="email2" ng-model="patient.alternateEmailId" placeholder="E-mail Address">
+                        <div class="validationmsg " ng-messages="registrationform.email2.$error " ng-if="registrationform.email2.$touched " role="alert ">
+                            <div ng-message="email ">Must be a valid Email Address</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-12">
+                        <h4>Current Address</h4>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-3">
+                        <label for="address">Address </label>
+                        <input class="form-control" name="currentAddress" ng-model="patient.current.address" required>
+                        <div class="validationmsg " ng-messages="registrationform.currentAddress.$error " ng-if="registrationform.currentAddress.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Current Address</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <label for="landmark">Landmark</label>
+                        <input type="text" class="form-control " id="landmark" name="currentLandmark" googleplace ng-model="patient.current.landMark" ng-change="currentAddressLandMark()" placeholder="Landmark">
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="city">City </label>
+                        <input type="text" class="form-control " id="city" name="currentCity" ng-model="patient.current.city" placeholder="City" required>
+                        <div class="validationmsg " ng-messages="registrationform.currentCity.$error " ng-if="registrationform.currentCity.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Current City</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="state">State </label>
+                        <input type="text" class="form-control " id="state" name="currentState" ng-model="patient.current.state" placeholder="State" required>
+                        <div class="validationmsg " ng-messages="registrationform.currentState.$error " ng-if="registrationform.currentState.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Current State</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control " id="country" name="currentCountry" ng-model="patient.current.country" placeholder="Country" required>
+                        <div class="validationmsg " ng-messages="registrationform.currentCountry.$error " ng-if="registrationform.currentCountry.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Current Country</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="pincode">Zip Code</label>
+                        <input type="text" class="form-control " id="zipcode" name="currentZipCode" ng-minlength="6" ng-maxlength="6" ng-model="patient.current.zipCode" ng-pattern="/^[0-9]+$/" placeholder="Zip code" required>
+                        <div class="validationmsg " ng-messages="registrationform.currentZipCode.$error " ng-if="registrationform.currentZipCode.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Current Zip Code</div>
+                            <div ng-message="minlength ">Your Zip Code is too short</div>
+                            <div ng-message="maxlength ">Your Zip Code is too long</div>
+                            <div ng-message="pattern ">Your Zip Code is Not a Number</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-md-2">
+                        <h4>Permanent Address</h4>
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="patient.sameCurrentaddress" ng-change="sameAddress()">Same as Current Address</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-3">
+                        <label for="address">Address </label>
+                        <textarea class="form-control " name="permanentAddress" ng-model="patient.permanent.address" id="address" required></textarea>
+                        <div class="validationmsg " ng-messages="registrationform.permanentAddress.$error " ng-if="registrationform.permanentAddress.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Permanent Address</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <label for="landmark">Landmark</label>
+                        <input type="text" class="form-control " id="landmark" name="permanentLandMark" googleplace ng-model="patient.permanent.landMark" ng-change="permanentAddressLandMark()" placeholder="Landmark">
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="city">City </label>
+                        <input type="text" class="form-control " id="city" name="permanentCity" ng-model="patient.permanent.city" placeholder="City" required>
+                        <div class="validationmsg " ng-messages="registrationform.permanentCity.$error " ng-if="registrationform.permanentCity.$touched " role="alert " required>
+                            <div ng-message="required ">Please Enter Your Permanent City</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="state">State </label>
+                        <input type="text" class="form-control " id="state" name="permanentState" ng-model="patient.permanent.state" placeholder="State" required>
+                        <div class="validationmsg " ng-messages="registrationform.permanentState.$error " ng-if="registrationform.permanentState.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Permanent State</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control " id="country" name="permanentCountry" ng-model="patient.permanent.country" placeholder="Country" required>
+                        <div class="validationmsg " ng-messages="registrationform.permanentCountry.$error " ng-if="registrationform.permanentCountry.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Permanent Country</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="pincode">Zip Code</label>
+                        <input type="text" class="form-control " id="zipcode" name="permanentZipcode" ng-minlength="6" ng-maxlength="6" ng-model="patient.permanent.zipCode" ng-pattern="/^[0-9]+$/"  placeholder="Zip code" required>
+                        <div class="validationmsg " ng-messages="registrationform.permanentZipcode.$error " ng-if="registrationform.permanentZipcode.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Permanent Zip Code</div>
+                            <div ng-message="minlength ">Your Zip Code is too short</div>
+                            <div ng-message="maxlength ">Your Zip Code is too long</div>
+                            <div ng-message="pattern">Your Zip Code is Not a Number</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <h4>Payment Information</h4>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label class="control-label" for="paymentmode">Payment Method </label>
+                        <select class="form-control" id="paymentmethod" ng-model="patient.paymentmethod" required>
+                            <option value="">--Select Payment Method--</option>
+                            <option value="Self">Self</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="BMS-Group">BMS-Group</option>
+                        </select>
+                        <div class="validationmsg " ng-messages="registrationform.paymentmethod.$error " ng-if="registrationform.paymentmethod.$touched " role="alert ">
+                            <div ng-message="required ">Please Select Your Payment Method</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary button" id="addpatient" ng-disabled="registrationform.$invalid">Save/ Update Patient Information</button>
+                    <button type="button" class="btn btn-warning button" ng-click="resetdetails(registrationform)" id="reset">Reset Patient Information</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Patient List</h4>
+                    </div>
+                    <div class="modal-body" ng-init="patientRecord()">
+                        <div class="pull-right col-sm-3">
+                            <input type="text" class="form-control" ng-model="searchPatient">
+                        </div>
+                        <div class="table-responsive col-sm-12">
+                            <table class="table table-bordered table-hover mtop25">
+                                <thead>
+                                    <th><a href="javascript:void(0) " ng-click="sortType='_id' ; sortReverse=! sortReverse ">Patient Id
+                              <span ng-show="sortType=='_id' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                              <span ng-show="sortType=='_id' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                              </a>
+                                    </th>
+                                    <th><a href="javascript:void(0) " ng-click="sortType='firstName' ; sortReverse=! sortReverse ">Name
+                              <span ng-show="sortType=='firstName' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                              <span ng-show="sortType=='firstName' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                              </a>
+                                    </th>
+                                    <th><a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse ">Email ID
+                              <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                              <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                              </a>
+                                    </th>
+                                    <th><a href="javascript:void(0) " ng-click="sortType='mobNumber' ; sortReverse=! sortReverse ">Contact Number
+                              <span ng-show="sortType=='mobNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                              <span ng-show="sortType=='mobNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                              </a>
+                                    </th>
+                                    <th>Select</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="patients in patientData | filter: searchPatient | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize">
+                                        <td>{{patients._id}}</td>
+                                        <td>{{patients.prefix+ " "+patients.firstName}}</td>
+                                        <td>{{patients.emailId}}</td>
+                                        <td>{{patients.mobNumber}}</td>
+                                        <td><span class="glyphicon glyphicon-check" ng-click="parentsearch(patients)" data-dismiss="modal"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+
+                  <div class="col-sm-12 ">
+                       <ul uib-pagination total-items="patientData.length " ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>﻿
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+      </div>
+    </form>
+</div>

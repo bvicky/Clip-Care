@@ -1,0 +1,635 @@
+<div class="container-fluid" ng-controller="doctorMasterController">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add/Edit Doctor Information</h3>
+        </div>
+        <div class="panel-body" >
+           <div class="col-sm-12 div col-md-12">
+              <!-- Nav tabs -->
+                <ul class="nav nav-tabs doctortab" role="tablist">
+                    <li role="presentation" class="active"><a data-target="#basic" aria-controls="basic" role="tab" data-toggle="tab">Basic Details</a></li>
+                    <li role="presentation"><a data-target="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact Details</a></li>
+                    <li role="presentation"><a data-target="#education" aria-controls="education" role="tab" data-toggle="tab">Education</a></li>
+                    <li role="presentation"><a data-target="#insurance" aria-controls="insurance" role="tab" data-toggle="tab">Insurance</a></li>
+                    <li role="presentation"><a data-target="#workTime" aria-controls="workTime" role="tab" data-toggle="tab">Work Details</a></li>
+                </ul>
+                <form class="form-horizontal" role="form" method="post" name="doctormasterform" ng-submit="addDoctor()" novalidate>
+                    <div class="tab-content">
+                        
+                            <div role="tabpanel" class="tab-pane fade in active" id="basic">
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="fname">First Name </label>
+                                            <input type="text" class="form-control" name="fName" ng-model="doctor.firstName" placeholder="First  Name" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.fName.$error " ng-if="doctormasterform.fName.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your First Name</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="mname">Middle Name </label>
+                                            <input type="text" class="form-control" name="mName" ng-model="doctor.middleName" placeholder="Middle  Name">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="lname">Last Name </label>
+                                            <input type="text" class="form-control" name="lName" ng-model="doctor.lastName" placeholder="Last  Name" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.lName.$error " ng-if="doctormasterform.lName.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Last Name</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-md-2">
+                                            <label for="dob">Date of Birth</label>{{doctor.dob}}
+                                            <div class="input-group" >
+                                                <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}"  ng-model="doctor.dob" placeholder="MM/DD/YYY" name="doj" required>
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <div class="validationmsg " ng-messages="doctormasterform.dob.$error " ng-if="doctormasterform.dob.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Date of Birth</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-2 col-md-1">
+                                            <label for="age">Age </label>
+                                            <input type="number" class="form-control" name="age" ng-model="doctor.age" placeholder="Age" disabled>
+                                            <div class="validationmsg " ng-messages="doctormasterform.age.$error " ng-if="doctormasterform.age.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Age</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="mobnum">Mobile Number </label>
+                                            <input type="number" class="form-control" name="mobNumber" ng-model="doctor.mobNumber" ng-minlength="10" ng-maxlength="12" placeholder="Mobile Number" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.mobNumber.$error " ng-if="doctormasterform.mobNumber.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Mobile Number</div>
+                                                <div ng-message="minlength ">Your Mobile Number is too short</div>
+                                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altmobnum">Alternate Mobile Number </label>
+                                            <input type="number" class="form-control" name="altmobnum" ng-model="doctor.alternateMobNumber" ng-minlength="10" ng-maxlength="12" placeholder="Alternate Mobile Number">
+                                            <div class="validationmsg " ng-messages="doctormasterform.altmobnum.$error " ng-if="doctormasterform.altmobnum.$touched " role="alert ">                            
+                                                <div ng-message="minlength ">Your Mobile Number is too short</div>
+                                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="llnum">Landline Number </label>
+                                            <input type="number" class="form-control" name="llnum" ng-model="doctor.landline" ng-minlength="10" ng-maxlength="12" placeholder="Landline Number" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.llnum.$error " ng-if="doctormasterform.llnum.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Landline Number</div>
+                                                <div ng-message="minlength ">Your Landline Number is too short</div>
+                                                <div ng-message="maxlength ">Your Landline Number is too long</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altllnum">Alternate Landline Number </label>
+                                            <input type="number" class="form-control" name="altllnum"  ng-model="doctor.alternateLandline" ng-minlength="10" ng-maxlength="12" placeholder="Landline Number">
+                                            <div class="validationmsg " ng-messages="doctormasterform.altllnum.$error " ng-if="doctormasterform.altllnum.$touched " role="alert ">                            
+                                                <div ng-message="minlength ">Your Landline Number is too short</div>
+                                                <div ng-message="maxlength ">Your Landline Number is too long</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="emailId">E-mail Id</label>
+                                            <input type="email" class="form-control" name="emailId" ng-model="doctor.emailId" placeholder="E-mail Address" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emailId.$error " ng-if="doctormasterform.emailId.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Email Address</div>
+                                                <div ng-message="email ">Must be a valid Email Address</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altemailId">Alternate E-mail Id</label>
+                                            <input type="email" class="form-control" name="altemailId" ng-model="doctor.alternateEmailId" placeholder="Alternate E-mail Address">
+                                            <div class="validationmsg " ng-messages="doctormasterform.altemailId.$error " ng-if="doctormasterform.altemailId.$touched " role="alert ">
+                                                <div ng-message="email ">Must be a valid Email Address</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group text-center">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary next"  ng-click="nexttab()">Next</button>
+                                        </div>
+                                    </div>
+                                    
+                            </div>
+                            <div role="tabpanel" class="clearfix tab-pane fade" id="contact">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12">
+                                            <h4>Current Address</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="address">Current Address </label>
+                                            <textarea class="form-control"  name="currAddr" ng-model="doctor.current.address" placeholder="Enter Current Address" required></textarea>
+                                            <div class="validationmsg " ng-messages="doctormasterform.currAddr.$error " ng-if="doctormasterform.currAddr.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Current Address</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="landmark">landMark </label>
+                                            <input type="text" class="form-control" name="currLandmark" googlePlace ng-change="docCurrentAddressLandMark()" ng-model="doctor.current.landMark" placeholder="Landmark">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3"> 
+                                            <label for="city">City </label>
+                                            <input type="text" class="form-control" name="currCity" ng-model="doctor.current.city" placeholder="City" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.currCity.$error " ng-if="doctormasterform.currCity.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Current Address City</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="state">State </label>
+                                            <input type="text" class="form-control" name="currState" ng-model="doctor.current.state" placeholder="State" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.currState.$error " ng-if="doctormasterform.currState.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Current Address State</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="country">Country</label>
+                                            <input type="text" class="form-control" name="currCountry" ng-model="doctor.current.country" placeholder="Country" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.currCountry.$error " ng-if="doctormasterform.currCountry.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Current Address Country</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="zipCode">Zip Code</label>
+                                            <input type="text" class="form-control" name="currZipCode" ng-model="doctor.current.zipCode" ng-minlength="6" ng-maxlength="6" placeholder="Zip code" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.currZipCode.$error " ng-if="doctormasterform.currZipCode.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Current Address Zip Code</div>
+                                                <div ng-message="minlength ">Your Zip Code is too short</div>
+                                                <div ng-message="maxlength ">Your Zip Code is too long</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-md-2">
+                                            <h4>Permanent Address</h4>
+                                        </div>
+                                        <div class="col-sm-4 col-md-3">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" ng-model="doctor.sameCurrentaddress" ng-change="sameAddress()">Same as Current Address</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="address">Permanent Address </label>
+                                            <textarea class="form-control" name="permAddr" ng-model="doctor.permanent.address" placeholder="Enter Permanent Address" required></textarea>
+                                            <div class="validationmsg " ng-messages="doctormasterform.permAddr.$error " ng-if="doctormasterform.permAddr.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Permanent Address</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="landmark">Landmark</label>
+                                            <input type="text" class="form-control" name="permLandmark" googlePlace ng-change="docPermanentAddressLandMark()" ng-model="doctor.permanent.landMark" placeholder="Landmark">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="city">City </label>
+                                            <input type="text" class="form-control" name="permCity" ng-model="doctor.permanent.city" placeholder="City" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.permCity.$error " ng-if="doctormasterform.permCity.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Permanent Address City</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="state">State </label>
+                                            <input type="text" class="form-control" name="permState" ng-model="doctor.permanent.state" placeholder="State" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.permState.$error " ng-if="doctormasterform.permState.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Permanent Address State</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                     <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="country">Country:</label>
+                                            <input type="text" class="form-control" name="permCountry" ng-model="doctor.permanent.country" placeholder="Country" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.permCountry.$error " ng-if="doctormasterform.permCountry.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Permanent Address Country</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="pincode">Zip Code</label>
+                                            <input type="text" class="form-control" name="permZipCode" ng-model="doctor.permanent.zipCode" ng-minlength="6" ng-maxlength="6" placeholder="Zip code" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.permZipCode.$error " ng-if="doctormasterform.permZipCode.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Zip Code</div>
+                                                <div ng-message="minlength ">Your Zip Code is too short</div>
+                                                <div ng-message="maxlength ">Your Zip Code is too long</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-12">
+                                            <h4>Emergency Address</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="name">Contact Name </label>
+                                            <input type="text" class="form-control" name="emerName" ng-model="doctor.emergency.contactName" placeholder="Name" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerName.$error " ng-if="doctormasterform.emerName.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact Name</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="mname">Contact Relation </label>
+                                            <input type="text" class="form-control" name="emerRelation" ng-model="doctor.emergency.contactRelation" placeholder="Relation With the Doctor" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerRelation.$error " ng-if="doctormasterform.emerRelation.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Contact Person's Relationship</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="mobnum">Mobile Number </label>
+                                            <input type="number" class="form-control" name="emermobNumber" ng-model="doctor.emergency.mobNumber" ng-minlength="10" ng-maxlength="12" placeholder="Mobile Number" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emermobNumber.$error " ng-if="doctormasterform.emermobNumber.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact Number</div>
+                                                <div ng-message="minlength ">Your Mobile Numberis too short</div>
+                                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altmobnum">Alternate Mobile Number </label>
+                                            <input type="number" class="form-control" name="emeraltmobnum" ng-model="doctor.emergency.alternateMobNumber" ng-minlength="10" ng-maxlength="12" placeholder="Alternate Mobile Number">
+                                            <div class="validationmsg " ng-messages="doctormasterform.emeraltmobnum.$error " ng-if="doctormasterform.emeraltmobnum.$touched " role="alert ">
+                                                <div ng-message="minlength ">Your Mobile Numberis too short</div>
+                                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="llnum">Landline Number </label>
+                                            <input type="number" class="form-control" name="emerllnum" ng-model="doctor.emergency.landline" ng-minlength="10" ng-maxlength="12" placeholder="Landline Number" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerllnum.$error " ng-if="doctormasterform.emerllnum.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Landline Number</div>
+                                                <div ng-message="minlength ">Your Landline Numberis too short</div>
+                                                <div ng-message="maxlength ">Your Landline Number is too long</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altllnum">Alternate Landline Number </label>
+                                            <input type="number" class="form-control" name="emeraltllnum" ng-model="doctor.emergency.alternateLandline"  ng-minlength="10" ng-maxlength="12" placeholder="Landline Number">
+                                            <div class="validationmsg " ng-messages="doctormasterform.emeraltllnum.$error " ng-if="doctormasterform.emeraltllnum.$touched " role="alert ">
+                                                <div ng-message="minlength ">Your Landline Numberis too short</div>
+                                                <div ng-message="maxlength ">Your Landline Number is too long</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="emailId">E-mail Id</label>
+                                            <input type="email" class="form-control" name="emeremailId" ng-model="doctor.emergency.emailId" placeholder="E-mail Address" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emeremailId.$error " ng-if="doctormasterform.emeremailId.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Email Address</div>
+                                                <div ng-message="email ">Must be a valid Email Address</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="altemailId">Alternate E-mail Id</label>
+                                            <input type="email" class="form-control" name="emeraltemailId" ng-model="doctor.emergency.alternateEmailId" placeholder="Alternate E-mail Address">
+                                            <div class="validationmsg " ng-messages="doctormasterform.emeraltemailId.$error " ng-if="doctormasterform.emeraltemailId.$touched " role="alert ">
+                                                <div ng-message="email ">Must be a valid Email Address</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="address">Emergency Address </label>
+                                            <textarea class="form-control" name="emerAddr" ng-model="doctor.emergency.address" placeholder="Enter Emergency Contact Address" required></textarea>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerAddr.$error " ng-if="doctormasterform.emerAddr.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact Address</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <label for="landmark">Landmark</label>
+                                            <input type="text" class="form-control" name="emerLandmark" googlePlace ng-change="docEmergencyAddressLandMark()"ng-model="doctor.emergency.landMark" placeholder="Landmark">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="city">City </label>
+                                            <input type="text" class="form-control" name="emerCity" ng-model="doctor.emergency.city" placeholder="City" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerCity.$error " ng-if="doctormasterform.emerCity.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact City</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="state">State </label>
+                                            <input type="text" class="form-control" name="emerState" ng-model="doctor.emergency.state" placeholder="State" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerState.$error " ng-if="doctormasterform.emerState.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact State</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="country">Country:</label>
+                                            <input type="text" class="form-control" name="emerCountry" ng-model="doctor.emergency.country" placeholder="Country" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerCountry.$error " ng-if="doctormasterform.emerCountry.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Emergency Contact Country</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <label for="pincode">Zip Code</label>
+                                            <input type="String" class="form-control" name="emerZipCode" ng-model="doctor.emergency.zipCode" ng-minlength="6" ng-maxlength="6" placeholder="Zip code" required>
+                                            <div class="validationmsg " ng-messages="doctormasterform.emerZipCode.$error " ng-if="doctormasterform.emerZipCode.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Zip Code</div>
+                                                <div ng-message="minlength ">Your Zip Code is too short</div>
+                                                <div ng-message="maxlength ">Your Zip Code is too long</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group text-center">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary" ng-click="prevtab()">Previous</button>
+                                            <button type="button" class="btn btn-primary" ng-click="nexttab()">Next</button>
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div role="tabpanel" class="clearfix tab-pane fade" id="education">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <h4>Qualification</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for = "qualification">Qualification</label>
+                                        <textarea class="form-control" name="qualification" ng-model="doctor.qualification" placeholder="Enter All Qulifications Seperated by Comma(,)" required></textarea>
+                                        <div class="validationmsg " ng-messages="doctormasterform.qualification.$error " ng-if="doctormasterform.qualification.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Qualification</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for = "speicalization">Specialization</label>
+                                        <textarea class="form-control" name="speicalization" ng-model="doctor.specialization" placeholder="Enter All Specializations Seperated by Comma(,)" required></textarea>
+                                        <div class="validationmsg " ng-messages="doctormasterform.speicalization.$error " ng-if="doctormasterform.speicalization.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Speicalization</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for = "experience">Experience</label>
+                                        <textarea class="form-control" name="experience" ng-model="doctor.experience" placeholder="Enter All Experiences Seperated by Comma(,)" required></textarea>
+                                        <div class="validationmsg " ng-messages="doctormasterform.experience.$error " ng-if="doctormasterform.experience.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Experience</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for = "designation">Current Designation</label>
+                                        <input type="text" class="form-control" name="designation" ng-model="doctor.designation" placeholder="Current Designation" required>
+                                        <div class="validationmsg " ng-messages="doctormasterform.designation.$error " ng-if="doctormasterform.designation.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Designation</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="stateRegNum">State Medical Registration Number</label>
+                                        <input type="text" class="form-control" name="stateRegNum" ng-model="doctor.stateMedicalRegNumber" placeholder="State Medical Registration Number" required>
+                                        <div class="validationmsg " ng-messages="doctormasterform.stateRegNum.$error " ng-if="doctormasterform.stateRegNum.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your State Registration Number</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="countryRegNum">Country Medical Registration Number</label>
+                                        <input type="text" class="form-control" name="countryRegNum" ng-model="doctor.countryMedicalRegNumber" placeholder="State Medical Registration Number" required>
+                                        <div class="validationmsg " ng-messages="doctormasterform.countryRegNum.$error " ng-if="doctormasterform.countryRegNum.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Country Medical Registraion Number</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="omaRegNum">Other Medical Association Registration Number</label>
+                                        <input type="text" class="form-control" name="omaRegNum" ng-model="doctor.otherMedicalRegNumber" placeholder="State Medical Registration Number">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group text-center">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" ng-click="prevtab()">Previous</button>
+                                        <button type="button" class="btn btn-primary" ng-click="nexttab()">Next</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="clearfix tab-pane fade" id="insurance">
+                                  
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <h4>Insurance</h4>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-md-3">
+                                         <label for="medicoIns">Medico Legal Insurance Name </label>
+                                         <input type="text" class="form-control" name="medicoIns" ng-model="doctor.medicoLegalInsurance" placeholder="Insurance Name" required>
+                                         <div class="validationmsg " ng-messages="doctormasterform.medicoIns.$error " ng-if="doctormasterform.medicoIns.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Your Medico Legal Insurance Name</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="sumAssured">Sum Assured </label>
+                                        <input type="number" class="form-control" name="sumAssured" ng-model="doctor.sumAssured" placeholder="Amount" required>
+                                        <div class="validationmsg " ng-messages="doctormasterform.sumAssured.$error " ng-if="doctormasterform.sumAssured.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Your Assured Sum</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="dateIssue">Date of Issue</label>
+                                        <div class="input-group" datetimepicker datetimepicker-options="{{datetimepicker_options}}">
+                                            <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}" name="dateIssue" ng-model="doctor.dateofIssue" placeholder="MM/DD/YYY" required>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <div class="validationmsg " ng-messages="doctormasterform.dateIssue.$error " ng-if="doctormasterform.dateIssue.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Date of Issuance of Insurance</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for="dateExpiry">Date of Expiry</label>
+                                        <div class="input-group" datetimepicker datetimepicker-options="{{datetimepicker_options}}">
+                                            <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}"  name="dateExpiry" ng-model="doctor.dateofExpiry" placeholder="MM/DD/YYY" required>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                         <div class="validationmsg " ng-messages="doctormasterform.dateExpiry.$error " ng-if="doctormasterform.dateExpiry.$touched " role="alert ">
+                                                <div ng-message="required ">Please Enter Date of Expiry of Insurance</div>
+                                        </div>                                       
+                                    </div>
+                                </div>
+                                 <div class="clearfix"></div>
+                                <div class="form-group text-center">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" ng-click="prevtab()">Previous</button>
+                                        <button type="button" class="btn btn-primary" ng-click="nexttab()">Next</button>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                            <div role="tabpanel" class="clearfix tab-pane fade" id="workTime">
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-md-3">
+                                        <label for = "dateofjoining">Date of Joining</label>
+                                        <div class="input-group" datetimepicker datetimepicker-options="{{datetimepicker_options}}">
+                                            <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}" ng-model="doctor.dateofJoining" placeholder="MM/DD/YYY" name="doj" required>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <div class="validationmsg " ng-messages="doctormasterform.doj.$error " ng-if="doctormasterform.doj.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Date of Joining</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-2">
+                                        <label for="shiftDuration">Session Duration</label>
+                                        <select class="form-control" ng-model ="doctor.sessionDuration" name="sessionDuration" required>
+                                            <option value ="">--Select Duration--</option>
+                                            <option value ="15">15 Minutes</option>
+                                            <option value ="30">30 Minutes</option>
+                                            <option value ="45">45 Minutes</option>
+                                            <option value ="60">60 Minutes</option>
+                                        </select>
+                                        <div class="validationmsg " ng-messages="doctormasterform.sessionDuration.$error " ng-if="doctormasterform.sessionDuration.$touched " role="alert ">
+                                            <div ng-message="required ">Please Enter Your Session Duration</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group mtop15">
+                                    <div class="col-sm-12">
+
+                                            <table class="table table-bordered data">
+
+                                                <thead>
+                                                    <th>Shift Days</th>
+                                                    <th colspan="2">Session Time</th>
+                                                    <th>Strict Session Status</th>
+                                                    <th></th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="workTime" ng-repeat="worktime in doctor.shift track by $index">
+                                                        <td>
+                                                             <multiselect  options="weekdays" ng-model ="doctor.shift[$index].workDay" name="weekdays" show-select-all="true" show-unselect-all="true" required></multiselect>
+                                                             
+                                                        </div>
+                                                           
+                                                        </td>
+                                                        <td >
+                                                            <div class="input-group col-md-12 col-sm-12">
+                                                                <input type="text" class="form-control" ng-model ="doctor.shift[$index].workFrom" name="workFrom" datetimepicker datetimepicker-options="{{timepicker_options}}" required>
+                                                                <span class="input-group-addon" >
+                                                                    <span class="glyphicon glyphicon-time"></span>
+                                                                </span>                                                
+                                                            </div>
+                                                            <div class="validationmsg " ng-messages="doctormasterform.workFrom.$error " ng-if="doctormasterform.workFrom.$touched " role="alert ">
+                                                                    <div ng-message="required ">Please Enter Your Time of Commencement</div>
+                                                                </div>                                                    
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group col-md-12 col-sm-12">  
+                                                            
+                                                                <input type="text" class="form-control" ng-model ="doctor.shift[$index].workTo" datetimepicker datetimepicker-options="{{timepicker_options}}" ng-change="calcMaxSlots()" name="workTo" style="margin-left: 5px;" required>
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-time"></span>
+                                                                </span>                                                
+                                                            </div>
+                                                             <div class="validationmsg " ng-messages="doctormasterform.workTo.$error " ng-if="doctormasterform.workTo.$touched " role="alert ">
+                                                                    <div ng-message="required ">Please Enter Your Time of Closure</div>
+                                                                </div>
+                                                        </td>
+                                                        <td>
+                                                            <toggle-switch  ng-model="doctor.shift[$index].strictSessionStatus" on-label="locked" off-label="Unlocked"></toggle-switch>                     
+                                                        </td>                                                       
+                                                        <td><button type="button" class="btn btn-primary glyphicon glyphicon-plus" ng-click="addWorkTime($index)" ng-class="$index==0? 'btn-primary glyphicon glyphicon-plus': 'btn-warning glyphicon glyphicon-minus' "></button></td>
+                                                         
+                                                    </tr>
+                                                    <!-- End ng-repeat -->
+                                                </tbody>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group text-center">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" ng-click="prevtab()">Previous</button>
+                                        <button type="submit" class="btn btn-primary button" ng-disabled="doctormasterform.$invalid" id="save">Save/ Update Doctor Information</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-12 table-responsive">
+                                    <table class="table table-bordered data" ng-init="getDoctors()">
+                                        <thead>
+                                            <th>Id</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th rowspan="3">Work Days</th>
+                                            <th>Work From</th>
+                                            <th>Work To</th>
+                                            <th>Edit</th>
+                                        </thead>
+                                        <tr ng-repeat="doctors in doctorsList">
+                                            <td>{{doctors._id}}</td>
+                                            <td>{{doctors.firstName}}</td>
+                                            <td>{{doctors.lastName}}</td>
+                                            <td><p ng-repeat ="shifts in doctors.shift ">{{shifts.workDay}}</p></td>
+                                            <td><p ng-repeat ="timeF in doctors.shift ">{{timeF.workFrom | date : "hh:mm:a"}}</p></td>
+                                            <td><p ng-repeat ="timeT in doctors.shift">{{timeT.workTo | date : "hh:mm:a"}}</p></td>
+                                            <td><span class="glyphicon glyphicon-pencil" ng-click="editDoctor(doctors._id)"></span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        
+
+                    </div>
+                </form>
+            
+
+           
+                
+               
+
+                
+                <!-- <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row buttons">
+                    <div class="col-sm-12 col-md-12 text-center">
+                        
+                        <button class="btn btn-warning button" id="reset">Reset Doctor Information</button>
+                    </div>
+                </div> -->
+            </form> 
+        </div>
+    </div>
+</div>
+                

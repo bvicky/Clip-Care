@@ -1,0 +1,41 @@
+<div class="" ng-controller="patientDashboardController">
+    <div class="col-sm-12 table-responsive">
+        <table class="table table-hover data" ng-init="fetchPatientRecord()">
+            <thead>
+                <th><a href="javascript:void(0) " ng-click="sortType='_id' ; sortReverse=! sortReverse ">Patient Id
+                        <span ng-show="sortType=='_id' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                        <span ng-show="sortType=='_id' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                    </a>
+                </th>
+                <th><a href="javascript:void(0) " ng-click="sortType='firstName' ; sortReverse=! sortReverse ">Name
+                        <span ng-show="sortType=='firstName' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                        <span ng-show="sortType=='firstName' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                    </a></th>
+                <th><a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse ">E-mail Id
+                        <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                        <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                    </a></th>
+                <th><a href="javascript:void(0) " ng-click="sortType='mobNumber' ; sortReverse=! sortReverse ">Mobile Number
+                        <span ng-show="sortType=='mobNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                        <span ng-show="sortType=='mobNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                    </a></th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "patients in patientData | filter :referralfilter | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize | orderBy:sortType:sortReverse">
+                    <td>{{patients._id}}</td>
+                    <td>{{patients.firstName + " " +patients.middleName + " " +patients.lastName}}</td>
+                    <td>{{patients.emailId}}</td>
+                    <td>{{patients.mobNumber}}</td>                    
+                    <td><a href="#/patient/edit/{{patients._id}}"><span class="glyphicon glyphicon-pencil""></span></a></td>
+                    <td><span class="glyphicon glyphicon-trash" ng-click="delete(patients._id)"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12 ">
+        <ul uib-pagination total-items="referredlist.length " ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>﻿
+    </div>
+
+</div>

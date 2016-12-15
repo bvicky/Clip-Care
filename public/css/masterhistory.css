@@ -1,0 +1,14 @@
+.border_template {
+    border: 2px solid black;
+    margin-right: 2%;
+}
+
+#scr{
+   
+    height: 150px;
+    overflow-x: hidden;
+    overflow: scroll;
+    
+}
+
+

@@ -1,0 +1,288 @@
+<div class="container-fluid" ng-controller="referralMasterController">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add/Edit Referral Information</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <form class="form-horizontal" role="form" method="post" ng-submit="createReferralCateogry()">
+                    <div class="col-md-2 col-sm-3">
+                        <label>Create Category:</label>
+                    </div>
+                    <div class="col-md-3 col-sm-5">
+                        <input type="text" class="form-control" ng-model="referralCategory.referralList" name="referralList" placeholder="Name of the Category">
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary btn-sm height_margin">Create</button>
+                        <input type="button" class="btn btn-primary btn-sm   height_margin" name="ListAllReferal" value="View Referrals" data-toggle="modal" data-target=".abcd">
+                    </div>
+                </form>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="alert alert-success alert-dismissible" role="alert" ng-if="message.length> 1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="text-center"> {{message}}</h4>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="alert alert-danger alert-dismissible" role="alert" ng-if="existData.length> 1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="text-center"> {{existData}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <form class="form-horizontal" name="addReferralForm" role="form" ng-submit="addreferral(addReferralForm)" novalidate>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3" ng-init="categories()">
+                        <label for="referrlaType">Select Category</label>
+                        <select class="form-control  " ng-model="referral.referralType" name="referraltype" ng-options="list.referralList as list.referralList for list in categoriesList" required>
+                            <option value="">--Select Category--</option>
+                        </select>
+                        <div class="validationmsg" ng-messages="addReferralForm.referraltype.$error" ng-if="addReferralForm.referraltype.$dirty" role="alert">
+                            <div ng-message="required">You did not enter a field</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="Name">Name:</label>
+                        <input type="text " class="form-control   " ng-model="referral.name " name="referralName " placeholder="Name " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.referralName.$error " ng-if="addReferralForm.referralName.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Name</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="Branch">Branch:</label>
+                        <input type="text " class="form-control   " ng-model="referral.branch " name="referralbranch " placeholder="Branch " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.referralbranch.$error " ng-if="addReferralForm.referralbranch.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Branch</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="referrlaStatus">Referral Status</label>
+                        <div class="">
+                            <toggle-switch ng-init="referral.isActive = true" ng-model="referral.isActive" on-label="Active" off-label="Inactive"></toggle-switch>
+                        </div>
+                        <!--  <select class="form-control   " ng-model="referral.isActive " name="isActive "  ng-options="value as key for (key, value) in { 'Active' : true, 'Inactive' : false} " required>
+                   
+                    {{referral.isActive}}
+                    <div class="validationmsg " ng-messages="addReferralForm.isActive.$error " ng-if="addReferralForm.isActive.$dirty " role="alert ">
+                        <div ng-message="required ">You did not enter a field</div>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="form-group" ng-repeat="contactPerson in referral.contactPersons track by $index">
+                    <div class="contactPerson">
+                        <div class="col-sm-4 col-md-3">
+                            <label for="contactperson ">Contact Person Name:</label>
+                            <input type="text " class="form-control   " ng-model="referral.contactPersons[$index].personName " name="ConPersonName[$index]" placeholder="Contact Person" required>
+                            <div class="validationmsg " ng-messages="addReferralForm.ConPersonName[$index].$error " ng-if="addReferralForm.ConPersonName[$index].$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Contact Person's Name</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+                            <label for="contactperson ">Contact Person Designation:</label>
+                            <input type="text " class="form-control   " ng-model="referral.contactPersons[$index].designation " name="ConPersonDesig[$index]" placeholder="Designation " required>
+                            <div class="validationmsg " ng-messages="addReferralForm.ConPersonDesig[$index].$error " ng-if="addReferralForm.ConPersonDesig[$index].$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Contact Person's Designation</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <label for="contactperson]">Contact Person Mobile Number:</label>
+                            <input type="number " class="form-control   " ng-model="referral.contactPersons[$index].mobileNumber" ng-minlength="10 " ng-maxlength="12 " name="ConPersonPH[$index]" placeholder="Mobile Number " required>
+                            <div class="validationmsg " ng-messages="addReferralForm.ConPersonPH[$index].$error " ng-if="addReferralForm.ConPersonPH[$index].$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Contact Person's Mobile Number</div>
+                                <div ng-message="minlength ">Your Mobile Number is too short</div>
+                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 mtop25">
+                            <label class="control-label"></label>
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-plus glyph_size addContactPerson " ng-class="$index==0? 'btn-primary glyphicon glyphicon-plus': 'btn-warning glyphicon glyphicon-minus' " aria-hidden="true " ng-click="addRemoveContactPerson($index) "></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="contactnumber">Contact Number</label>
+                        <input type="number " class="form-control   " ng-minlength="10 " ng-maxlength="12 " ng-model="referral.mobileNumber " name="ContactMob " placeholder="Mobile Number " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.ContactMob.$error " ng-if="addReferralForm.ContactMob.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Contact Person's Mobile Number</div>
+                            <div ng-message="minlength ">Your Mobile Number is too short</div>
+                            <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="altcontactnumber">Alternate Contact Number</label>
+                        <input type="number " class="form-control   " ng-model="referral.landline " name="ContactLL " ng-minlength="10 " ng-maxlength="12 " placeholder="Landline Number ">
+                        <div class="validationmsg " ng-messages="addReferralForm.ContactLL.$error " ng-if="addReferralForm.ContactLL.$touched " role="alert ">
+                            <div ng-message="minlength ">Your Mobile Number is too short</div>
+                            <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="emailid">Email Id</label>
+                        <input type="email " class="form-control   " ng-model="referral.emailId " name="EmailId1 " placeholder="E-mail Id " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.EmailId1.$error " ng-if="addReferralForm.EmailId1.$touched && addReferralForm.EmailId1.$invalid " role="alert ">
+                            <div ng-message="required ">Please Enter Your Email Address</div>
+                            <div ng-message="email ">Must be a valid Email Address</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="altemailId">Alternate Email Id</label>
+                        <input type="email " class="form-control   " ng-model="referral.alternateEmailId " name="EmailId2 " placeholder="E-mail Id ">
+                        <div class="validationmsg " ng-messages="addReferralForm.EmailId1.$error " ng-if="addReferralForm.EmailId1.$touched && addReferralForm.EmailId1.$invalid " role="alert ">
+                            <div ng-message="email ">Please Enter a valid Email Address</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="address">Address</label>
+                        <textarea class="form-control   " rows="3 " ng-model="referral.address " name="address " placeholder="Address " required></textarea>
+                        <div class="validationmsg " ng-messages="addReferralForm.address.$error " ng-if="addReferralForm.address.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Address</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="webURL">Webiste URL</label>
+                        <input type="url " class="form-control   " ng-model="referral.url " name="website " placeholder="https://www.example.com - Website Url ">
+                        <div class="validationmsg " ng-messages="addReferralForm.website.$error " ng-if="addReferralForm.website.$touched " role="alert ">
+                            <div ng-message="url ">Must be a Valid URL </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="landmark">LandMark</label>
+                        <input type="text " class="form-control   " ng-model="referral.landMark " name="landmark " placeholder="*Landmark " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.landmark.$error " ng-if="addReferralForm.landmark.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Landmark</div>
+                            <div ng-message="url ">Please a valid Email Address</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-md-3">
+                        <label for="City"> City</label>
+                        <input type="text " class="form-control   " ng-model="referral.city " name="city " placeholder="City/District. " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.city.$error " ng-if="addReferralForm.city.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your City</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="state"> State</label>
+                        <input type="text " name="state " class="form-control   " ng-model="referral.state " placeholder="State " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.state.$error " ng-if="addReferralForm.state.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your State</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="country"> Country</label>
+                        <input type="text " class="form-control   " ng-model="referral.country " name="country " placeholder="Country " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.country.$error " ng-if="addReferralForm.country.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Country</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <label for="zipCode"> Postal Code</label>
+                        <input type="number " class="form-control   " ng-model="referral.pinCode " name="PinCode " placeholder="Pin code " ng-minlength="6 " ng-maxlength="6 " required>
+                        <div class="validationmsg " ng-messages="addReferralForm.PinCode.$error " ng-if="addReferralForm.PinCode.$touched " role="alert ">
+                            <div ng-message="required ">Please Enter Your Pincode</div>
+                            <div ng-message="minlength ">YourPincode is Short</div>
+                            <div ng-message="maxlength ">Ypur Pincode is Long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mtop25">
+                    <button type="submit " class="btn btn-primary btn-sm height_margin " ng-disabled="addReferralForm.$invalid " name="SAVE ">Save/ Edit Referral</button>
+                    <button type="button" class="btn btn-primary btn-sm height_margin " ng-click="resetButton(addReferralForm) ">Reset</button>
+                </div>
+            </form>
+            <!--Modal section/Popup section-->
+            <div class="modal fade abcd" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">List of Referrals</h4>
+                        </div>
+                        <div class="modal-body table-responsive">
+                            <div class="col-sm-4 pull-right">
+                                <select class="form-control " name="referraltype" ng-model="referralfilter" ng-options="list.referralList as list.referralList for list in categoriesList" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 pull-right ">
+                                <input type="text " ng-model="referralfilter " class="form-control  ">
+                            </div>
+                            <div class="col-sm-12 begin-top ">
+                                <table class="table table-bordered table-hover referralTable mtop25 data" ng-init=fetchReferralRecord()>
+                                    <thead>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='referralType' ; sortReverse=! sortReverse ">Category Type
+                                  <span ng-show="sortType=='referralType' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='referralType' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='prefix' ; sortReverse=! sortReverse ">Prefix
+                                  <span ng-show="sortType=='prefix' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='prefix' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='name' ; sortReverse=! sortReverse ">Name
+                                  <span ng-show="sortType=='name' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='name' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='branch' ; sortReverse=! sortReverse ">Branch
+                                  <span ng-show="sortType=='branch' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='branch' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='mobileNumber' ; sortReverse=! sortReverse ">Contact Number
+                                  <span ng-show="sortType=='mobileNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='mobileNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse">E-mail
+                                  <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes"></span>
+                                  <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='isActive' ; sortReverse=! sortReverse">Status
+                                  <span ng-show="sortType=='isActive' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='isActive' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </thead>
+                                    <tr ng-repeat="referred in referredlist | filter :referralfilter | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize | orderBy:sortType:sortReverse ">
+                                        <td>{{referred.referralType}}</td>
+                                        <td>{{referred.prefix}}</td>
+                                        <td>{{referred.name}}</td>
+                                        <td>{{referred.branch}}</td>
+                                        <td>{{referred.mobileNumber}}</td>
+                                        <td>{{referred.emailId}}</td>
+                                        <td>{{referred.isActive == true ? 'Active' : 'Inactive'}}</td>
+                                        <td><span class="glyphicon glyphicon-pencil" ng-click="editReferralRecord(referred._id)" data-dismiss="modal"></span></td>
+                                        <td><span class="glyphicon glyphicon-trash delete" ng-click="deleteReferralRecord(referred._id)"></span></td>
+                                    </tr>
+                                </table>
+
+                               
+                            </div>
+                            <div class="col-sm-12 ">
+                                <ul uib-pagination total-items="referredlist.length" ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+</div>

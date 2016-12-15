@@ -1,0 +1,46 @@
+var peopleData = { "item0": {
+  "id": "item0",
+  "selected": "true",
+  "level": "0",
+  //"hidden": ",jeldredge@example.com",
+  "suggestion": "HyperTension",
+  "key": "HyperTension",
+  "suggestable": "true",
+  "sort": 0
+},
+"item1": {
+  "id": "item1",
+  "level": "1",
+  //"hidden": ",rd@example.com",
+  "suggestion": " Diabetis  Mellitus ",
+  "key": "Diabetis  Mellitus",
+  "suggestable": "true",
+  "sort": -10
+},
+"item2": {
+  "id": "item2",
+  "level": "2",
+  //"hidden": ",gavin.kovach@example.com",
+  "suggestion": " Fever",
+  "key": "Fever",
+  "suggestable": "true",
+  "sort": 2
+},
+"item3": {
+  "id": "item3",
+  "level": "0",
+  //"hidden": ",",
+  "suggestion": "Cold",
+  "key": "Cold",
+  "suggestable": "true",
+  "sort": 3
+},
+"item4": {
+  "id": "item4",
+  "level": "0",
+  //"hidden": ",sebastian.seneca@example.com",
+  "suggestion": "Typhoid",
+  "key": "Typhoid",
+  "suggestable": "true",
+  "sort": 4
+}};

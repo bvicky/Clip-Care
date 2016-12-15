@@ -1,0 +1,162 @@
+<div class="container-fluid" ng-controller="masterBillingController">
+	<div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add Billing Services</h3>
+        </div>
+        <div class="panel-body" >
+        <form class="form-horizontal" name="masterBilling" ng-submit="addBillingService()" ng-init="getBillingService()">
+        	<div class="form-group">
+        		<div class="col-sm-6 col-md-3">
+        			<label for = "derpartment">Select Department</label>
+        			<select class="form-control" name="department" ng-model="billingService.department">
+        				<option value="">--Select Department--</option>
+        				<option value="dept1">Department1</option>
+        				<option value="dept2">Department2</option>
+        			</select>
+        		</div>
+        		<div class="col-sm-6 col-md-3">
+        			<label for = "serviceCode">Service Code</label>
+        			<input type="text" class="form-control" name="serviceCode" ng-model="billingService.code" placeholder="Enter Service Code">
+        		</div>        		
+        		<div class="col-sm-6 col-md-3">
+        			<label for = "serviceName">Service Name</label>
+        			<input type="text" class="form-control" name="serviceName" ng-model="billingService.name" placeholder="Enter Service Name">
+        		</div>
+                <div class="col-sm-6 col-md-3">
+                <label for="serviceAcronym">Service Name Acronym</label>
+                <input type="text" class="form-control" name="serviceAcronym" ng-model="billingService.acronym" placeholder="Enter Service Acronym">
+                </div>
+        	</div>
+
+        	<div class="form-group">
+        		<div class="col-sm-4 col-md-4">
+        			<label for="amount">Amount</label>
+        			<input type="number" class="form-control" name="amount" ng-model="billingService.amount"  placeholder="Enter Service Amount">
+        		</div>
+        		<div class="col-sm-4 col-md-4">
+        			<label for="abcCost">Activity Based Cost</label>
+        			<input type="number" class="form-control" name="abcCost" ng-model="billingService.ABC" placeholder="Enter the Activity Based Cost">
+        		</div>
+        		<div class="col-sm-4 col-md-4">
+        			<label for="costPrice">Cost Price</label>
+        			<input type="number" class="form-control" name="costPrice" ng-model="billingService.costPrice" placeholder="Enter Cost Price">
+        		</div>
+        	</div>
+        	<div class="form-group">
+        		<div class="col-sm-4 col-md-4">
+        			<label for="effectFrom">Effective From</label>
+        			<div class="input-group" >
+                        <input type="text" class="form-control" datetimepicker datetimepicker-options="{{datetimepicker_options}}"  ng-model="billingService.effectiveFrom" placeholder="MM/DD/YYY" name="effectFrom">
+                        <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+        		</div>
+        		<div class="col-sm-4 col-md-4">
+                    <label for="upload">Upload Circular</label>
+                    <div>
+                    <input type="file"  class="btn btn-default btn-sm scan form-control" ngf-select  ng-model="billingService.circular" name="uploadCircular">
+                    <!-- <button type="button" class="btn btn-primary" ng-click="uploadCirc()">Upload</button> -->
+                    </div>
+                </div>
+    
+        	</div>
+        	<pre>{{billingService}}</pre>
+        	<div class="form-group text-center">
+            	<div class="col-sm-12">
+            		<button type="submit" class="btn btn-primary" name="save" ng-click="uploadCirc()">Save Service</button>
+            		<button type="button" class="btn btn-warning" name="edit">Edit Service</button>
+            	</div>
+            </div>
+        </form>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".abcd">Bill Services</button>
+        <!-- Modal Data -->
+            <div class="modal fade abcd" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">List of Referrals</h4>
+                        </div>
+                        <div class="modal-body table-responsive">
+                            <!-- <div class="col-sm-4 pull-right">
+                                <select class="form-control " name="referraltype" ng-model="referralfilter" ng-options="list.referralList as list.referralList for list in categoriesList" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 pull-right ">
+                                <input type="text " ng-model="referralfilter " class="form-control  ">
+                            </div> -->
+                            <div class="col-sm-12 begin-top ">
+                                <table class="table table-bordered table-hover referralTable mtop25 data" ng-init=getBillingService()>
+                                    <thead>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='code' ; sortReverse=! sortReverse ">Service Code
+                                  <span ng-show="sortType=='code' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='code' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='name' ; sortReverse=! sortReverse ">Service Name
+                                  <span ng-show="sortType=='name' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='name' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='ABC' ; sortReverse=! sortReverse ">ABC
+                                  <span ng-show="sortType=='ABC' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='ABC' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='amount' ; sortReverse=! sortReverse ">Amount
+                                  <span ng-show="sortType=='amount' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='amount' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='costPrice' ; sortReverse=! sortReverse ">Cost Price
+                                  <span ng-show="sortType=='costPrice' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                  <span ng-show="sortType=='costPrice' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='circular' ; sortReverse=! sortReverse">Circular
+                                  <span ng-show="sortType=='circular' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes"></span>
+                                  <span ng-show="sortType=='circular' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        
+                                        </th>
+                                        <th><a href="javascript:void(0) " ng-click="sortType='filepath' ; sortReverse=! sortReverse">File Path
+                                  <span ng-show="sortType=='filepath' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes"></span>
+                                  <span ng-show="sortType=='filepath' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                  </a>
+                                        </th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </thead>
+                                    <tr ng-repeat="service  in services |  startFrom : (currentPage - 1) * pageSize | limitTo : pageSize | orderBy:sortType:sortReverse ">
+                                        <td>{{service.code}}</td>
+                                        <td>{{service.name}}</td>
+                                        <td>{{service.amount}}</td>
+                                        <td>{{service.ABC}}</td>
+                                        <td>{{service.costPrice}}</td>
+                                        <td>{{service.circular}}</td>
+                                        <td>{{service.filePath}}</td>
+                                        <td><span class="glyphicon glyphicon-pencil"  data-dismiss="modal"></span></td>
+                                        <td><span class="glyphicon glyphicon-trash delete"></span></td>
+                                    </tr>
+                                </table>
+
+                               
+                            </div>
+                            <div class="col-sm-12 ">
+                                <ul uib-pagination total-items="referredlist.length" ng-model="currentPage " items-per-page="pageSize " class="pull-right "></ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        <!-- // Modal Data -->
+    </div>
+</div>

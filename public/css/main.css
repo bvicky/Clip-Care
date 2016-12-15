@@ -1,0 +1,247 @@
+/*Registration*/
+
+.container {
+    margin: auto;
+}
+
+.header-logo {
+    margin-top: 1%;
+}
+
+.navbar-default {
+    margin-top: 2%;
+    font-size: 15px;
+    font-family: Georgia;
+    font-weight: 100;
+}
+
+.data {
+    box-shadow: 1px 1px 25px;
+    margin-top: 2%;
+    padding-bottom: 2%;
+    font-family: Georgia;
+    color: #006699;
+}
+
+.field_color {
+    color: #006699;
+    height: 25px;
+    margin-top: 2%;
+    font-family: Georgia;
+}
+
+.form-group {
+    margin-top: 0.5%;
+}
+
+label {
+    font-family: Georgia;
+    color: #003366;
+}
+
+.begin-top {
+    margin-top: 2%;
+}
+
+.select-width {
+    width: 130px;
+}
+
+#payment {
+    display: none;
+    margin-top: 10px;
+}
+
+#corporate {
+    display: none;
+    margin-top: 10px;
+}
+
+.button {
+    background-color: #BEC1C2;
+    color: #006699;
+    font-weight: bold;
+}
+
+
+/* Masters for History*/
+
+
+
+/* Masters History */
+
+.border_template {
+    border: 2px solid black;
+    margin-right: 2%;
+}
+
+#scr {
+    height: 150px;
+    overflow-x: hidden;
+    overflow: scroll;
+}
+
+.textarea-color {
+    color: #006699;
+    margin-top: 5px;
+}
+
+
+/* Masters for Billing */
+
+.select-color {
+    color: #006699;
+    height: 25px;
+    margin-top: 2%
+}
+
+#service {
+    display: none;
+}
+
+#consultation {
+    display: none;
+}
+
+#clinical {
+    display: none;
+}
+
+#others {
+    display: none;
+}
+
+
+/* Medications */
+
+.border_div {
+    border: 2px solid black;
+    margin-left: 5%;
+    background-color: #FAFAFA;
+    margin-top: 3%;
+}
+
+#reg_id_search {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 232px;
+}
+
+
+/*Medical Info table*/
+
+.Medinfo th {
+    text-align: center;
+}
+
+
+/*Doctors Dashboard*/
+
+.patientimgs img {
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+
+
+/*Appointment*/
+
+.click {
+    cursor: pointer;
+}
+
+
+/*Asop ICD*/
+
+.emr a {
+    display: inline-block;
+    margin-right: 10px;
+    border-style: groove;
+    border-color: #FFFFFF;
+    padding: 5px;
+}
+
+.emr a h4 {
+    color: #0025a0;
+}
+.cross {
+    background-image: url(../images/Cross.png);
+    background-repeat: no-repeat;
+/*    background-position: right;*/
+}
+.marginDiv{
+    margin-top: 10px;
+}
+.divTemplate{
+    margin-top: 6px;
+}
+.paddingLabel{
+    padding: 0 0 0 0 ;
+}
+.glyphSize{
+    margin-top: 6px;
+}
+
+
+/*Device Master*/
+
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+
+}
+.heading-btm{
+    border-color: #069;
+    width: 40%;
+    float: left;
+    margin-top: 5px;
+    border-width: 2px;
+}
+.ptopzero{
+    padding-top: 0px;
+}
+.did{
+    cursor: pointer;
+
+}
+
+/*Validation Messages*/
+.validationmsg{
+    color: #D8000C;
+    font-size: 10px;
+}
+/*
+.form-horizontal input.ng-invalid.ng-touched{
+    border-color: #FA787E;
+}
+*/
+
+
+/*Referral Master*/
+.referralTable th {
+    background-color : #006699;
+    color: white;
+    text-align: center;
+}
+.referralTable th a{
+   color: white;
+}
+.referralTable th a span{
+   color: white;
+}
+
+.referralTable td{
+    text-align: center;
+}
+.referralTable td:nth-child(8){
+    color: red;
+}
+
+.alerts{
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+}
+.alerts h4{
+    text-align : center;
+}
+

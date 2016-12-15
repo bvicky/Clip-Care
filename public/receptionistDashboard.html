@@ -1,0 +1,107 @@
+<div class="container-fluid" ng-controller="receptionDashboardController">
+	<div class="col-sm-12">
+		<h2 class="text-center normal">BMS Hospital Trust</h2>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel panel-primary">
+			    
+			    <div class="panel-body">
+			    	<div class="col-sm-12">
+
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a data-target="#home" aria-controls="home" role="tab" data-toggle="tab">Today's Appointment</a></li>
+							<li role="presentation"><a data-target="#profile" aria-controls="profile" role="tab" data-toggle="tab">Doctor's Availability</a></li>
+							<li role="presentation"><a data-target="#messages" aria-controls="messages" role="tab" data-toggle="tab">Recent Patient Visits</a></li>
+							<li role="presentation"><a data-target="#settings" aria-controls="settings" role="tab" data-toggle="tab">Patient List</a></li>
+						</ul>
+
+
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home" ng-init="getTodayAppointments()">
+								<div class="row">
+									<div class="col-sm-3">
+										<input type="text" class="form-control" ng-model="dateSearch">
+									</div>
+								</div>
+								<div class="table-responsive">
+						    		<table class="table table-bordered data">
+						    			<thead>
+						    				<th>Patient ID</th>
+						    				<th>Patient Name</th>
+						    				<th>Doctor Name</th>
+						    				<th>Appointment Time</th>
+						    				<th>Reason For Visit</th>
+						    				<th>Appointment Status</th>
+						    			</thead>
+						    			<tbody>
+						    				<tr ng-repeat="appointment in appointments | filter:dateSearch">
+						    					<td>{{appointment.patientId._id}}</td>
+						    					<td>{{appointment.patientId.firstName + " " + appointment.patientId.lastName}}</td>
+						    					<td>{{appointment.doctorId.firstName + " " + appointment.doctorId.lastName}}</td>
+						    					<td>{{appointment.startTime | date : ' MM/dd/yyyy ||  hh: mm a'}}</td>
+						    					<td></td>
+						    					<td></td>
+						    				</tr>
+						    			</tbody>
+
+						    		</table>
+						    	</div>
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="profile" >
+								
+
+
+
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="messages">...3</div>
+							<div role="tabpanel" class="tab-pane" id="settings">...4</div>
+						</div>
+					</div>
+			    	
+
+			    	<div class="col-sm-12 col-md-6">
+			    	</div>
+			    </div>
+		    </div>
+	    </div>
+	</div>
+
+</div>
+
+
+
+
+<!-- All Appointments
+
+	<div class="table-responsive" ng-init="getAppointments()">
+						    		<table class="table table-bordered data">
+						    			<thead>
+						    				<th>Patient ID</th>
+						    				<th>Patient Name</th>
+						    				<th>Doctor Name</th>
+						    				<th>Appointment Time</th>
+						    				<th>Reason For Visit</th>
+						    				<th>Appointment Status</th>
+						    			</thead>
+						    			<tbody>
+						    				<tr ng-repeat="allappointment in allAppointments | filter:dateSearch">
+						    					<td>{{allappointment.patientId._id}}</td>
+						    					<td>{{allappointment.patientId.firstName + " " + allappointment.patientId.lastName}}</td>
+						    					<td>{{allappointment.doctorId.firstName + " " + allappointment.doctorId.lastName}}</td>
+						    					<td>{{allappointment.startTime | date : ' MM/dd/yyyy ||  hh: mm a'}}</td>
+						    					<td></td>
+						    					<td></td>
+						    				</tr>
+						    			</tbody>
+
+						    		</table>
+						    	</div>
+
+
+ -->
