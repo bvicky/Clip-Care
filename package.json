@@ -8,8 +8,8 @@
   },
   "author": "Vignesh",
   "license": "ISC",
-  "devDependencies": {
-    "bcryptjs": "^2.3.0",
+  "dependencies": {
+	"bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "connect": "^3.4.1",
     "connect-ensure-login": "^0.1.1",
@@ -25,9 +25,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "request": "^2.74.0"
-  },
-  "dependencies": {
+    "request": "^2.74.0",
     "multer": "^1.2.0"
   }
 }

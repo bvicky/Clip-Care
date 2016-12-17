@@ -16,25 +16,34 @@ module.exports = function(app) {
             .post(function(req, res) {
                 //Create the registered Patient
                 var patientsdata = req.body;
+                var patientfname = req.body.firstName;
+                var patientlname = req.body.lastName;
+                var patientdob = req.body.dob;
+                var patientcontact = req.body.mobNumber;
+                var patientemailId = req.body.emailId;
                 var patient = new User(patientsdata);
-              
-
-                patient.save(function(err, patient) {                                       
-                    if (err)
-                        throw err;
-                    res.send(patient);
+                User.find({'firstName' : patientfname, 'lastName' : patientlname, 'dob' : patientdob, 'mobNumber' : patientcontact, 'emailId' : patientemailId}, function(err, data){
+                    if(data.length > 0){
+                        res.json({existData : 'Data Exists'})
+                    }
+                    else{
+                        patient.save(function(err, patient) {                                       
+                            if (err)
+                                throw err;
+                            res.json({msg : 'Data Posted Successfully', patient : patient});
+                        })
+                    }  
                 })
+                
             })
 
             .get(function(req, res) {
                 //Retrieve the Patient
-                User.find({},{_id:1 , firstName:1, emailId:1, mobNumber : 1},function(err, User) {
+                User.find({},function(err, User) {
                     
-                    if (err) res.send({
-                        error: err
-                    });
+                    if (err) 
+                        throw err;
                     res.json(User);
-
                 });
             });
 
@@ -69,9 +78,9 @@ module.exports = function(app) {
                         error: err
                     });
 
-                    User.patientId = req.body.patientId;
+                    /*User.patientId = req.body.patientId;
                     User.firstName = req.body.firstName;
-                    User.lastName = req.body.lastName;
+                    User.lastName = req.body.lastName;*/
 
                     User.save(function(err, User) {
                         if (err) res.send({
@@ -153,11 +162,10 @@ module.exports = function(app) {
                     }
                     else {
                         referalInfo.save(function(err, referalInfo) {
-                    if (err) res.send({
-                        error: err
-                    }, "This is an error");
-                    res.json({msg : 'Data Posted Successfully' , ReferralMaster: referalInfo });
-                })
+                            if (err) 
+                                throw err;
+                            res.json({msg : 'Data Posted Successfully' , ReferralMaster: referalInfo });
+                        })
 
                     }
 
@@ -368,14 +376,14 @@ module.exports = function(app) {
         router.route('/billingService')
             .post(function(req, res) {
                 //console.log("Circular is " + billingCircularName);
-                console.log("destination is " + filedestination);
+                
                 var billServiceData = req.body;   
                 billServiceData.filePath = filedestination;
                 var billService = new BillingService(billServiceData);
                 
                 //billServiceData.circular = billingCircularName;            
                 billService.save(function(err, data) {
-                    console.log(data);
+                   
                     if (err) 
                         throw err
                     res.json(data.department);
@@ -389,6 +397,32 @@ module.exports = function(app) {
 
                 });
             })
+
+        router.route('/billingServices/:id')
+            .get(function(req, res) {
+                
+                var id = req.params.id;
+                BillingService.findById(id, function(err, service) {
+                    if (err) res.send({
+                        error: err
+                    });
+                    res.json(service);
+                })
+            })
+            .put(function(req, res) {
+                //Update the registered Patient by id
+                var code = req.params.code;
+                var serviceUpdated = req.body;
+                
+
+                User.findOneAndUpdate({ code: code }, serviceUpdated, function(err, updatedService) {
+                    if (err)
+                        throw err;
+                    res.send("Data Updated Successfully");
+                });
+            })
+
+
 
         var billingCircularName = "";
         var filedestination = "";

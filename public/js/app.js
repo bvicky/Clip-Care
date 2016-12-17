@@ -12,7 +12,8 @@ var app = angular.module('myApp', ['datetimepicker', 'ngRoute', 'ui.bootstrap', 
             .when("/appointment/dashboard", { title: "Appointment Dashboard", templateUrl: "appointmentDashboard.html", controller: "appointmentDashboardController" })
             .when("/dashboard", { title: "Dashboard", templateUrl: "dashboard.html", controller: "dashboardController" })   
             .when("/receptionist/dashboard", { title: "Receptionist Dashboard", templateUrl: "receptionistDashboard.html", controller: "receptionDashboardController" })   
-            .when("/billing/add/Service", { title: "Master Billing", templateUrl: "master_billing.html", controller: "masterBillingController" });
+            .when("/billing/add/Service", { title: "Master Billing", templateUrl: "master_billing.html", controller: "masterBillingController" })
+            .when("/billing", { title: "Billing", templateUrl: "billing_module.html", controller: "billingController" });
     });
 
 app.run(['$location', '$rootScope', function($location, $rootScope) {

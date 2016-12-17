@@ -35,7 +35,7 @@ app.controller('masterBillingController',['$scope','$http','Upload', function($s
 		}).success(function(data){
 			$scope.billingService = {};
 			console.log(data);
-			 $scope.billingService.department = data.department;
+			 $scope.billingService.department = data;
 		}).error(function (err){
 			console.log(err);
 		})
@@ -49,6 +49,19 @@ app.controller('masterBillingController',['$scope','$http','Upload', function($s
 			$scope.services = data;
 		}).error(function(err){
 			console.log(err);
+		})
+	}
+
+	$scope.editBilling = function(id){
+		$http({
+			method : 'GET',
+			url : '/api/billingServices/'+id
+		}).success(function(data){
+			console.log(data);
+			$scope.billingService = data;
+			$scope.billingService.circular = data.filePath + data.circular
+		}).error(function(err){
+			console.log(err)
 		})
 	}
 }]);

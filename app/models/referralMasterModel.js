@@ -11,16 +11,16 @@ var referralMasterSchema = mongoose.Schema({
       mobileNumber : Number
     }],
     mobileNumber : Number,
-    landline : Number,
+    alternateContactNumber : Number,
     emailId : String,
     alternateEmailId : String,
     address : String,
     url : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state : String,
     country : String,
-    pinCode : Number,
+    zipCode : Number,
     isActive: {
         type: Boolean,
         default: true

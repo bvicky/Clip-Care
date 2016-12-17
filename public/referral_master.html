@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <label for="altcontactnumber">Alternate Contact Number</label>
-                        <input type="number " class="form-control   " ng-model="referral.landline " name="ContactLL " ng-minlength="10 " ng-maxlength="12 " placeholder="Landline Number ">
+                        <input type="number " class="form-control   " ng-model="referral.alternateContactNumber " name="ContactLL " ng-minlength="10 " ng-maxlength="12 " placeholder="Alternate Contact Number ">
                         <div class="validationmsg " ng-messages="addReferralForm.ContactLL.$error " ng-if="addReferralForm.ContactLL.$touched " role="alert ">
                             <div ng-message="minlength ">Your Mobile Number is too short</div>
                             <div ng-message="maxlength ">Your Mobile Number is too long</div>
@@ -153,7 +153,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <label for="landmark">LandMark</label>
-                        <input type="text " class="form-control   " ng-model="referral.landMark " name="landmark " placeholder="*Landmark " required>
+                        <input type="text " class="form-control   " ng-model="referral.landMark " googleplace ng-change="addressLandMark()" name="landmark " placeholder="*Landmark " required>
                         <div class="validationmsg " ng-messages="addReferralForm.landmark.$error " ng-if="addReferralForm.landmark.$touched " role="alert ">
                             <div ng-message="required ">Please Enter Your Landmark</div>
                             <div ng-message="url ">Please a valid Email Address</div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <label for="zipCode"> Postal Code</label>
-                        <input type="number " class="form-control   " ng-model="referral.pinCode " name="PinCode " placeholder="Pin code " ng-minlength="6 " ng-maxlength="6 " required>
+                        <input type="text " class="form-control   " ng-model="referral.zipCode " name="PinCode " placeholder="Pin code " ng-minlength="6 " ng-maxlength="6 " required>
                         <div class="validationmsg " ng-messages="addReferralForm.PinCode.$error " ng-if="addReferralForm.PinCode.$touched " role="alert ">
                             <div ng-message="required ">Please Enter Your Pincode</div>
                             <div ng-message="minlength ">YourPincode is Short</div>

@@ -9,6 +9,53 @@ app.controller("referralMasterController", function($scope, $http, $route, $time
     $scope.resetButton = function() {
         resetForm(addReferralForm);
     };
+
+    $scope.addressLandMark = function(){
+        //console.log($scope.referral.landMark);
+        var addrlength = $scope.referral.landMark.length;
+        var currAddrZipCodeParsed = isFinite($scope.referral.landMark[addrlength - 1].long_name);
+        if(addrlength == 8 || addrlength == 5){
+            if (currAddrZipCodeParsed) {
+                console.log($scope.referral.landMark[addrlength - 1].long_name);
+                
+
+                $scope.referral.zipCode = $scope.referral.landMark[addrlength - 1].long_name;
+                console.log($scope.referral.zipCode);
+                $scope.referral.country = $scope.referral.landMark[addrlength - 2].long_name;
+                $scope.referral.state = $scope.referral.landMark[addrlength - 3].long_name;
+                $scope.referral.city = $scope.referral.landMark[addrlength - 5].long_name;
+                // $scope.referral.landMark = $scope.referral.landMark[0].long_name + ", " + $scope.referral.landMark[addrlength - 5].long_name + ", " + $scope.referral.landMark[addrlength - 3].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+            } else {
+                
+                $scope.referral.country = $scope.referral.landMark[addrlength - 1].long_name;
+                $scope.referral.state = $scope.referral.landMark[addrlength - 2].long_name;
+                $scope.referral.city = $scope.referral.landMark[addrlength - 4].long_name;
+                $scope.referral.zipCode = "";
+                //$scope.referral.landMark = $scope.referral.landMark[0].long_name  + ", " + $scope.referral.landMark[addrlength - 3].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+            }
+        }else{
+            if (currAddrZipCodeParsed) {
+            
+                $scope.referral.zipCode = $scope.referral.landMark[addrlength - 1].long_name;
+                $scope.referral.country = $scope.referral.landMark[addrlength - 2].long_name;
+                $scope.referral.state = $scope.referral.landMark[addrlength - 3].long_name;
+                $scope.referral.city = $scope.referral.landMark[addrlength - 6].long_name;
+                // $scope.referral.landMark = $scope.referral.landMark[0].long_name + ", " + $scope.referral.landMark[addrlength - 5].long_name + ", " + $scope.referral.landMark[addrlength - 3].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+            } else {
+                $scope.referral.zipCode = "";
+                $scope.referral.country = $scope.referral.landMark[addrlength - 1].long_name;
+                $scope.referral.state = $scope.referral.landMark[addrlength - 2].long_name;
+                $scope.referral.city = $scope.referral.landMark[addrlength - 4].long_name;
+                //$scope.referral.landMark = $scope.referral.landMark[0].long_name  + ", " + $scope.referral.landMark[addrlength - 3].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+            }
+        }
+        
+    }
+
+
+
+
+
     /*Category List*/
     $scope.referralCategory = {};
     $scope.createReferralCateogry = function() {
@@ -131,7 +178,21 @@ app.controller("referralMasterController", function($scope, $http, $route, $time
             url: '/api/referral/' + id
         }).success(function(data) {
             $scope.referral = data;
-            console.log(data);
+            var addrlength = $scope.referral.landMark.length;
+            var zipParsed = isFinite($scope.referral.landMark[addrlength - 1].long_name);
+                if (zipParsed) {
+                    if(angular.isString($scope.referral.landMark)){
+                        $scope.referral.landMark = $scope.referral.landMark;
+                    }else{
+                        $scope.referral.landMark = $scope.referral.landMark[0].long_name + ", " + $scope.referral.landMark[addrlength - 5].long_name + ", " + $scope.referral.landMark[addrlength - 3].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+                    }
+                } else {
+                    if(!angular.isString($scope.referral.landMark)){
+                        //$scope.patient.permanet.landMark = $scope.patient.permanent.landMark;
+                        $scope.referral.landMark = $scope.referral.landMark[0].long_name  + ", " + $scope.referral.landMark[addrlength - 4].long_name + ", " + $scope.referral.landMark[addrlength - 2].long_name;
+
+                    }
+                }
         }).error(function(err) {
             console.log(err);
         })

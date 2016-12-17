@@ -55,56 +55,78 @@ app.controller("registrationController", function($scope, $http, $location, $rou
 
     $scope.currentAddressLandMark = function() {
         var addrlength = $scope.patient.current.landMark.length;
-        //console.log($scope.patient.current.landMark[addrlength-1].long_name);
         var currAddrZipCodeParsed = isFinite($scope.patient.current.landMark[addrlength - 1].long_name);
-        //console.log(zipParsed);
-
-
-        if (currAddrZipCodeParsed) {
-            //console.log("Coming inside If loop");
-            $scope.patient.current.zipCode = $scope.patient.current.landMark[addrlength - 1].long_name;
-            $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 2].long_name;
-            $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 3].long_name;
-            $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 5].long_name;
-
-            //console.log(zipParsed);
-            //console.log(angular.isNumber(zipParsed));
-
-        } else {
-            //console.log("Nan in else block");
-            $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 1].long_name;
-            $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 2].long_name;
-            $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 4].long_name;
+        if(addrlength == 8 || addrlength == 5){
+            if (currAddrZipCodeParsed) {
+            
+                $scope.patient.current.zipCode = $scope.patient.current.landMark[addrlength - 1].long_name;
+                $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 2].long_name;
+                $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 3].long_name;
+                $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 5].long_name;
+                // $scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            } else {
+                $scope.patient.current.zipCode = "";
+                $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 1].long_name;
+                $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 2].long_name;
+                $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 4].long_name;
+                //$scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name  + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            }
+        }else{
+            if (currAddrZipCodeParsed) {
+            
+                $scope.patient.current.zipCode = $scope.patient.current.landMark[addrlength - 1].long_name;
+                $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 2].long_name;
+                $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 3].long_name;
+                $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 6].long_name;
+                // $scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            } else {
+                $scope.patient.current.zipCode = "";
+                $scope.patient.current.country = $scope.patient.current.landMark[addrlength - 1].long_name;
+                $scope.patient.current.state = $scope.patient.current.landMark[addrlength - 2].long_name;
+                $scope.patient.current.city = $scope.patient.current.landMark[addrlength - 4].long_name;
+                //$scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name  + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            }
         }
-        // $scope.patient.current.zipCode  = $scope.patient.current.landMark[addrlength-1].long_name;
-        // $scope.patient.current.country  = $scope.patient.current.landMark[addrlength-2].long_name;
-        // $scope.patient.current.state  = $scope.patient.current.landMark[addrlength-3].long_name;
-        // $scope.patient.current.city  = $scope.patient.current.landMark[addrlength-5].long_name;
+        
+
+        
+        
     }
 
     $scope.permanentAddressLandMark = function() {
-        console.log("inside")
+        
         var addrlength = $scope.patient.permanent.landMark.length;
-        console.log($scope.patient.permanent.landMark);
         var zipParsed = isFinite($scope.patient.permanent.landMark[addrlength - 1].long_name);
-        //console.log(zipParsed);
+        if(addrlength == 8 || addrlength == 5 ){
+            if (zipParsed) {            
+                $scope.patient.permanent.zipCode = $scope.patient.permanent.landMark[addrlength - 1].long_name;
+                $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 3].long_name;
+                $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 5].long_name;
+                //$scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
 
+            } else {
+                
+                $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 1].long_name;
+                $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 4].long_name;
+                //$scope.patient.permanent.landMark = $scope.patient.current.landMark[0].long_name  + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            }
+        }else{
+            if (zipParsed) {            
+                $scope.patient.permanent.zipCode = $scope.patient.permanent.landMark[addrlength - 1].long_name;
+                $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 3].long_name;
+                $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 6].long_name;
+                //$scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
 
-        if (zipParsed) {
-            //console.log("Coming inside If loop");
-            $scope.patient.permanent.zipCode = $scope.patient.permanent.landMark[addrlength - 1].long_name;
-            $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 2].long_name;
-            $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 3].long_name;
-            $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 5].long_name;
-
-            //console.log(zipParsed);
-            //console.log(angular.isNumber(zipParsed));
-
-        } else {
-            //console.log("Nan in else block");
-            $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 1].long_name;
-            $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 2].long_name;
-            $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 4].long_name;
+            } else {
+                
+                $scope.patient.permanent.country = $scope.patient.permanent.landMark[addrlength - 1].long_name;
+                $scope.patient.permanent.state = $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                $scope.patient.permanent.city = $scope.patient.permanent.landMark[addrlength - 4].long_name;
+                //$scope.patient.permanent.landMark = $scope.patient.current.landMark[0].long_name  + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            }
         }
 
     }
@@ -112,24 +134,24 @@ app.controller("registrationController", function($scope, $http, $location, $rou
 
     $scope.sameAddress = function() {
         var addrlength = $scope.patient.current.landMark.length;
-        console.log(addrlength);
+        
+        var zipParsed = isFinite($scope.patient.current.landMark[addrlength - 1].long_name);
         if ($scope.patient.sameCurrentaddress == false) {
             $scope.patient.permanent = {};
-            console.log($scope.patient.sameCurrentaddress);
-            console.log($scope.patient.current.landMark);
-            //$scope.patient.current.landMark = $scope.patient.current.landMark;
         }
         if ($scope.patient.sameCurrentaddress == true) {
-            console.log($scope.patient.sameCurrentaddress);
-            console.log($scope.patient.current.landMark);
-
-            //$scope.patient.current.landMark[0].long_name + " "+$scope.patient.current.landMark[1].long_name + " "+ $scope.patient.current.landMark[2].long_name + " "+$scope.patient.current.landMark[3].long_name + " "+$scope.patient.current.landMark[5].long_name + " "+$scope.patient.current.landMark[6].long_name + " "+$scope.patient.current.landMark[7].long_name + " "+ 
             $scope.patient.permanent = angular.copy($scope.patient.current);
-            $scope.patient.permanent.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+            if(zipParsed){
+                if(!angular.isString($scope.patient.current.landMark)){
+                    $scope.patient.permanent.landMark = $scope.patient.permanent.landMark[0].long_name + ", " + $scope.patient.permanent.landMark[addrlength - 5].long_name + ", " + $scope.patient.permanent.landMark[addrlength - 3].long_name + ", " + $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                }
+            }else{
+                if(!angular.isString($scope.patient.current.landMark)){
+                    $scope.patient.permanent.landMark = $scope.patient.permanent.landMark[0].long_name + ", " + $scope.patient.permanent.landMark[addrlength - 4].long_name + ", " + $scope.patient.permanent.landMark[addrlength - 2].long_name;
+                }
 
-            
-            
-            //$scope.patient.current.landMark[addrlength-6].long_name + ", " + $scope.patient.current.landMark[addrlength-5].long_name;
+            }
+
         }
     };
 
@@ -147,9 +169,10 @@ app.controller("registrationController", function($scope, $http, $location, $rou
             method: method,
             url: addEditPatient,
             data: $scope.patient
+
         }).success(function(data) {
             console.log(data);
-            $location.path('/patient/list')
+            //$location.path('/patient/list')
         }).error(function(err) {
             console.log(err);
         });
@@ -161,8 +184,8 @@ app.controller("registrationController", function($scope, $http, $location, $rou
             method: 'GET',
             url: "/api/regpatients"
         }).success(function(data) {
-            $scope.patientData = data;
-            console.log($scope.patientData);
+            $scope.patientData = data.patient;
+    
         }).error(function(err) {
             console.log(err);
         });
@@ -174,11 +197,39 @@ app.controller("registrationController", function($scope, $http, $location, $rou
             method: 'GET',
             url: '/api/regpatient/' + patientId,
         }).success(function(data) {
-
-            console.log('Inside Function');
             if (data != null) {
-                //console.log(data);
                 $scope.patient = data;
+                $scope.patient.permanent.landMark = $scope.patient.permanent.landMark;
+                var addrlength = $scope.patient.current.landMark.length;
+                //console.log( $scope.patient.permanent.landMark);
+                var zipParsed = isFinite($scope.patient.current.landMark[addrlength - 1].long_name);
+                if (zipParsed) {
+                    if(angular.isString($scope.patient.current.landMark)){
+                        $scope.patient.current.landMark = $scope.patient.current.landMark;
+                    }else{
+                        $scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name + ", " + $scope.patient.current.landMark[addrlength - 5].long_name + ", " + $scope.patient.current.landMark[addrlength - 3].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+                    }
+                } else {
+                    if(!angular.isString($scope.patient.current.landMark)){
+                        //$scope.patient.permanet.landMark = $scope.patient.permanent.landMark;
+                        $scope.patient.current.landMark = $scope.patient.current.landMark[0].long_name  + ", " + $scope.patient.current.landMark[addrlength - 4].long_name + ", " + $scope.patient.current.landMark[addrlength - 2].long_name;
+
+                    }
+                }
+
+                console.log($scope.patient.permanent.landMark);
+                var permanentAddrLength = $scope.patient.permanent.landMark.length;
+                
+                var zipParsedPermanent = isFinite($scope.patient.permanent.landMark[permanentAddrLength - 1].long_name);
+                if(zipParsedPermanent){
+                    if(!angular.isString($scope.patient.permanent.landMark)){
+                        $scope.patient.permanent.landMark = $scope.patient.permanent.landMark[0].long_name + ", " + $scope.patient.permanent.landMark[permanentAddrLength - 5].long_name + ", " + $scope.patient.permanent.landMark[permanentAddrLength - 3].long_name + ", " + $scope.patient.permanent.landMark[permanentAddrLength - 2].long_name;
+                    }
+                }else{
+                    if(!angular.isString($scope.patient.permanent.landMark)){
+                        $scope.patient.permanent.landMark = $scope.patient.permanent.landMark[0].long_name + ", " + $scope.patient.permanent.landMark[permanentAddrLength - 4].long_name + ", " + $scope.patient.permanent.landMark[permanentAddrLength - 2].long_name;
+                    }
+                }
             }
         }).error(function(err) {
             console.log(err);

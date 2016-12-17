@@ -1,682 +1,320 @@
-<!DOCTYPE html>
-<html lang="en">
-    <title>Billing</title>
-  <head>
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/stylesvitalbeat.css">
-
-      
-    </head>
-    
-    <body> 
-     <header>
-        <div class="header-logo row">
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                <img src="images/logo.png" class="col-xs-6 col-sm-10 col-md-6 col-lg-4 img-responsive">
-            </div>
-        </div>
-          <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.aventyn.com/">Aventyn</a>
+<div class="container-fluid" ng-controller="billingController">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Billing</h3>
     </div>
+    <div class="panel-body" >
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Home </a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="referral_master.html">Referral</a></li>
-                                <li><a href="masterspayment.html">Payment</a></li>
-                                <li><a href="masterscareplan.html">Care Plan</a></li>
-                                <li><a href="NewVitalsMaster.html">Vitals </a></li>
-                                <li><a href="mastershistory.html">History </a></li>
-                                <li><a href="master_for_services.html">Lab Test </a></li>
-                                <li><a href="master_medication.html">Medication</a></li> <li><a href="teamformation.html">Care Team</a></li>
-                                <li><a href="Physical_Examination.html">Physical Examination</a></li>
-                                <li><a href="mastersbilling.html">Billing</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="registration.html">Registration</a></li>
-                                <li><a href="careplan.html">Care Plan</a></li>
-                                <li><a href="vitals.html">Vitals</a></li>
-                                <li><a href="medications.html">Medications</a></li>
-                                <li><a href="teamscheduling.html">Team Scheduling </a></li>
-                                <li><a href="fasttrackbilling.html">Fast Track Billing </a></li>
-                                <li><a href="billing_module.html">Billing </a></li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="registration.html">Registration</a></li>
-                                <li>
-                                    <a href="#"> </a></li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Appointments<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="appointment.html">Appointment</a></li>
-                                <li>
-                                    <a href="appointmentDashboardConsolidated.html">Appointment Dashboard </a>
-                                </li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-						
-						 <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doctors<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="doc_appointment.html">Appointment</a></li>
-                                <li><a href="doctorsdashboard.html">Dashboard</a></li>
-                                <li><a href="asoap-icd.html">ICD </a></li>
-                                <li><a href="medinfo.html">Medication Information</a></li>
-                                <li><a href="medstat.html">Vital History</a></li>
-                                <li><a href="medicationhistory.html">Medication History</a></li>
-                                <li><a href="patienthistoryandvitals.html">Vitals and History</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li><a href="News.html">Contact Us</a></li>
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="" class="pull-right">Logout</a></li>
-                    </ul>
-                </div>
-  </div><!-- /.container-fluid -->
-</nav>
-
-    </header>
-  <div class="container">
-
-        <form class="form-horizontal" role="form">
-             <div class="row padding_billing ">
-                 
-                 <div class="col-sm-12 col-md-12 thin_border">
-                 <h2>Billing</h2>
-                 </div>
-            </div>
-         
-            <div class="row">
-                <div class="col-sm-10 col-md-5 border_div">
-                  
-                  
-                
-                       
-                    <div class="row"><center><label>Search Patient</label></center> </div>
-                   <div class=" row">
-                       <div class="col-md-3 col-sm-4">
-                         <label class="control-label pull-left" for="regno" name="reg_no" id="regsno">Reg.No.: </label>
-                             </div>
-                         
-                         <div class=" col-md-9 col-sm-8">
-                         <input type="text" name="search_reg_no" id="search_reg_no" class="form-control input-sm field_color"   placeholder="Registration No">
-                         </div>
-                       </div>
-                       
-                       <div class=" row"><label>Or</label></div>
-                       <div class=" row">
-                       <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Name:</label>
-                       </div>
-                       <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="Name_input_search" id="Name_input_search" class="form-control input-sm field_color"  placeholder="Name">
-                       </div>
-                   </div>
-                    <div class=" row">
-                        
-                       <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">DOB:</label>
-                       </div>
-                       <div class=" col-md-9 col-sm-8">
-                            <input type="date" name="dob_input_search" id="dob_input_search" class="form-control input-sm field_color"  placeholder="D.O.B (DD-MM-YYYY)">
-                       </div>
-                   </div>
-                    <div class=" row">
-                        
-                       <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Contact:</label>
-                       </div>
-                       <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="contact_input_search" id="contact_input_search" class="form-control input-sm field_color"  placeholder="Contact">
-                       </div>
-                   </div>
-                    <div class=" row">
-                       
-                       <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Email:</label>
-                       </div>
-                       <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="Email_input_search" id="Email_input_search" class="form-control input-sm field_color"  placeholder="Email">
-                       </div>                         
-                   </div>
-                       
-                       <div class="row">
-                           <div class="col-md-5 col-sm-6"></div>
-                       <div class="col-md-5 col-sm-5">
-                         <input type="button" name="search" id="search_btn" class="form-control input-sm button_color height_margin"  value="Search">
-                     </div>
-                       </div>
-                      <div class="row"><label></label></div>
-                   </div>
-                
-                 <!-- div registration id search and find code -->
-                
-                  <div class=" col-sm-10 col-md-5 border_div" id="reg_id_search"  >                      <div class="row"><center><label>Patient Records</label></center>
-                             <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_no00" name="reg_no00"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_1" name="reg_disp_1"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_1">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n01" name="reg_n01"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_2" name="reg_disp_2"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_2">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n02" name="reg_n02"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_3" name="reg_disp_3"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_3">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n03" name="reg_n03"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_4" name="reg_disp_4"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_4">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n04" name="reg_n04"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_5" name="reg_disp_5"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_5">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n05" name="reg_n05"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_6" name="reg_disp_6"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_6">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n06" name="reg_n06"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_7" name="reg_disp_7"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_7">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n07" name="reg_n07"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_8" name="reg_disp_8"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_8">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n08" name="reg_n08"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_9" name="reg_disp_9"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_9">
-                             </div>
-                                 </div>
-                       <div class="row">
-                             <div class="col-md-4 col-sm-4">
-                            <input type="text" disabled="disabled" id="reg_n09" name="reg_n09"  class="form-control input-sm field_color2" placeholder="Reg No.">
-                                 </div>
-                              <div class="col-md-6 col-sm-6">
-                            <input type="text" disabled="disabled" id="reg_disp_10" name="reg_disp_10"  class="form-control input-sm field_color2" placeholder="Patient Name" >
-                                 </div>
-                             <div class="col-md-2 col-sm-1">
-                                 <input type="radio" class="form-control input-sm field_color2" name="radio" id="radio_10">
-                             </div>
-                                 </div>      
-                         </div>
-                 </div>
-                 </div>
-            <div class="row thin_border">
-                <div class="col-sm-1 col-md-2"></div>
-                <div class="col-sm-2 col-md-2"><button type="button"  class="btn btn-default btn-sm button_color margin_div" id="Active_button" name="Active_button" ><b>ACTIVE</b></button>
-                                              
-                                              </div>
-                <div class="col-sm-2 col-md-2"><button type="button" class="btn btn-default btn-sm button_color margin_div" id="INACTIVE_button" name="INACTIVE_button" ><b>INACTIVE</b></button></div>
-                <div class="col-sm-6 col-md-6">
-                    <textarea class="form-control input-sm field_color" name="Dialogue_box" id="Dialogue_box" disabled="disabled" placeholder="Patient Re-Activeted/Inactivated for: 
-Reason:"></textarea>
-                
-                </div>
-            <div class="col-sm-12  col-md-12"><label></label></div>
-            </div>
-            
-             <div id="div_patient_details" class="row margin_div"> 
-                      <div class="col-md-11 col-sm-11">
-                      <table class="table table-hover table-bordered " >
-                        <center><b><thead>Patient Record found</thead></b></center>
-                          <tr>
-                          <th>Patient Name </th>
-                          <th>Age</th>
-                          <th>Sex</th>
-                          <th>Area</th>
-                          <th>Contact</th>
-                          <th>Reffered From</th>
-                          </tr>  
-                          <tr>
-                              <td>Johny Samy</td>
-                              <td>66</td>
-                              <td> Male</td>
-                              <td>Jp nagar</td>
-                              <td>1234567890</td>
-                              <td>BMS Trust</td>
-                          
-                          </tr>
-                      </table>
-                              </div>
-                     </div>
-            <div class="row">
-                <div class="col-md-11 col-sm-11">
-                      <table class="table table-hover table-bordered " >
-                        <center><b><thead>Previous Billing History</thead></b></center>
-                          <tr>
-                          <th>Date </th>
-                          <th>Plan</th>
-                          <th>Bill No</th>
-                          <th>Ammount</th>
-                          <th>Dues</th>
-                          <th>Remainder</th>
-                          <th>Remarks</th>
-                          </tr>  
-                          <tr>
-                              <td>02/04/2015</td>
-                              <td>Subscription</td>
-                              <td>xxyyzz</td>
-                              <td>12000</td>
-                              <td>1400</td>
-                              <td></td>
-                              <td>Dues to be paid before xx/yy/zz</td>
-                          
-                          </tr>
-                      </table>
-                              </div>
-                        </div><!--table for previous billing history-->
-                    
-                
-            
-            <div class="row padding_billing">
-                <div class="col-sm-12 col-md-12 col-lg-12 border_billing">
-            <div class="col-sm-12">                
-              <u> <center> <h3>Hospital Name </h3></center> </u>              
-                </div>
-                 <div class="col-sm-12">
-                <hr style="border:1px solid black">
-                    </div>
-            <div class="row">
-                <div class="col-sm-12 col-lg-12">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-               <center> <label class="control-label ">Name:</label></center>
-                       </div>
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <input type="text" class="form-control input-sm field_color" id="input_billing_first_name" name="input_billing_first_name" placeholder="Name">
-                </div>
-                    <div class="col-sm-1 col-md-1 col-lg-1"></div>
-                   <div class="col-sm-1 col-md-1 col-lg-1">
-                    <label class="control-label ">Age:</label>
-                    </div>
-                <div class="col-sm-2 col-md-2 col-lg-1">
-                                    <input type="text" class="form-control input-sm field_color" id="Input_billing_age" name="Input_billing_age" placeholder="Age">
-                </div>
-                 <div class="col-sm-1 col-md-1 col-lg-1">
-                    <label class="control-label   ">Sex:</label>
-                    </div>
-                <div class="col-sm-2 col-md-2 col-lg-2">  
-                    <select class="form-control input-sm field_color" id="Select_billing_sex" name="Select_billing_sex" >
-                    <option>Male</option>
-                    <option>Female</option>            
-                    </select>
-                </div>
-                </div>
-                </div>
-                <div class="row">
-                    <div class="sm-12 col-md-12">
-                  <div class="col-sm-2 col-md-2 col-lg-2">
-                      <center>   <label class="control-label  ">Bill No:</label></center>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <input type="text" class="form-control input-sm field_color" id="input_billing_Bill_no" name="input_billing_Bill_no" placeholder="Bill No.">
-                </div>
-                <div class="col-sm-1 col-md-2 col-lg-2"></div>
-                <div class="col-sm-3 col-md-2 col-lg-2">
-                   <center> <label class="control-label">Date Recruited:</label></center>
-                    </div>
-                <div class="col-sm-3 col-md-3 col-lg-2">
-                    <input type="date" class="form-control input-sm field_color" id="date_recruited" name="date_recruited" vlaue="DD/MM/YYYY" > 
-            </div>
-               </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-               <center> <label class="control-label ">Health Plan:</label></center>
-                
-                </div>
-                     <div class="col-sm-3 col-md-3 col-lg-3">
-                             <input type="text" class="form-control input-sm field_color" name="health_plan" id="health_plan"  placeholder="Health Plan">
-                         </div>                     
-               
-                 
-                 <div class="col-sm-2 col-md-3 col-lg-3"></div>
-                
-                 <div class="col-sm-2 col-md-1">
-                    <label class="control-label ">Date:</label>
-                    </div>
-                <div class="col-sm-3 col-md-3 col-lg-2">
-                    <input type="date" class="form-control field_color input-sm" id="billing_date" name="billing_date" vlaue="DD/MM/YYYY" > 
-            </div>
-                    </div>
-            </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                 
-                    <div class="col-sm-2 col-md-2 col-lg-2">
-                      <center>  <label class="control-label ">Doctor/Team:</label></center>
-                    </div>
-                     <div class="col-sm-3 col-md-3 col-lg-3">
-                                    <input type="text" class="form-control field_color input-sm" id="Input_billing_Team" name="Input_billing_Team" placeholder="Doctor/Team Name">
-                </div>
-                    <div class="col-sm-2 col-md-3 col-lg-3"></div>
-                    <div class="col-sm-2 col-md-1">
-                        <label class="control-label ">Payment:</label>                        
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-2">
-                    <select class="form-control field_color2 input-sm" id="select_payment_billing" name="select_payment_billing">
-                        <option>Cash</option>
-                        <option>Card</option>
-                        <option>Corporate</option>
-                        <option>Insurance</option>
-                        <option>others</option>
-                        </select>
-                    </div>
-                    
-                    </div>
-                </div>
-                <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                    <center>  <label class="control-label ">Hospital_No.:</label></center>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <input type="text" class="form-control input-sm field_color" id="input_billing_hospital_no" name="input_billing_hospital_no" placeholder="Hospiital No.">
-                </div>
-                <div class=""></div>
-                  <div class="col-sm-1 col-md-1 col-lg-1 padding_label">
-                    <label class="control-label  ">CVR No:</label>
-                </div>
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                    <input type="text" class="form-control input-sm field_color" id="input_billing_cvr_no" name="input_billing_cvr_no" placeholder="CVR No">
-                </div> 
-                
-                <div class="col-sm-1 col-md-1 col-lg-1">
-                    <label class="control-label ">Email:</label>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-2">
-                    <input type="text" class="form-control input-sm field_color" id="input_billing_mail" name="input_billing_mail" placeholder="Email Id">
-                </div>
-            </div>
-                </div>
-                 <div class="col-sm-12">
-                <hr style="border:1px solid black">
-                    </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-        <div class="col-md-5 col-sm-5 col-xs-8 checkbox_subscriptionbilling">
-        <label><input type="checkbox" name="checkbox_subscription"                        
-                      id="checkbox_subscription">Subscription</label>
-         </div>        
-    </div>
-            </div> 
-           <div class="col-sm-12">
-                <br>
-            </div>
-            <div id="billing_subscription">
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-                <div class="col-sm-2 col-md-2">
-                    <label class="control-label" for="subscriptionfrom">From Date:</label></div>
-       
-        <div class="col-sm-4 col-md-3">
-        <input type="date" class="form-control input-sm field_color" name="subscription_from" id="subscription_from"  style="color:#006699" placeholder="      ">
-      </div>
-                <div class="col-md-2"> </div>   
-             <div class="col-sm-2 col-md-2 ">    
-                 <label class="control-label  " for="subscriptionfrom">To Date:</label></div>
-        <div class="col-sm-4 col-md-3">
-        <input type="date" class="form-control input-sm field_color" name="subscription_to" id="subscription_to"  style="color:#006699" placeholder="      ">
-      </div>
-    </div>
-     </div>         
-                <div class="row">
-                <div class=" col-sm-12 col-md-12">
-                <div class=" col-sm-2 col-md-2">
-                    <label class="control-label" for="billing_noofvisit">Visits:</label></div> 
-        <div class="col-sm-4 col-md-3">
-        <input type="text" class="form-control input-sm field_color" name="billing_noofvisit" id="billing_noofvisit"  style="color:#006699" placeholder="      "> 
-    </div>
-                </div> 
-                    </div>
-        </div>
+      <form class="form-horizontal" role="form">
         
-        <div class="col-sm-12 col-md-12 table-responsive margin_div">
-            <table class="table table-bordered table-hover" style="background-color:#fff;">
-                <tr>
-                <th>Sl.No</th>
-                <th>Particulars</th>
-                <th>Charges</th>
-                <th>Unit</th>
-                <th>Price</th>
-            </tr>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>      
-            </table>
-              </div>
-            
-            <div class="row">
-            <div class="col-sm-12 col-md-12 text-center">
-                <div class="col-sm-4 col-md-4"></div>
-                <div class="col-sm-4 col-md-3"><button type="button" style="color:#006699"  class="btn btn-default btn-sm button_color" id="addcharges_billing" name="addcharges_billing">Add Additional Charges</button>
-</div>
-            </div>
-            </div>
-            
-            <div class="col-md-12 col-sm-12">
-                <div class="col-sm-7 col-md-8"></div>
-                    <div class="col-sm-2 col-md-2">
-                    <label for="billingtotalcost" >Amount:</label>
-                    </div>
-                    <div class="col-sm-3 col-md-2">
-                        <input type="text" id="billing_totalcost"  class="form-control input-sm field_color" name="billing_totalcost">
-                    </div>
-                
-                
-                </div>
-            
-            <div class="col-md-12 col-sm-12">
-                <div class="col-sm-5 col-md-7"></div>
-                    <div class="col-sm-4 col-md-3">
-                    <label for="SubscriptionDiscount" >Subscription Amount:</label>
-                    </div>
-                    <div class="col-sm-3 col-md-2">
-                        <input type="text" id="billing_subscriptiondiscount"  class="form-control input-sm field_color" name="billing_subscriptiondiscount">
-                    </div>
-                </div>
-            
-            <div class="col-md-12 col-sm-12">
-                <div class="col-sm-5 col-md-7"></div>
-                    <div class="col-sm-4 col-md-3">
-                    <label for="billpaid" >Paid Amount :</label>
-                    </div>
-                    <div class="col-sm-3 col-md-2">
-                        <input type="text" id="billing_paid"  class="form-control input-sm field_color" name="billing_paid">
-                    </div>
-                </div>
-            
-            
-      
-    <div class="col-sm-12">
-                <hr style="border:1px solid black">
-                    </div>       
-        
-            <div class="col-sm-12">
-            <p style="font-weight:bold">Payment Details :</p>
-            </div> 
-            <div class="row">
-                    <div class="col-sm-12 col-md-12">
-            <div id="payment">
-          <div class="col-md-4 col-sm-6">
-            <div class="checkbox-inline">
-                <label><input type="checkbox" value="" id="cash_bill">Cash</label>
-            </div>
-            <div class="checkbox-inline">
-              <label><input type="checkbox" value="" id="card_bill">Card</label>
-            </div>
-             <div class="checkbox-inline">
-              <label><input type="checkbox" value="" id="cheque_bill">Cheque</label>
-            </div>
-             <div class="checkbox-inline">
-              <label><input type="checkbox" value="" id="others_bill">Others</label>
-            </div>
-              </div>  
+        <div class="form-group">
+          <div class="col-sm-4">
+            <label for="patientSearch">Search Patient</label>
+            <input type="text" class="form-control" ng-model="patientSearch" name="patientSearch">
           </div>
-                         <div class="col-md-2 col-sm-3">
-                 
-                    <label class="control-label" for="billingpaymentdue">Payment Due:     
-                             </label></div>
-            <div class="col-md-2 col-sm-3 ">
-                <input type="text" class="form-control" name="billing_paymentdue" id="billing_paymentdue"  
-               style="color:#006699" placeholder="      "> 
-                     </div>
-               
-              
-          
-            <div class="col-md-2 col-sm-3">
-                    <label class="control-label" for="willpay">Due Date:</label></div>
-            <div class="col-md-2 col-sm-3 padding_label ">
-                <input type="date" class="form-control" name="billing_willpay" id="billing_willpay"  
-               style="color:#006699" placeholder="      "> 
-                     </div>
-              
-                </div>
-            </div> 
-                    <br>
-              </div>
-            </div>
-                
-        <div class="reportbtns margin_div">
-           
-            <div class="col-sm-12 col-md-12 text-center">
-                <div class="col-sm-4 col-md-4"></div>
-                <div class="col-sm-2 col-md-2"> <button type="button" class="btn btn-default btn-sm button_color height_margin"  id="billing_save" name="billing_save">Save</button></div>
-                <div class="col-sm-2 col-md-2">
-                    <button type="button" class="btn btn-default btn-sm button_color height_margin" id="billing_edit" name="billing_edit">Edit</button></div>
-                
-                   
-                </div>
         </div>
-            
-             </form>
-        </div>        
-	<script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.autocomplete.js"></script>
-       <script>
-           
-			$(document).ready(function() {
-                $("#checkbox_subscription").click(function(){
-               
-                $("#billing_subscription").fadeToggle();
-                
-                });       
-             
-            });
-       $('ul.nav li.dropdown').hover(function () {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-        }, function () {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-        });
-       
-    </script>
-    </body>
-</html>
+
+        <div class="form-group table-responsive">
+          <div class="col-sm-12 col-md-6">
+            <table class="table table-hover table-bordered ">
+                <center><b><thead>Patient Record found</thead></b></center>
+                <tr>
+                    <th>Patient Name </th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Area</th>
+                    <th>Contact</th>
+                    <th>Reffered From</th>
+                </tr>
+                <tr>
+                    <td>Johny Samy</td>
+                    <td>66</td>
+                    <td> Male</td>
+                    <td>Jp nagar</td>
+                    <td>1234567890</td>
+                    <td>BMS Trust</td>
+                </tr>
+            </table>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <table class="table table-hover table-bordered ">
+              <center><b><thead>Previous Billing History</thead></b></center>
+              <tr>
+                  <th>Date </th>
+                  <th>Plan</th>
+                  <th>Bill No</th>
+                  <th>Ammount</th>
+                  <th>Dues</th>
+                  <th>Remainder</th>
+                  <th>Remarks</th>
+              </tr>
+              <tr>
+                  <td>02/04/2015</td>
+                  <td>Subscription</td>
+                  <td>xxyyzz</td>
+                  <td>12000</td>
+                  <td>1400</td>
+                  <td></td>
+                  <td>Dues to be paid before xx/yy/zz</td>
+              </tr>
+            </table>
+          </div>
+
+
+        </div>
+         
+          <div id="div_patient_details" class="row margin_div">
+              <div class="col-md-11 col-sm-11">
+                  
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-11 col-sm-11">
+                  
+              </div>
+          </div>
+          <!--table for previous billing history-->
+          <div class="row padding_billing">
+              <div class="col-sm-12 col-md-12 col-lg-12 border_billing">
+                  <div class="col-sm-12">
+                      <u> <center> <h3>Hospital Name </h3></center> </u>
+                  </div>
+                  <div class="col-sm-12">
+                      <hr style="border:1px solid black">
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-lg-12">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label ">Name:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <input type="text" class="form-control" id="input_billing_first_name" name="input_billing_first_name" placeholder="Name">
+                          </div>
+                          <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                          <div class="col-sm-1 col-md-1 col-lg-1">
+                              <label class="control-label ">Age:</label>
+                          </div>
+                          <div class="col-sm-2 col-md-2 col-lg-1">
+                              <input type="text" class="form-control" id="Input_billing_age" name="Input_billing_age" placeholder="Age">
+                          </div>
+                          <div class="col-sm-1 col-md-1 col-lg-1">
+                              <label class="control-label   ">Sex:</label>
+                          </div>
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <select class="form-control" id="Select_billing_sex" name="Select_billing_sex">
+                                  <option>Male</option>
+                                  <option>Female</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="sm-12 col-md-12">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label  ">Bill No:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <input type="text" class="form-control" id="input_billing_Bill_no" name="input_billing_Bill_no" placeholder="Bill No.">
+                          </div>
+                          <div class="col-sm-1 col-md-2 col-lg-2"></div>
+                          <div class="col-sm-3 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label">Date Recruited:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-2">
+                              <input type="date" class="form-control" id="date_recruited" name="date_recruited" vlaue="DD/MM/YYYY">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label ">Health Plan:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <input type="text" class="form-control" name="health_plan" id="health_plan" placeholder="Health Plan">
+                          </div>
+                          <div class="col-sm-2 col-md-3 col-lg-3"></div>
+                          <div class="col-sm-2 col-md-1">
+                              <label class="control-label ">Date:</label>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-2">
+                              <input type="date" class="form-control" id="billing_date" name="billing_date" vlaue="DD/MM/YYYY">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label ">Doctor/Team:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <input type="text" class="form-control" id="Input_billing_Team" name="Input_billing_Team" placeholder="Doctor/Team Name">
+                          </div>
+                          <div class="col-sm-2 col-md-3 col-lg-3"></div>
+                          <div class="col-sm-2 col-md-1">
+                              <label class="control-label ">Payment:</label>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-2">
+                              <select class="form-control " id="select_payment_billing" name="select_payment_billing">
+                                  <option>Cash</option>
+                                  <option>Card</option>
+                                  <option>Corporate</option>
+                                  <option>Insurance</option>
+                                  <option>others</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <center>
+                                  <label class="control-label ">Hospital_No.:</label>
+                              </center>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <input type="text" class="form-control" id="input_billing_hospital_no" name="input_billing_hospital_no" placeholder="Hospiital No.">
+                          </div>
+                          <div class=""></div>
+                          <div class="col-sm-1 col-md-1 col-lg-1 padding_label">
+                              <label class="control-label  ">CVR No:</label>
+                          </div>
+                          <div class="col-sm-2 col-md-2 col-lg-2">
+                              <input type="text" class="form-control" id="input_billing_cvr_no" name="input_billing_cvr_no" placeholder="CVR No">
+                          </div>
+                          <div class="col-sm-1 col-md-1 col-lg-1">
+                              <label class="control-label ">Email:</label>
+                          </div>
+                          <div class="col-sm-3 col-md-3 col-lg-2">
+                              <input type="text" class="form-control" id="input_billing_mail" name="input_billing_mail" placeholder="Email Id">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-12">
+                      <hr style="border:1px solid black">
+                  </div>
+                  
+                  <div class="col-sm-12 col-md-12 table-responsive margin_div">
+                      <table class="table table-bordered table-hover" style="background-color:#fff;">
+                          <tr>
+                              <th>Sl.No</th>
+                              <th>Particulars</th>
+                              <th>Charges</th>
+                              <th>Unit</th>
+                              <th>Price</th>
+                          </tr>
+                          <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12 text-center">
+                          <div class="col-sm-4 col-md-4"></div>
+                          <div class="col-sm-4 col-md-3">
+                              <button type="button" style="color:#006699" class="btn btn-default btn-sm button_color" id="addcharges_billing" name="addcharges_billing">Add Additional Charges</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12">
+                      <div class="col-sm-7 col-md-8"></div>
+                      <div class="col-sm-2 col-md-2">
+                          <label for="billingtotalcost">Amount:</label>
+                      </div>
+                      <div class="col-sm-3 col-md-2">
+                          <input type="text" id="billing_totalcost" class="form-control" name="billing_totalcost">
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12">
+                      <div class="col-sm-5 col-md-7"></div>
+                      <div class="col-sm-4 col-md-3">
+                          <label for="SubscriptionDiscount">Subscription Amount:</label>
+                      </div>
+                      <div class="col-sm-3 col-md-2">
+                          <input type="text" id="billing_subscriptiondiscount" class="form-control" name="billing_subscriptiondiscount">
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12">
+                      <div class="col-sm-5 col-md-7"></div>
+                      <div class="col-sm-4 col-md-3">
+                          <label for="billpaid">Paid Amount :</label>
+                      </div>
+                      <div class="col-sm-3 col-md-2">
+                          <input type="text" id="billing_paid" class="form-control" name="billing_paid">
+                      </div>
+                  </div>
+                  <div class="col-sm-12">
+                      <hr style="border:1px solid black">
+                  </div>
+                  <div class="col-sm-12">
+                      <p style="font-weight:bold">Payment Details :</p>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12">
+                          <div id="payment">
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="checkbox-inline">
+                                      <label>
+                                          <input type="checkbox" value="" id="cash_bill">Cash</label>
+                                  </div>
+                                  <div class="checkbox-inline">
+                                      <label>
+                                          <input type="checkbox" value="" id="card_bill">Card</label>
+                                  </div>
+                                  <div class="checkbox-inline">
+                                      <label>
+                                          <input type="checkbox" value="" id="cheque_bill">Cheque</label>
+                                  </div>
+                                  <div class="checkbox-inline">
+                                      <label>
+                                          <input type="checkbox" value="" id="others_bill">Others</label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-2 col-sm-3">
+                              <label class="control-label" for="billingpaymentdue">Payment Due:
+                              </label>
+                          </div>
+                          <div class="col-md-2 col-sm-3 ">
+                              <input type="text" class="form-control" name="billing_paymentdue" id="billing_paymentdue" style="color:#006699" placeholder="      ">
+                          </div>
+                          <div class="col-md-2 col-sm-3">
+                              <label class="control-label" for="willpay">Due Date:</label>
+                          </div>
+                          <div class="col-md-2 col-sm-3 padding_label ">
+                              <input type="date" class="form-control" name="billing_willpay" id="billing_willpay" style="color:#006699" placeholder="      ">
+                          </div>
+                      </div>
+                  </div>
+                  <br>
+              </div>
+          </div>
+          <div class="reportbtns margin_div">
+              <div class="col-sm-12 col-md-12 text-center">
+                  <div class="col-sm-4 col-md-4"></div>
+                  <div class="col-sm-2 col-md-2">
+                      <button type="button" class="btn btn-default btn-sm button_color height_margin" id="billing_save" name="billing_save">Save</button>
+                  </div>
+                  <div class="col-sm-2 col-md-2">
+                      <button type="button" class="btn btn-default btn-sm button_color height_margin" id="billing_edit" name="billing_edit">Edit</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

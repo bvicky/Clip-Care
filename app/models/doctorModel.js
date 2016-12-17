@@ -16,15 +16,19 @@ var doctorSchema = mongoose.Schema({
   alternateEmailId : String,    
   current:{
     address : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state: String,
     country : String,
     zipCode : String
   },
+  sameCurrentaddress: {
+        type: Boolean,
+        default: false
+  },
   permanent:{
     address : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state: String,
     country : String,
@@ -40,7 +44,7 @@ var doctorSchema = mongoose.Schema({
     emailId : String,
     alternateEmailId : String,
     address : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state: String,
     country : String,

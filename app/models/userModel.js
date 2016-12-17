@@ -33,7 +33,7 @@ var userSchema = mongoose.Schema({
   alternateEmailId : String,    
   current:{
     address : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state: String,
     country : String,
@@ -45,14 +45,13 @@ var userSchema = mongoose.Schema({
   },
   permanent:{
     address : String,
-    landMark : String,
+    landMark : Object,
     city : String,
     state: String,
     country : String,
     zipCode : Number
   },
-  paymentmethod : String,
-  
+  paymentmethod : String
 });
 
 userSchema.pre('save',function(next){

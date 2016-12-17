@@ -470,7 +470,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             url: "/api/referrals",
             data: $scope.referral
         }).success(function(data) {
-            console.log(addReferralForm);
+            console.log(data);
             addReferralForm.$setPristine();
             addReferralForm.$setUntouched();
             $scope.fetchReferralRecord();
