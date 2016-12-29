@@ -149,6 +149,11 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
         })
     };
 
+    $scope.refreshData = function(registrationform){
+        $scope.patient ={};
+        registrationform.$setUntouched();
+        registrationform.$setPristine();
+    }
 
     $scope.getDoctorsDashboardList = function() {
 
@@ -160,26 +165,17 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             $scope.workingDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
             $scope.appCal = {};
             $scope.docList = {};
-            //console.log($scope.appCal);
             $.each(data, function(i, docInfo) {
-                //console.log(docInfo);
                 var docShift = docInfo.shift;
-                //console.log(docShift);
                 if (!$scope.appCal[docInfo._id]) {
-
                     $scope.appCal[docInfo._id] = {};
-                    //console.log($scope.appCal[docInfo._id]);
                 }
 
                 if (!$scope.appCal[docInfo._id][docShift.workDay]) $scope.appCal[docInfo._id][docShift.workDay] = [];
                 $scope.appCal[docInfo._id][docShift.workDay].push(docShift);
                 $scope.docList[docInfo._id] = docInfo;
 
-                //console.log($scope.docList[docInfo._id]);
             });
-            // console.log($scope.appCal);
-            // console.log($scope.docList);
-
         }).error(function(err) {
             console.log(err);
         })

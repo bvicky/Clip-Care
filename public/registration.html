@@ -97,13 +97,13 @@
                         <label class="control-label" for="gender">Gender </label>
                         <div class="">
                             <label class="radio-inline">
-                                <input type="radio" ng-model="patient.gender" name="gender" value="male" ng-required="!patient.gender">Male
+                                <input type="radio" ng-model="patient.gender" name="gender" value="Male" ng-required="!patient.gender">Male
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" ng-model="patient.gender" value="female" ng-required="!patient.gender">Female
+                                <input type="radio" ng-model="patient.gender" name="gender" value="Female" ng-required="!patient.gender">Female
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" ng-model="patient.gender" value="Others" ng-required="!patient.gender">Others
+                                <input type="radio" ng-model="patient.gender" name="gender" value="Others" ng-required="!patient.gender">Others
                             </label>
                             <div class="validationmsg" ng-messages="registrationform.gender.$error" ng-if="registrationform.gender.$touched">
                                 <div ng-message="required">Please Slect Your Gender</div>

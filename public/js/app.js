@@ -1,4 +1,5 @@
-var app = angular.module('myApp', ['datetimepicker', 'ngRoute', 'ui.bootstrap', 'ngMessages', 'toggle-switch', 'btorfs.multiselect', 'ui.calendar', 'ngFileUpload', 'smart-table' ]);
+var app = angular.module('myApp', ['datetimepicker', 'ngRoute', 'ui.bootstrap', 'ngMessages', 'toggle-switch', 'btorfs.multiselect', 'ui.calendar', 'ngFileUpload' ]);
+//smart-table
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", { title: "Registration", templateUrl: "registration.html", controller: "registrationController" })

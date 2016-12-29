@@ -1,320 +1,360 @@
 <div class="container-fluid" ng-controller="billingController">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Billing</h3>
-    </div>
-    <div class="panel-body" >
-
-      <form class="form-horizontal" role="form">
-        
-        <div class="form-group">
-          <div class="col-sm-4">
-            <label for="patientSearch">Search Patient</label>
-            <input type="text" class="form-control" ng-model="patientSearch" name="patientSearch">
-          </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Billing</h3>
         </div>
+        <form class="form" name="billingform" ng-submit="createBill()">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 table-responsive">
+                        <table class="table table-bordered table-hover table-striped data patientPrint">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" class="text-center">Patient Profile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Patient Id <br/>Patient Name</th>
+                                    <td>{{patient._id }} <br/>{{patient.firstName + " " +patient.lastName}}</td>
+                                    <th>Bill Date </th>
+                                    <td>{{billing.date | date: 'dd/MM/yyyy'}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Age/ Gender
+                                    <br/>Contact
+                                    </th>
+                                    <td>{{patient.age}} / {{patient.gender}}<br/> {{patient.mobNumber}}<br/>{{patient.emailId}}</td>
+                                    <th> Address</th>
+                                    <td> {{patient.current.address}}
+                                        <br> {{patient.current.city}}
+                                        <br> {{patient.current.state}}
+                                        <br> {{patient.current.zipCode}}
 
-        <div class="form-group table-responsive">
-          <div class="col-sm-12 col-md-6">
-            <table class="table table-hover table-bordered ">
-                <center><b><thead>Patient Record found</thead></b></center>
-                <tr>
-                    <th>Patient Name </th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Area</th>
-                    <th>Contact</th>
-                    <th>Reffered From</th>
-                </tr>
-                <tr>
-                    <td>Johny Samy</td>
-                    <td>66</td>
-                    <td> Male</td>
-                    <td>Jp nagar</td>
-                    <td>1234567890</td>
-                    <td>BMS Trust</td>
-                </tr>
-            </table>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <table class="table table-hover table-bordered ">
-              <center><b><thead>Previous Billing History</thead></b></center>
-              <tr>
-                  <th>Date </th>
-                  <th>Plan</th>
-                  <th>Bill No</th>
-                  <th>Ammount</th>
-                  <th>Dues</th>
-                  <th>Remainder</th>
-                  <th>Remarks</th>
-              </tr>
-              <tr>
-                  <td>02/04/2015</td>
-                  <td>Subscription</td>
-                  <td>xxyyzz</td>
-                  <td>12000</td>
-                  <td>1400</td>
-                  <td></td>
-                  <td>Dues to be paid before xx/yy/zz</td>
-              </tr>
-            </table>
-          </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Treating Doctor</th>
+                                    <td>{{billing.treatingDocName}}</td>
+                                    <th>Referred Doctor</th>
+                                    <td>{{billing.referralName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 table-responsive" ng-init="fetchPatientRecord()">
+                        <table class="table table-bordered table-hover table-striped data">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" class="text-center">Patient Record</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <a href="javascript:void(0) " ng-click="sortType='_id' ; sortReverse=! sortReverse ">Patient Id
+                                            <span ng-show="sortType=='_id' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                            <span ng-show="sortType=='_id' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:void(0) " ng-click="sortType='firstName' ; sortReverse=! sortReverse ">Name
+                                            <span ng-show="sortType=='firstName' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                            <span ng-show="sortType=='firstName' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:void(0) " ng-click="sortType='emailId' ; sortReverse=! sortReverse ">E-mail Id
+                                            <span ng-show="sortType=='emailId' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                            <span ng-show="sortType=='emailId' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                        </a>
+                                    </th>
+                                    <th><a href="javascript:void(0) " ng-click="sortType='mobNumber' ; sortReverse=! sortReverse ">Mobile Number
+                                            <span ng-show="sortType=='mobNumber' && !sortReverse " class="glyphicon glyphicon-sort-by-attributes "></span>
+                                            <span ng-show="sortType=='mobNumber' && sortReverse " class="glyphicon glyphicon-sort-by-attributes-alt "></span>
+                                        </a>
+                                    </th>
+                                    <th>Select</th>
+                                </tr>                                    
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="patients in patientData | filter :referralfilter | startFrom : (currentPage - 1) * pageSize |      
+                                                limitTo : pageSize         | orderBy:sortType:sortReverse">
+                                    <td>{{patients._id}}</td>
+                                    <td>{{patients.firstName + " " +patients.middleName + " " +patients.lastName}}</td>
+                                    <td>{{patients.emailId}}</td>
+                                    <td>{{patients.mobNumber}}</td>
+                                    <td><span class="glyphicon glyphicon-check" ng-click= "getPatient(patients)"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 table-responsive">
+                        <table class="table table-bordered table-hover table-striped data">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">Patient Previous Billing Records</th>
+                                </tr>
+                                <tr>
+                                    <th>Visit Date</th>
+                                    <th>Bill Number</th>
+                                    <th>Amount</th>
+                                    <th>Due Amount</th>
+                                    <th>Remainder</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" ng-init="getBillingServices()">
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="12">Billing</th>
+                                </tr>
+                                <tr>
+                                    <th>Description/ Particulars</th>
+                                    <th>Service Code</th>
+                                    <th>Amount</th>
+                                    <th> Quantity</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="billRow" ng-repeat="billRow in billing.billService track by $index">
+                                    <td>
+                                        <input type="text" class="form-control" ng-model="billing.billService[$index].name" list="services" ng-blur="getBillDetail(billing.billService[$index].name, $index)">
+                                        <datalist id="services">
+                                          <option ng-repeat = "service in allBillServices" value="{{service.name}}"></option>
+                                        </datalist>
 
+                                    </td>
+                                    <td><input type="text" class="form-control" ng-model="billing.billService[$index].code"></td>
+                                    <td><input type="number" class="form-control" ng-model="billing.billService[$index].costPrice"></td>
+                                    <td><input type="number" class="form-control" ng-model="billing.billService[$index].quantity" ng-blur="calcTotal($index)"></td>
+                                    <td><input type="text" class="form-control" ng-model="billing.billService[$index].discount" ng-blur="calcDiscount($index)"></td>
+                                    <td><input type="number" class="form-control" ng-model="billing.billService[$index].amount"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" ng-click="addServiceRow($index)">Add Additional Services</button>
+                        </div>
+
+                        <div class="col-md-9 col-sm-6 table-responsive mtop25">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:200px">Recipt Number</th>
+                                        <th>Mode</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-6">
+                                <label class="control-label" for="billAmount">Bill Total</label>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="Number" class="form-control" ng-model="billing.total" name="billAmount" ng-focus="billTotal()">
+                            </div>
+                            <div class="col-md-12">
+                                <label></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <label class="control-label" for="amountReceived">Amount Received</label>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="Number" class="form-control" ng-model="billing.amountReceived" name="amountReceived" ng-blur="balanceCalc()">
+                            </div>
+                            <div class="col-md-12">
+                                <label></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <label class="control-label" for="amountReturned">Amount Returned</label>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="Number" class="form-control" ng-model="billing.amountReturned" name="amountReturned">
+                            </div>
+                            <div class="col-md-12">
+                                <label></label>
+                            </div>
+                           
+                            <div class="col-md-4 col-sm-6">
+                                <label class="control-label" for="balance">Balance</label>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <input type="Number" class="form-control" ng-model= "billing.amountBalance" name="balance">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-3">
+                                <label for="mode">Payment Mode</label>
+                                <div>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment" ng-model="billing.paymentMode" value="Cash">Cash</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment" ng-model="billing.paymentMode" value="Cheque">Cheque</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="payment" ng-model="billing.paymentMode" value="Card">Card</label>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mtop25">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-warning" id="printbtn" ng-click="printData('printElement')">Print</button>
+
+                </div>
+            </div>
+            {{billing}}
+        </form>
+
+        <div class="" id="printElement">
+            <div class="col-md-12 text-center">
+                <h2 class="normal">BMS HOSPITAL</h2>
+                <h4 class="normal">NO.618, SRI MALLIKARJUNA SWAMY TEMPLE,</h4>
+                <h4 class="normal">N.R. COLONY, BANGALORE - 560019</h4>
+                <h3 class="normal">Patient Bill</h3>
+                <hr style="border: 1px dotted black">
+            </div>
+            <div class="col-md-12 table-responsive">
+                <table class="table table-bordered table-hover table-striped data patientPrint">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="text-center">Patient Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Patient Id <br/>Patient Name</th>
+                            <td>{{patient._id }} <br/>{{patient.firstName + " " +patient.lastName}}</td>
+                            <th>Bill Date </th>
+                            <td>{{billing.date | date: 'dd/MM/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <th>Age/ Gender
+                            <br/>Contact
+                            </th>
+                            <td>{{patient.age}} / {{patient.gender}}<br/> {{patient.mobNumber}}<br/>{{patient.emailId}}</td>
+                            <th> Address</th>
+                            <td> {{patient.current.address}}
+                                <br> {{patient.current.city}}
+                                <br> {{patient.current.state}}
+                                <br> {{patient.current.zipCode}}
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Treating Doctor</th>
+                            <td>{{billing.treatingDocName}}</td>
+                            <th>Referred Doctor</th>
+                            <td>{{billing.referralName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div  ng-init="getBillingServices()">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="12" class="text-center">Billing</th>
+                            </tr>
+                            <tr>
+                                <th>Description/ Particulars</th>
+                                <th>Service Code</th>
+                                <th>Service Cost</th>
+                                <th> Quantity</th>
+                                <th>Discount</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="billRow" ng-repeat="billRow in billing.billService track by $index">
+                                <td>
+                                    {{billing.billService[$index].name}}
+                                </td>
+                                <td>{{billing.billService[$index].code}}</td>
+                                <td>{{billing.billService[$index].costPrice}}</td>
+                                <td>{{billing.billService[$index].quantity}}</td>
+                                <td>{{billing.billService[$index].discount}}</td>
+                                <td>{{billing.billService[$index].amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-8 col-sm-6 col-xs-7">
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Recipt No</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Mode</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ADV 1607/ 001</td> 
+                                <td>27/12/16</td> 
+                                <td>10000000</td> 
+                                <td>Cheque</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group col-md-4 col-sm-6 col-xs-5">                        
+                    <table class=" table">
+                        <tr>
+                            <td> <label> Bill Total </label></label></td>
+                            <td>{{billing.total}}</td>
+                        </tr>
+                        <tr>
+                            <td><label> Amount Received </label></td>
+                            <td>{{billing.amountReceived}}</td>
+                        </tr>
+                        <tr>
+                            <td> <label>Amount Returned </label></td>
+                            <td>{{billing.amountReturned}}</td>
+                        </tr>
+                        <tr>
+                            <td><label> Balance </label></td>
+                            <td>{{billing.amountBalance}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                    <div class="col-sm-12">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-3">
+                            <label for="mode">Payment Mode : {{billing.paymentMode}}</label>
+                            
+                        </div>                        
+                    </div>
+                </div>
+             </div>
 
         </div>
-         
-          <div id="div_patient_details" class="row margin_div">
-              <div class="col-md-11 col-sm-11">
-                  
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-11 col-sm-11">
-                  
-              </div>
-          </div>
-          <!--table for previous billing history-->
-          <div class="row padding_billing">
-              <div class="col-sm-12 col-md-12 col-lg-12 border_billing">
-                  <div class="col-sm-12">
-                      <u> <center> <h3>Hospital Name </h3></center> </u>
-                  </div>
-                  <div class="col-sm-12">
-                      <hr style="border:1px solid black">
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-lg-12">
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label ">Name:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-3">
-                              <input type="text" class="form-control" id="input_billing_first_name" name="input_billing_first_name" placeholder="Name">
-                          </div>
-                          <div class="col-sm-1 col-md-1 col-lg-1"></div>
-                          <div class="col-sm-1 col-md-1 col-lg-1">
-                              <label class="control-label ">Age:</label>
-                          </div>
-                          <div class="col-sm-2 col-md-2 col-lg-1">
-                              <input type="text" class="form-control" id="Input_billing_age" name="Input_billing_age" placeholder="Age">
-                          </div>
-                          <div class="col-sm-1 col-md-1 col-lg-1">
-                              <label class="control-label   ">Sex:</label>
-                          </div>
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <select class="form-control" id="Select_billing_sex" name="Select_billing_sex">
-                                  <option>Male</option>
-                                  <option>Female</option>
-                              </select>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="sm-12 col-md-12">
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label  ">Bill No:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-3">
-                              <input type="text" class="form-control" id="input_billing_Bill_no" name="input_billing_Bill_no" placeholder="Bill No.">
-                          </div>
-                          <div class="col-sm-1 col-md-2 col-lg-2"></div>
-                          <div class="col-sm-3 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label">Date Recruited:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-2">
-                              <input type="date" class="form-control" id="date_recruited" name="date_recruited" vlaue="DD/MM/YYYY">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-12 col-lg-12">
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label ">Health Plan:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-3">
-                              <input type="text" class="form-control" name="health_plan" id="health_plan" placeholder="Health Plan">
-                          </div>
-                          <div class="col-sm-2 col-md-3 col-lg-3"></div>
-                          <div class="col-sm-2 col-md-1">
-                              <label class="control-label ">Date:</label>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-2">
-                              <input type="date" class="form-control" id="billing_date" name="billing_date" vlaue="DD/MM/YYYY">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-12 col-lg-12">
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label ">Doctor/Team:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-3">
-                              <input type="text" class="form-control" id="Input_billing_Team" name="Input_billing_Team" placeholder="Doctor/Team Name">
-                          </div>
-                          <div class="col-sm-2 col-md-3 col-lg-3"></div>
-                          <div class="col-sm-2 col-md-1">
-                              <label class="control-label ">Payment:</label>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-2">
-                              <select class="form-control " id="select_payment_billing" name="select_payment_billing">
-                                  <option>Cash</option>
-                                  <option>Card</option>
-                                  <option>Corporate</option>
-                                  <option>Insurance</option>
-                                  <option>others</option>
-                              </select>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-12 col-lg-12">
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <center>
-                                  <label class="control-label ">Hospital_No.:</label>
-                              </center>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-3">
-                              <input type="text" class="form-control" id="input_billing_hospital_no" name="input_billing_hospital_no" placeholder="Hospiital No.">
-                          </div>
-                          <div class=""></div>
-                          <div class="col-sm-1 col-md-1 col-lg-1 padding_label">
-                              <label class="control-label  ">CVR No:</label>
-                          </div>
-                          <div class="col-sm-2 col-md-2 col-lg-2">
-                              <input type="text" class="form-control" id="input_billing_cvr_no" name="input_billing_cvr_no" placeholder="CVR No">
-                          </div>
-                          <div class="col-sm-1 col-md-1 col-lg-1">
-                              <label class="control-label ">Email:</label>
-                          </div>
-                          <div class="col-sm-3 col-md-3 col-lg-2">
-                              <input type="text" class="form-control" id="input_billing_mail" name="input_billing_mail" placeholder="Email Id">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-12">
-                      <hr style="border:1px solid black">
-                  </div>
-                  
-                  <div class="col-sm-12 col-md-12 table-responsive margin_div">
-                      <table class="table table-bordered table-hover" style="background-color:#fff;">
-                          <tr>
-                              <th>Sl.No</th>
-                              <th>Particulars</th>
-                              <th>Charges</th>
-                              <th>Unit</th>
-                              <th>Price</th>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                          </tr>
-                      </table>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-12 text-center">
-                          <div class="col-sm-4 col-md-4"></div>
-                          <div class="col-sm-4 col-md-3">
-                              <button type="button" style="color:#006699" class="btn btn-default btn-sm button_color" id="addcharges_billing" name="addcharges_billing">Add Additional Charges</button>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12">
-                      <div class="col-sm-7 col-md-8"></div>
-                      <div class="col-sm-2 col-md-2">
-                          <label for="billingtotalcost">Amount:</label>
-                      </div>
-                      <div class="col-sm-3 col-md-2">
-                          <input type="text" id="billing_totalcost" class="form-control" name="billing_totalcost">
-                      </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12">
-                      <div class="col-sm-5 col-md-7"></div>
-                      <div class="col-sm-4 col-md-3">
-                          <label for="SubscriptionDiscount">Subscription Amount:</label>
-                      </div>
-                      <div class="col-sm-3 col-md-2">
-                          <input type="text" id="billing_subscriptiondiscount" class="form-control" name="billing_subscriptiondiscount">
-                      </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12">
-                      <div class="col-sm-5 col-md-7"></div>
-                      <div class="col-sm-4 col-md-3">
-                          <label for="billpaid">Paid Amount :</label>
-                      </div>
-                      <div class="col-sm-3 col-md-2">
-                          <input type="text" id="billing_paid" class="form-control" name="billing_paid">
-                      </div>
-                  </div>
-                  <div class="col-sm-12">
-                      <hr style="border:1px solid black">
-                  </div>
-                  <div class="col-sm-12">
-                      <p style="font-weight:bold">Payment Details :</p>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-12">
-                          <div id="payment">
-                              <div class="col-md-4 col-sm-6">
-                                  <div class="checkbox-inline">
-                                      <label>
-                                          <input type="checkbox" value="" id="cash_bill">Cash</label>
-                                  </div>
-                                  <div class="checkbox-inline">
-                                      <label>
-                                          <input type="checkbox" value="" id="card_bill">Card</label>
-                                  </div>
-                                  <div class="checkbox-inline">
-                                      <label>
-                                          <input type="checkbox" value="" id="cheque_bill">Cheque</label>
-                                  </div>
-                                  <div class="checkbox-inline">
-                                      <label>
-                                          <input type="checkbox" value="" id="others_bill">Others</label>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-2 col-sm-3">
-                              <label class="control-label" for="billingpaymentdue">Payment Due:
-                              </label>
-                          </div>
-                          <div class="col-md-2 col-sm-3 ">
-                              <input type="text" class="form-control" name="billing_paymentdue" id="billing_paymentdue" style="color:#006699" placeholder="      ">
-                          </div>
-                          <div class="col-md-2 col-sm-3">
-                              <label class="control-label" for="willpay">Due Date:</label>
-                          </div>
-                          <div class="col-md-2 col-sm-3 padding_label ">
-                              <input type="date" class="form-control" name="billing_willpay" id="billing_willpay" style="color:#006699" placeholder="      ">
-                          </div>
-                      </div>
-                  </div>
-                  <br>
-              </div>
-          </div>
-          <div class="reportbtns margin_div">
-              <div class="col-sm-12 col-md-12 text-center">
-                  <div class="col-sm-4 col-md-4"></div>
-                  <div class="col-sm-2 col-md-2">
-                      <button type="button" class="btn btn-default btn-sm button_color height_margin" id="billing_save" name="billing_save">Save</button>
-                  </div>
-                  <div class="col-sm-2 col-md-2">
-                      <button type="button" class="btn btn-default btn-sm button_color height_margin" id="billing_edit" name="billing_edit">Edit</button>
-                  </div>
-              </div>
-          </div>
-      </form>
     </div>
-  </div>
-</div>

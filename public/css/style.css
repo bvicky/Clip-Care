@@ -20,6 +20,9 @@ h1.normal, h2.normal, h3.normal, h4.normal{
 .mtop25{
 	margin-top: 25px;
 }
+.mtop45{
+	margin-top: 45px;
+}
 .form-group{
 	margin-top: 10px;
 }
@@ -167,4 +170,10 @@ p.shiftdays:first-child{
 
 .fc-time-grid .fc-slats td {
 	height : 5em;
+}
+
+@media print{
+	body {
+		border : 1px solid black;
+	}
 }

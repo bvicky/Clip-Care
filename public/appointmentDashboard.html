@@ -47,7 +47,7 @@
                         <input type="text" class="form-control" name="referralName" ng-model="referral.name" placeholder="Referral Name">
 		            </div>
 
-                    <form class="form-horizontal" name="registrationform" ng-submit="savePatient()">
+                    <form class="form-horizontal" name="registrationform" ng-submit="savePatient()" novalidate>
                     	<div class="form-group">
 		                    <div class="col-sm-12">
 		                    	<label for="pid">Patient Id </label>
@@ -131,6 +131,7 @@
 	                    <div class="form-group" ng-if="patient._id==null">
 	                    	<div class="col-sm-12">
 	                    		<button type="submit" class="btn btn-success">Register</button>
+	                    		<button type="button" class="btn btn-success" ng-click=refreshData(registrationform)>Reset</button>
 	                    	</div>
 	                    </div>
 	                </form>

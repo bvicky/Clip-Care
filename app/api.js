@@ -5,7 +5,8 @@ var ReferralMaster = require('./models/referralMasterModel');
 var DoctorMaster = require('./models/doctorModel');
 var Appointment = require('./models/appointmentModel');
 var TempPatient = require('./models/tempPatient');
-var BillingService = require('./models/billingServiceModel');
+var BillingServiceMaster = require('./models/billingServiceMasterModel');
+var Billing = require('./models/billingModel');
 var moment = require('moment');
 var app = express();
 var multer = require('multer');
@@ -225,48 +226,56 @@ module.exports = function(app) {
         router.route('/doctors')
             .post(function(req,res){
                 var doctordata = req.body;
-                // var docShift= req.body.shift.length;
-                // for(i = 0 ; i< docShift ; i++){
-                //     console.log(req.body.shift[i].workFrom);
-                // }
-                for(i = 0 ; i< doctordata.shift.length; i++){
-                        //console.log(doctordata.shift[i].workFrom);
-                        var timeFrom = new Date();
-                        var workHrMins = doctordata.shift[i].workFrom.split(":");
-                        timeFrom.setHours(parseInt(workHrMins[0]));
-                        timeFrom.setMinutes(parseInt(workHrMins[1]));
-                        timeFrom.setDate(01);
-                        timeFrom.setMonth(01);
-                        timeFrom.setYear(1970);
-                        doctordata.shift[i].workFrom = timeFrom;
-                        console.log("From :"+ doctordata.shift[i].workFrom)
-                     // console.log("New Date:" + doc.shift[i].workFrom).toISOString();
+                var fname = req.body.name;
+                var lname = req.body.name;
+                var dob = req.body.dob;
+                var mobnumber = req.body.mobNumber;
+                
+                DoctorMaster.find({'firstName' : fname,'lastName' : lname, 'branch': branch, 'dob' : dob, 'mobNumber' : mobnumber}, function(err, data){
+                    if(data.length > 0){
+                        res.json({existData : 'Data Exists'})
+                    }
+                    else {
+                
+                        for(i = 0 ; i< doctordata.shift.length; i++){
+                                //console.log(doctordata.shift[i].workFrom);
+                                var timeFrom = new Date();
+                                var workHrMins = doctordata.shift[i].workFrom.split(":");
+                                timeFrom.setHours(parseInt(workHrMins[0]));
+                                timeFrom.setMinutes(parseInt(workHrMins[1]));
+                                timeFrom.setDate(01);
+                                timeFrom.setMonth(01);
+                                timeFrom.setYear(1970);
+                                doctordata.shift[i].workFrom = timeFrom;
+                                //console.log("From :"+ doctordata.shift[i].workFrom)
+                             // console.log("New Date:" + doc.shift[i].workFrom).toISOString();
 
-                     //console.log(doctordata.shift[i].workTo);
-                        var timeTo = new Date();
-                        var workHrMins = doctordata.shift[i].workTo.split(":");
-                        timeTo.setHours(parseInt(workHrMins[0]));
-                        timeTo.setMinutes(parseInt(workHrMins[1]));
-                        timeTo.setDate(01);
-                        timeTo.setMonth(01);
-                        timeTo.setYear(1970);
-                        doctordata.shift[i].workTo = timeTo;
-                }
+                             //console.log(doctordata.shift[i].workTo);
+                                var timeTo = new Date();
+                                var workHrMins = doctordata.shift[i].workTo.split(":");
+                                timeTo.setHours(parseInt(workHrMins[0]));
+                                timeTo.setMinutes(parseInt(workHrMins[1]));
+                                timeTo.setDate(01);
+                                timeTo.setMonth(01);
+                                timeTo.setYear(1970);
+                                doctordata.shift[i].workTo = timeTo;
+                        }
 
-                var doctorInfo = new DoctorMaster(doctordata);
-                doctorInfo.save(function(err, doctorInfo){
-                    if(err) 
-                        throw err
-                    res.json("Data Posted Successfully")
+                        var doctorInfo = new DoctorMaster(doctordata);
+                        doctorInfo.save(function(err, doctorInfo){
+                            if(err) 
+                                throw err
+                            res.json({msg : 'Data Posted Successfully'});
+                        })
+                    }
                 })
             })
-
             
             .get(function(req,res){
                 DoctorMaster.aggregate([{$unwind : "$shift"}, {$unwind : "$shift.workDay"}],function(err, DoctorMaster){
                     if(err)
                         throw err
-                    res.send(DoctorMaster)
+                    res.send(DoctorMaster);
                 })
             })
 
@@ -301,7 +310,7 @@ module.exports = function(app) {
                         timeFrom.setMonth(01);
                         timeFrom.setYear(1970);
                         updateDoctor.shift[i].workFrom = timeFrom;
-                        console.log("From :"+ updateDoctor.shift[i].workFrom)
+                    //  console.log("From :"+ updateDoctor.shift[i].workFrom)
                      // console.log("New Date:" + doc.shift[i].workFrom).toISOString();
 
                      //console.log(doctordata.shift[i].workTo);
@@ -328,7 +337,7 @@ module.exports = function(app) {
         router.route('/appointment')
             .post(function(req, res) {
                 var appointmentData = req.body;
-                console.log(appointmentData);
+                //console.log(appointmentData);
                 var appointments = new Appointment(appointmentData);
 
                 appointments.save(function(err, appointment) {                                       
@@ -364,7 +373,7 @@ module.exports = function(app) {
                     .populate('referralId')
                     
                     .exec(function(err, appointments) {
-                        console.log(appointments);
+                        //console.log(appointments);
                     if (err) res.send({
                         error: err
                     });
@@ -379,10 +388,10 @@ module.exports = function(app) {
                 
                 var billServiceData = req.body;   
                 billServiceData.filePath = filedestination;
-                var billService = new BillingService(billServiceData);
+                var billServiceMaster = new BillingServiceMaster(billServiceData);
                 
                 //billServiceData.circular = billingCircularName;            
-                billService.save(function(err, data) {
+                billServiceMaster.save(function(err, data) {
                    
                     if (err) 
                         throw err
@@ -390,7 +399,7 @@ module.exports = function(app) {
                 });
             })     
             .get(function(req, res) {
-                BillingService.find(function(err, billService) {
+                BillingServiceMaster.find(function(err, billService) {
                     if (err) 
                         throw err
                     res.json(billService);
@@ -400,9 +409,7 @@ module.exports = function(app) {
 
         router.route('/billingServices/:id')
             .get(function(req, res) {
-                
-                var id = req.params.id;
-                BillingService.findById(id, function(err, service) {
+                BillingServiceMaster.findById(id, function(err, service) {
                     if (err) res.send({
                         error: err
                     });
@@ -461,6 +468,48 @@ module.exports = function(app) {
                     })
             })
 
+
+        router.route('/docsDetail/:id')
+            
+
+            .get(function(req, res) {
+                var id = req.params.id;
+                var startDate = moment().startOf('day');
+                var endDate = moment().endOf('day');
+                var status = "Confirmed";
+                Appointment.find({patientId : id, startTime : {$gte : startDate, $lte : endDate}}).sort({'startTime' : -1})
+                    .populate('doctorId')
+                    .populate('referralId')
+                    
+                    .exec(function(err, appointments) {
+                    if (err) res.send({
+                        error: err
+                    });
+                    res.send(appointments);
+                })
+            })
+
+        router.route('/billing')
+
+            .post(function(req,res){
+                
+                var billData = req.body;
+                var bills = new Billing(billData);
+
+                bills.save(function(err, billing) {                                       
+                    if (err)
+                        throw err;
+                    res.json(billing);
+                })
+            })
+            .get(function(req,res){
+                 Billing.find(function(err, bills) {
+                    if (err) 
+                        throw err
+                    res.json(bills);
+
+                })
+            })
 
         router.route('*')
             .get(function(req, res) {
