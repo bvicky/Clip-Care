@@ -9,6 +9,7 @@ require('./config/mongoose')(config);
 require('./app/passport')(passport);
 require('./app/routes')(app, passport);
 require('./app/api')(app);
+require('./app/statistics')(app);
 
 
 var port = 3000;

@@ -177,3 +177,79 @@ p.shiftdays:first-child{
 		border : 1px solid black;
 	}
 }
+
+
+
+
+/*Admin Dashboard*/
+.sidebar{
+    background-color: #005566;
+    color: white;
+    height: 100%;
+    padding-bottom: 50px;
+
+}
+.sidebar ul li a{
+    color: white;
+    line-height: 32px;
+    font-size: 18px;
+}
+.sidebar ul li a i{
+    color: white;
+    padding-right: 10px;
+}
+.sidebar ul li a:hover i, .sidebar ul li a:active>i , .sidebar ul li a:focus>i{
+    padding-right: 10px;
+    color: #005566;
+}
+.sidebar ul >li.active>a i, .sidebar ul >li.active>a i:focus,  .sidebar ul >li.active>a i:hover {
+    color: #005566;
+    padding-right: 10px;
+}
+.sidebar ul li a:hover, .sidebar ul li a:active, .sidebar ul li a:focus{
+    background-color: white;
+    color: #005566;
+}
+.sidebar ul >li.active>a, .sidebar ul >li.active>a:focus,  .sidebar ul >li.active>a:hover{
+    background-color: white;
+    color: #005566;
+}
+
+.sidebar-logo  h1, .sidebar-logo h2, .sidebar-logo h3, .sidebar-logo h4, .sidebar-logo h5{
+	color: white;
+	font-style: normal;
+	text-decoration: none;
+	font-weight: 300;
+}
+
+
+
+.mainDashboard .tab-pane.active{
+	border: 0px; 
+	padding-top: 0px;
+}
+.mainDashboard h1, .mainDashboard h2, .mainDashboard h3, .mainDashboard h4,.mainDashboard h5{
+	color: #463e3e;
+	text-decoration: none;
+	font-style: normal;
+}
+
+.box-wrapper{
+    border: 1px solid #cccccc;
+    padding-bottom: 25px;
+    padding-left: 15px;
+    margin: 10px;
+}
+.box-wrapper h4{
+	font-weight: 300;
+	color: #6677;
+    text-align: center;
+}
+.fa-handshake-o:before{
+    content : "\f2b5";
+}
+
+.staff-img img{
+    border: 2px solid white;
+    border-radius: 50%;
+}   

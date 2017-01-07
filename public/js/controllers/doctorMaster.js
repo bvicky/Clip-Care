@@ -160,9 +160,15 @@ app.controller('doctorMasterController', function($scope, $http) {
         for(i=0; i< $scope.doctor.shift.length; i++){
                
             var diff = moment.utc(moment($scope.doctor.shift[i].workTo,"HH:mm").diff(moment($scope.doctor.shift[i].workFrom,"HH:mm"))).format("HH:mm");
+            console.log(diff);
+
             var calcMin =diff.split(":");
             hourtomin = parseInt(calcMin[0]*60)+ parseInt(calcMin[1]);
+            console.log(parseInt(calcMin[0]*60));
+            console.log(hourtomin);
+
             $scope.doctor.shift[i].maxSlots = hourtomin / parseInt($scope.doctor.sessionDuration);
+            console.log($scope.doctor.shift[i].maxSlots);
         }
     }
 

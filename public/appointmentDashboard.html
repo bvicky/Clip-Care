@@ -217,7 +217,8 @@
 						    		<td ng-repeat="workDay in workingDays">
 						    			<div ng-repeat="shift in appCal[doc._id][workDay]">
 						    				<button class="btn btn-primary" style="margin-bottom: 5px;" ng-click="docTime(shift.workFrom, shift.workTo, doc.firstName, doc._id, workDay, shift.maxSlots); fetchAppointments()">{{shift.workFrom | date : 'hh:mm a'}} - {{shift.workTo | date : 'hh:mm a'}}</button>
-						    				
+						    				<p>{{shift.maxSlots}}</p>
+						    				<p>{{availableSlots}}</p>
 						    			</div>
 
 						    			

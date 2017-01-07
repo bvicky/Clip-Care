@@ -1,611 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>FastTrackBilling</title>
-<head>
-    <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-switch.css">
-    <link rel="stylesheet" href="css/main.css">
-
-
-</head>
-
-<body>
-
-    <header>
-        <div class="header-logo row">
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                <img src="images/logo.png" class="col-xs-6 col-sm-10 col-md-6 col-lg-4 img-responsive">
-            </div>
+<div class="container-fluid" ng-controller="fastTrackBillingController">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Fast Track Billing</h3>
         </div>
-          <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.aventyn.com/">Aventyn</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Home </a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="referral_master.html">Referral</a></li>
-                                <li><a href="masterspayment.html">Payment</a></li>
-                                <li><a href="masterscareplan.html">Care Plan</a></li>
-                                <li><a href="NewVitalsMaster.html">Vitals </a></li>
-                                <li><a href="mastershistory.html">History </a></li>
-                                <li><a href="master_for_services.html">Lab Test </a></li>
-                                <li><a href="master_medication.html">Medication</a></li> <li><a href="teamformation.html">Care Team</a></li>
-                                <li><a href="Physical_Examination.html">Physical Examination</a></li>
-                                <li><a href="mastersbilling.html">Billing</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="registration.html">Registration</a></li>
-                                <li><a href="careplan.html">Care Plan</a></li>
-                                <li><a href="vitals.html">Vitals</a></li>
-                                <li><a href="medications.html">Medications</a></li>
-                                <li><a href="teamscheduling.html">Team Scheduling </a></li>
-                                <li><a href="fasttrackbilling.html">Fast Track Billing </a></li>
-                                <li><a href="billing_module.html">Billing </a></li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="registration.html">Registration</a></li>
-                                <li>
-                                    <a href="#"> </a></li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Appointments<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="appointment.html">Appointment</a></li>
-                                <li>
-                                    <a href="appointmentDashboardConsolidated.html">Appointment Dashboard </a>
-                                </li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                        </li>
-						
-						 <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doctors<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="doc_appointment.html">Appointment</a></li>
-                                <li><a href="doctorsdashboard.html">Dashboard</a></li>
-                                <li><a href="asoap-icd.html">ICD </a></li>
-                                <li><a href="medinfo.html">Medication Information</a></li>
-                                <li><a href="medstat.html">Vital History</a></li>
-                                <li><a href="medicationhistory.html">Medication History</a></li>
-                                <li><a href="patienthistoryandvitals.html">Vitals and History</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li><a href="News.html">Contact Us</a></li>
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="" class="pull-right">Logout</a></li>
-                    </ul>
-                </div>
-  </div><!-- /.container-fluid -->
-</nav>
-
-    </header>
-
-
-    <form class="form-horizontal" id="registrationform">
-
-        
-
-
-        <div class="container data">
-            
-             <div class="row">
-                <div class=" col-sm-12 col-md-12">
-                    <h3>Search Patient</h3>
-                    <hr style="border : dotted 1px">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-md-5 border_div">
-                    <div class=" row">
-                        <div class="col-md-3 col-sm-4">
-                            <label class="control-label pull-left" for="regno" name="reg_no" id="regsno">Reg.No.: </label>
-                        </div>
-
-                        <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="search_reg_no" id="search_reg_no" class="form-control input-sm field_color" placeholder="Registration No">
-                        </div>
-                    </div>
-
-                    <div class=" row">
-                        <center>Or</center>
-                    </div>
-                    <div class=" row">
-                        <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Name:</label>
-                        </div>
-                        <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="Name_input_search" id="Name_input_search" class="form-control input-sm field_color" placeholder="Name">
-                        </div>
-                    </div>
-                    <div class=" row">
-
-                        <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">DOB:</label>
-                        </div>
-                        <div class=" col-md-9 col-sm-8">
-                            <input type="date" name="dob_input_search" id="dob_input_search" class="form-control input-sm field_color" placeholder="D.O.B (DD-MM-YYYY)">
-                        </div>
-                    </div>
-                    <div class=" row">
-
-                        <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Contact:</label>
-                        </div>
-                        <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="contact_input_search" id="contact_input_search" class="form-control input-sm field_color" placeholder="Contact">
-                        </div>
-                    </div>
-                    <div class=" row">
-
-                        <div class=" col-md-3 col-sm-4">
-                            <label class="control-label">Email:</label>
-                        </div>
-                        <div class=" col-md-9 col-sm-8">
-                            <input type="text" name="Email_input_search" id="Email_input_search" class="form-control input-sm field_color" placeholder="Email">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5 col-sm-6"></div>
-                        <div class="col-md-5 col-sm-5">
-                            <input type="button" name="search" id="search_btn" class="form-control input-sm button_color height_margin" value="Search">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label></label>
-                    </div>
-                </div>
-
-                <!-- div registration id search and find code -->
-
-                <div class=" col-sm-10 col-md-5 border_div" id="reg_id_search">
-                    <div class="row">
-                        <center>
-                            <label>Patient Records</label>
-                        </center>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_no00" name="reg_no00" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_1" name="reg_disp_1" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_1">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n01" name="reg_n01" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_2" name="reg_disp_2" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_2">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n02" name="reg_n02" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_3" name="reg_disp_3" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_3">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n03" name="reg_n03" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_4" name="reg_disp_4" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_4">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n04" name="reg_n04" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_5" name="reg_disp_5" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_5">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n05" name="reg_n05" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_6" name="reg_disp_6" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_6">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n06" name="reg_n06" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_7" name="reg_disp_7" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_7">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n07" name="reg_n07" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_8" name="reg_disp_8" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_8">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n08" name="reg_n08" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_9" name="reg_disp_9" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_select" id="radio_9">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <input type="text" disabled="disabled" id="reg_n09" name="reg_n09" class="form-control input-sm field_color2" placeholder="Reg No.">
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" disabled="disabled" id="reg_disp_10" name="radio_select" class="form-control input-sm field_color2" placeholder="Patient Name">
-                            </div>
-                            <div class="col-md-2 col-sm-1">
-                                <input type="radio" class="form-control input-sm field_color2" name="radio_10" id="radio_10">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="row">
-                <div class=" col-sm-12 col-md-12">
-                    <h3>Patient Information</h3>
-                    <hr style="border : dotted 1px">
-                </div>
-            </div>
-
-            <div class="row">
-
-
-
-                <div class="col-sm-6 col-md-2">
-                    <label for="Name">Name :</label>
-                </div>
-                <div class="col-sm-2 col-md-2">
-                    <select class="form-control input-sm select-color select-width" id="prefix" name="">
-                        <option>Mr.</option>
-                        <option>Mrs.</option>
-                        <option>Mast.</option>
-                        <option>Miss.</option>
-                    </select>
-
-                </div>
-                <div class="col-sm-2 col-md-2">
-                    <input type="text" class="form-control input-sm field_color" id="fname" name="" placeholder="First  Name">
-                </div>
-
-                <div class="col-sm-2 col-md-2">
-                    <input type="text" class="form-control input-sm field_color" id="mname" name="" placeholder="Middle  Name">
-                </div>
-
-
-                <div class="col-sm-4 col-md-2">
-
-                    <input type="text" class="form-control input-sm field_color" id="lname" name="" placeholder="Last  Name">
-                </div>
-
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="dob">Date of Birth :</label>
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <input type="date" class="form-control input-sm field_color" id="dob" name="" placeholder="">
-                </div>
-                <div class="col-sm-2 col-md-1">
-                    <input type="text" class="form-control input-sm field_color" id="age" name="" placeholder="Age">
-                </div>
-                <div class="col-sm-6 col-md-1">
-                    <label class="control-label" for="gender">Gender :</label>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <label class="radio-inline">
-                        <input type="radio" name="patient_gender" value="male">Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="patient_gender" value="female">Female
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="patient_gender" value="Others">Others
-                    </label>
-
-                </div>
-            </div>
-            <div class="row">
-
-
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="mobnum">Mobile Number :</label>
-                </div>
-
-
-                <div class="col-sm-3 col-md-2 ">
-                    <input type="text" class="form-control input-sm field_color" id="mobnum1" name="" placeholder="Mobile Number">
-                </div>
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="llnum">Landline Number :</label>
-                </div>
-
-
-                <div class="col-sm-3 col-md-2 ">
-                    <input type="text" class="form-control input-sm field_color" id="unregllnum" name="" placeholder="Landline Number">
-                </div>
-
-
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="email">E-mail ID :</label>
-                </div>
-
-
-                <div class="col-sm-3 col-md-2">
-                    <input type="text" class="form-control input-sm field_color" id="email1" name="" placeholder="E-mail Address">
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class=" col-sm-12 col-md-12">
-                    <h3>Billing Information</h3>
-                    <hr style="border : dotted 1px">
-                </div>
-            </div>
-
-            <div class="row">
-
-
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="particulars">Particulars :</label>
-                </div>
-
-
-                <div class="col-sm-6 col-md-3 ">
-                    <input type="text" class="form-control input-sm field_color" id="particulars" name="" placeholder="Particulars">
-                </div>
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="extracharges">Additional Charges :</label>
-                </div>
-
-
-                <div class="col-sm-6 col-md-1 ">
-                    <input type="text" class="form-control input-sm field_color" id="extracharges" name="" placeholder="">
-                </div>
-
-
-                <div class="col-sm-6 col-md-1">
-                    <label class="control-label" for="unit">Unit :</label>
-                </div>
-
-
-                <div class="col-sm-2 col-md-1">
-                    <input type="text" class="form-control input-sm field_color" id="unit" name="" placeholder="Unit">
-                </div>
-                <div class="col-sm-1 col-md-1">
-                    <button class="btn btn-default button" id="add">Add</button>
-                </div>
-
-            </div>
-
-
-            <div class="row begin-top">
-                <div class="sm-12 col-md-12">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>#</th>
-                            <th>Particulars</th>
-                            <th>Charges</th>
-                            <th>Unit </th>
-                            <th>Price</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class=" col-sm-6 col-md-2 col-md-offset-7">
-                    <label class="control-label" for="particulars">Total :</label>
-
-                </div>
-                <div class="col-sm-6 col-md-3 ">
-                    <input type="text" class="form-control input-sm field_color" id="particulars" name="" placeholder="Total">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class=" col-sm-6 col-md-2 col-md-offset-7">
-                    <label class="control-label" for="particulars">Paid Amount :</label>
-
-                </div>
-                <div class="col-sm-6 col-md-3 ">
-                    <input type="text" class="form-control input-sm field_color" id="particulars" name="" placeholder="Paid">
-                </div>
-            </div>
-            <div class="row">
-                <div class=" col-sm-6 col-md-2 col-md-offset-7">
-                    <label class="control-label" for="particulars">Balance Amount :</label>
-
-                </div>
-                <div class="col-sm-6 col-md-3 ">
-                    <input type="text" class="form-control input-sm field_color" id="particulars" name="" placeholder="Balance">
-                </div>
-
+        <form class="form" name="fastTrackBillingform" ng-submit="createBill()" novalidate>
+            <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-2 col-md-offset-4">
-                        <label class="control-label" for="paydate">Will be paid by:</label>
+                    <div class=" col-sm-12 col-md-12">
+                        <h3>Patient Information</h3>
                     </div>
-                    <div class="col-sm-6 col-md-2">
-                       
-                    <input type="date" class="form-control input-sm field_color" id="dateofpay" name="" placeholder="">
-               
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-3">
+                            <label for="prefox">Prefix </label>
+                            <select class="form-control" name="prefix" id="prefix" ng-model="fastTrackBilling.prefix" required>
+                                <option value="">--Select Prefix--</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Mast.">Mast.</option>
+                                <option value="Miss.">Miss.</option>
+                                <option value="Mx.">Mx.</option>
+                            </select>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.prefix.$error " ng-if="fastTrackBillingform.prefix.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Prefix</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control " id="fname" name="fname" ng-model="fastTrackBilling.firstName" placeholder="First  Name" required>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.fname.$error " ng-if="fastTrackBillingform.fname.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your First Name</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" class="form-control " id="mname" name="mname" ng-model="fastTrackBilling.middleName" placeholder="Middle  Name">
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control " id="lname" name="lname" ng-model="fastTrackBilling.lastName" placeholder="Last  Name" required>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.lname.$error " ng-if="fastTrackBillingform.lname.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Last Name</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-2">
+                            <label class="control-label" for="dob">Date of Birth </label>
+                            <div class="input-group datetime" datetimepicker>
+                                <input type="text" class="form-control input-sm" placeholder="MM/DD/YYY" datetimepicker datetimepicker-options="{{datetimepicker_options}}" ng-model="fastTrackBilling.dob" name="dob" id="dob" ng-blur="ageCalc()" required>
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.dob.$error " ng-if="fastTrackBillingform.dob.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Date of Birth</div>
+                                <div ng-message="valid">The entered value is not a date</div>
+                                <div ng-message="maxdate">Date Exceeds the Current Date!</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-1">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control " id="age" name="age" ng-change="dobCalc()" ng-model="fastTrackBilling.age" placeholder="Age" required>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.age.$error " ng-if="fastTrackBillingform.age.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your age</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <label class="control-label" for="gender">Gender </label>
+                            <div class="">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="fastTrackBilling.gender" name="gender" value="Male" ng-required="!fastTrackBilling.gender">Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="fastTrackBilling.gender" name="gender" value="Female" ng-required="!fastTrackBilling.gender">Female
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="fastTrackBilling.gender" name="gender" value="Others" ng-required="!fastTrackBilling.gender">Others
+                                </label>
+                                <div class="validationmsg" ng-messages="fastTrackBillingform.gender.$error" ng-if="fastTrackBillingform.gender.$touched">
+                                    <div ng-message="required">Please Slect Your Gender</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="mobnum">Mobile Number</label>
+                            <input type="number" class="form-control " id="mobnum1" name="mobnum1" ng-minlength="10" ng-maxlength="12" ng-model="fastTrackBilling.mobNumber" placeholder="Mobile Number" required>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.mobnum1.$error " ng-if="fastTrackBillingform.mobnum1.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Mobile Number</div>
+                                <div ng-message="minlength ">Your Mobile Number is too short</div>
+                                <div ng-message="maxlength ">Your Mobile Number is too long</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <label for="email">E-mail ID </label>
+                            <input type="email" class="form-control " id="email1" name="email1" ng-model="fastTrackBilling.emailId" placeholder="E-mail Address" required>
+                            <div class="validationmsg " ng-messages="fastTrackBillingform.email1.$error " ng-if="fastTrackBillingform.email1.$touched " role="alert ">
+                                <div ng-message="required ">Please Enter Your Email Address</div>
+                                <div ng-message="email ">Must be a valid Email Address</div>
+                            </div>
+                        </div>
                     </div>
 
-
-
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <hr />
+                    </div>
+                </div>
+                <div class="row buttons">
+                    <div class="col-sm-12 col-md-12 text-center">
+                        <button class="btn btn-primary button" id="print">Print</button>
+                        <button class="btn btn-success button" id="save">Save</button>
+                        <button class="btn btn-info button" id="reset">Reset</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class=" col-sm-12 col-md-12">
-                    <h3>Payment Information</h3>
-                    <hr style="border : dotted 1px">
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-6 col-md-2">
-                    <label class="control-label" for="payment">Payment:</label>
-                </div>
-
-                <div class="col-sm-6 col-md-8">
-                    <label class="radio-inline">
-                        <input type="radio" name="type" value="cash" checked>Cash
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type" value="card">Card
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type" value="Cheque">Cheque
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="type" value="others">Others
-                    </label>
-
-                </div>
-            </div>
-
-
-
-
-
-
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-
-                    <hr />
-                </div>
-            </div>
-
-            <div class="row buttons">
-                <div class="col-sm-12 col-md-12 text-center">
-                    <button class="btn btn-default button" id="print">Print</button>
-                    <button class="btn btn-default button" id="save">Save</button>
-                    <button class="btn btn-default button" id="reset">Reset</button>
-                </div>
-            </div>
-
-        </div>
-        
-            </form>
-
-
-<script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-
-    <script src="js/jquery.validate.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-
-    <script>
-        $('ul.nav li.dropdown').hover(function () {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-        }, function () {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-        });
-    </script>
-
-   
-
-    
-
-</body>
-
-</html>
+        </form>
+    </div>
+</div>

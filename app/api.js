@@ -380,6 +380,15 @@ module.exports = function(app) {
                     res.send(appointments);
                 })
             })
+        router.route('/todayDoctor')
+            .get(function(req,res){
+                var day = moment().format('dddd');
+                DoctorMaster.find({'shift.workDay' : day},function(err, DoctorMaster){
+                    if(err)
+                        throw err
+                    res.json(DoctorMaster);
+                })
+            })
 
 
         router.route('/billingService')
@@ -489,6 +498,7 @@ module.exports = function(app) {
                 })
             })
 
+        /*Patient Billing*/
         router.route('/billing')
 
             .post(function(req,res){
@@ -510,6 +520,39 @@ module.exports = function(app) {
 
                 })
             })
+        router.route('/billing/:patientId')
+            
+            .get(function(req,res){
+                var pId = req.params.patientId;
+                Billing.find({patientId : pId}, function(err, PrevBills){
+                    if(err)
+                        throw err;
+                    res.json(PrevBills);
+
+                })
+            })
+
+        // router.route('/advanceBills/:patientId')
+        // .get(function(req,res){
+        //         var pId = req.params.patientId;
+        //         Billing.find({'patientId' : pId, '_id' :{ $regex: /A.*/}}, function(err, advPrevBills){
+        //             if(err)
+        //                 throw err;
+        //             //  if(billing.total == billing.amountReceived){
+        //             //     Billing.find({patientId : billing.patientId}, function(err, PrevBills){
+        //             //         if(err)
+        //             //             throw err;
+        //             //         console.log(PrevBills);
+        //             //         for(i=0;i<PrevBills.length;i++){
+        //             //            PrevBills[i].amountBalance = 0;
+        //             //         }
+
+        //             //     })
+        //             // }
+        //             res.json(PrevBills);
+
+        //         })
+        //     })
 
         router.route('*')
             .get(function(req, res) {

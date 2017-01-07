@@ -11,10 +11,11 @@ var app = angular.module('myApp', ['datetimepicker', 'ngRoute', 'ui.bootstrap', 
             .when("/doctor/register", { title: "Doctor Master", templateUrl: "doctor_master.html", controller: "doctorMasterController" })
             .when("/appointment/book", { title: "Appointment", templateUrl: "appointment.html", controller: "appointmentController" })
             .when("/appointment/dashboard", { title: "Appointment Dashboard", templateUrl: "appointmentDashboard.html", controller: "appointmentDashboardController" })
-            .when("/dashboard", { title: "Dashboard", templateUrl: "dashboard.html", controller: "dashboardController" })   
             .when("/receptionist/dashboard", { title: "Receptionist Dashboard", templateUrl: "receptionistDashboard.html", controller: "receptionDashboardController" })   
             .when("/billing/add/Service", { title: "Master Billing", templateUrl: "master_billing.html", controller: "masterBillingController" })
-            .when("/billing", { title: "Billing", templateUrl: "billing_module.html", controller: "billingController" });
+            .when("/admin/dashboard", { title: "Admin Dashboard", templateUrl: "adminDashboard.html", controller: "adminDashboardController" })
+            .when("/billing", { title: "Billing", templateUrl: "billing_module.html", controller: "billingController" })
+            .when("/fasttrack/billing", { title: "FastTrack Billing", templateUrl: "fasttrackbilling.html", controller: "fastTrackBillingController" });
     });
 
 app.run(['$location', '$rootScope', function($location, $rootScope) {
@@ -73,36 +74,5 @@ app.controller('testController', function($scope) {
 
 });
 
-app.controller('dashboardController', function($scope) {
 
-});
-
-app.controller('appointmentController', function($scope, $log) {
-
-    $scope.uiConfig = {
-        calendar: {
-            editable: true,
-            height: 650,
-            header: {
-                left: 'today prev,next',
-                center: 'title',
-                right: 'month agendaWeek agendaDay listDay'
-            },
-            // eventDrop: $scope.alertOnDrop,
-            // eventResize: $scope.alertOnResize,
-            // eventClick: $scope.eventClick,
-            // viewRender: $scope.renderView
-            dayClick: $scope.changeView
-
-        }
-
-    };
-
-    $scope.changeView = function(date, jsEvent, view) {
-        alert(view.name);
-
-    }
-
-
-});
 

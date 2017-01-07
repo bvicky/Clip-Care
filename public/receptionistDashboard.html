@@ -20,8 +20,8 @@
 
 
 						<!-- Tab panes -->
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="home" ng-init="getTodayAppointments()">
+						<div class="tab-content" ng-init=";getTodaysAppointments(); getTodaysDoctors()">
+							<div role="tabpanel" class="tab-pane active" id="home">
 								<div class="row">
 									<div class="col-sm-3">
 										<input type="text" class="form-control" ng-model="dateSearch">
@@ -32,9 +32,8 @@
 						    			<thead>
 						    				<th>Patient ID</th>
 						    				<th>Patient Name</th>
-						    				<th>Doctor Name</th>
+						    				<th>Consulting Doctor</th>
 						    				<th>Appointment Time</th>
-						    				<th>Reason For Visit</th>
 						    				<th>Appointment Status</th>
 						    			</thead>
 						    			<tbody>
@@ -42,9 +41,12 @@
 						    					<td>{{appointment.patientId._id}}</td>
 						    					<td>{{appointment.patientId.firstName + " " + appointment.patientId.lastName}}</td>
 						    					<td>{{appointment.doctorId.firstName + " " + appointment.doctorId.lastName}}</td>
-						    					<td>{{appointment.startTime | date : ' MM/dd/yyyy ||  hh: mm a'}}</td>
-						    					<td></td>
-						    					<td></td>
+						    					<td>{{appointment.startTime}}</td>
+						    					<td class="text-center">
+						    						<div class="col-sm-3"></div>
+						    						<div class="col-sm-3"><span class="fa fa-check-circle" ng-click="updateAppointmentStatus()" ></span></div>
+						    						<div class="col-sm-3"><i class="fa fa-times-circle" ng-click="updateAppointmentStatus()"></i></div>
+						    					</td>
 						    				</tr>
 						    			</tbody>
 
@@ -54,7 +56,34 @@
 							</div>
 							<div role="tabpanel" class="tab-pane" id="profile" >
 								
+								<div class="table-responsive">
+						    		<table class="table table-bordered data">
+						    			<thead>
+						    				<th>Doctor ID</th>
+						    				<th>Doctor Name</th>
+						    				<th>Doctor Designation</th>
+						    				<th>Session Time(In Minutes)</th>
+						    				<th>From Time</th>
+						    				<th>To Time</th>
+						    				<th>Slots</th>
+						    				<th>Available Slots</th>
+						    			</thead>
+						    			<tbody>
+						    				<tr ng-repeat="doctor in doctors">
+						    					
+						    					<td>{{doctor._id}}</td>
+						    					<td>{{doctor.firstName + " " + doctor.lastName}}</td>
+						    					<td>{{doctor.designation}}</td>
+						    					<td>{{doctor.sessionDuration}}</td>
+						    					<td><p ng-repeat ="timeF in doctor.shift ">{{timeF.workFrom | date : "hh:mm:a"}}</p></td>
+                                            	<td><p ng-repeat ="timeT in doctor.shift">{{timeT.workTo | date : "hh:mm:a"}}</p></td>
+                                            	<td><p ng-repeat ="maxSlots in doctor.shift">{{maxSlots.bookedSlots}} /{{maxSlots.maxSlots}}</p></td>
+                                            	<td><p ng-repeat ="available in doctor.shift">{{available.availableSlots}}</td>
+						    				</tr>
+						    			</tbody>
 
+						    		</table>
+						    	</div>
 
 
 
@@ -73,35 +102,3 @@
 	</div>
 
 </div>
-
-
-
-
-<!-- All Appointments
-
-	<div class="table-responsive" ng-init="getAppointments()">
-						    		<table class="table table-bordered data">
-						    			<thead>
-						    				<th>Patient ID</th>
-						    				<th>Patient Name</th>
-						    				<th>Doctor Name</th>
-						    				<th>Appointment Time</th>
-						    				<th>Reason For Visit</th>
-						    				<th>Appointment Status</th>
-						    			</thead>
-						    			<tbody>
-						    				<tr ng-repeat="allappointment in allAppointments | filter:dateSearch">
-						    					<td>{{allappointment.patientId._id}}</td>
-						    					<td>{{allappointment.patientId.firstName + " " + allappointment.patientId.lastName}}</td>
-						    					<td>{{allappointment.doctorId.firstName + " " + allappointment.doctorId.lastName}}</td>
-						    					<td>{{allappointment.startTime | date : ' MM/dd/yyyy ||  hh: mm a'}}</td>
-						    					<td></td>
-						    					<td></td>
-						    				</tr>
-						    			</tbody>
-
-						    		</table>
-						    	</div>
-
-
- -->

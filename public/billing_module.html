@@ -18,7 +18,7 @@
                                     <th>Patient Id <br/>Patient Name</th>
                                     <td>{{patient._id }} <br/>{{patient.firstName + " " +patient.lastName}}</td>
                                     <th>Bill Date </th>
-                                    <td>{{billing.date | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{billing.billDate | date: 'dd/MM/yyyy'}}</td>
                                 </tr>
                                 <tr>
                                     <th>Age/ Gender
@@ -82,7 +82,8 @@
                                     <td>{{patients.firstName + " " +patients.middleName + " " +patients.lastName}}</td>
                                     <td>{{patients.emailId}}</td>
                                     <td>{{patients.mobNumber}}</td>
-                                    <td><span class="glyphicon glyphicon-check" ng-click= "getPatient(patients)"></span></a></td>
+                                    <td><span class="glyphicon glyphicon-check" ng-click= "getPatient(patients); getPreviousBills(patients._id); 
+                                    getAdvanceBills(patients._id)"></span></a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -96,14 +97,24 @@
                                     <th colspan="6">Patient Previous Billing Records</th>
                                 </tr>
                                 <tr>
-                                    <th>Visit Date</th>
+                                    <th>Bill Date</th>
                                     <th>Bill Number</th>
                                     <th>Amount</th>
+                                    <th>Amount Paid</th>
                                     <th>Due Amount</th>
-                                    <th>Remainder</th>
-                                    <th>Remarks</th>
+                                    <th>Select</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <!-- <tr ng-repeat="bill in prevBills">
+                                    <td>{{bill.billDate | date: 'MM/dd/yyyy'}}</td>
+                                    <td>{{bill._id}}</td>
+                                    <td>{{bill.total}}</td>
+                                    <td>{{bill.amountReceived}}</td>
+                                    <td>{{bill.amountBalance}}</td>
+                                    <td></td>
+                                </tr> -->
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -148,19 +159,21 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width:200px">Recipt Number</th>
-                                        <th>Mode</th>
-                                        <th>Date</th>
+                                        <th>Bill Date</th>
+                                        <th>Bill Number</th>
                                         <th>Amount</th>
+                                        <th>Amount Paid</th>
+                                        <th>Due Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                   <tr ng-repeat="bill in prevBills">
+                                    <td>{{bill.billDate | date: 'MM/dd/yyyy'}}</td>
+                                    <td>{{bill._id}}</td>
+                                    <td>{{bill.total}}</td>
+                                    <td>{{bill.amountReceived}}</td>
+                                    <td>{{bill.amountBalance}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

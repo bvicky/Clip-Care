@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var counter = require('./counterModel');
 var billingSchema  = mongoose.Schema({
 	_id: String,
-	patientId : { type: String, ref: 'User'},
-    treatingDocName : String,
+	patientId : String, 
+	treatingDocName : String,
+    billDate : Date,
     referralName : String,
 	billService : [{
 		name : String,
@@ -16,6 +17,7 @@ var billingSchema  = mongoose.Schema({
 	total : Number,
 	amountReceived : Number,
 	amountReturned : Number,
+	amountBalance : Number,
 	paymentMode : String
 });
 
@@ -24,7 +26,12 @@ billingSchema.pre('save',function(next){
   counter.findByIdAndUpdate({_id: 'billId'},{$inc: {seq: 1}},{ "upsert": true, "new": true },function(error, counter){
     if(error)
       return next(error);
-    bill._id = 'BMSHTBILL00' + counter.seq;
+  	if(bill.total == bill.amountReceived){
+  		bill._id = 'F'+bill.patientId + counter.seq;
+  	}else{
+  		bill._id = 'A'+bill.patientId+ counter.seq;
+  	}
+    
     console.log(bill._id);
     next();
   });

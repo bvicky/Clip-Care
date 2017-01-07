@@ -81,7 +81,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             url: "/api/regpatients",
             data : $scope.patient
         }).success(function(data) {
-            console.log(data);
+            //console.log(data);
             $scope.patient._id = data._id;
         }).error(function(err) {
             console.log(err);
@@ -96,7 +96,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             url: "/api/regpatients"
         }).success(function(data) {
             $scope.patientData = data;
-            console.log($scope.patientData);
+            //console.log($scope.patientData);
         }).error(function(err) {
             console.log(err);
         });
@@ -113,7 +113,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             url: '/api/regpatient/' + id
         }).success(function(data) {
             $scope.patient = data;
-            console.log(data);
+            //console.log(data);
         }).error(function(err) {
             console.log(err);
         })
@@ -143,7 +143,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             url: '/api/referral/' + id
         }).success(function(data) {
             $scope.referral = data;
-            console.log(data);
+            //console.log(data);
         }).error(function(err) {
             console.log(err);
         })
@@ -192,8 +192,10 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
     $scope.docName = "";
     $scope.docTimeFrom = "";
     $scope.docTimeTo = "";
-    $scope.todayDate = moment().format('MM/DD/YYYY');
-    $scope.maxAppointmentDate = moment().add(7,'days').format('MM/DD/YYY');
+    $scope.todayDate = moment();
+    $scope.maxAppointmentDate = moment().add(7,'days');
+
+    //console.log($scope.maxAppointmentDate);
     
     $scope.docTime = function(from, to, name, id, workDay, maxSlots) {
         $scope.minDocTime = from;
@@ -208,13 +210,13 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
         for(i=0; i<7 ;i++){
             if($scope.docWorkDay == moment($scope.currentWeek[i]).format('dddd')){                
                 $scope.docDate = moment($scope.currentWeek[i]).format('dddd, MMM DD, YYYY') ;
-                $scope.appDate = moment($scope.currentWeek[i]); 
-                $scope.checkDate = moment($scope.currentWeek[i]).format('MM/DD/YYYY');
-                
-                if($scope.checkDate < $scope.todayDate){
+                $scope.appointmentDate = moment($scope.currentWeek[i]); 
+
+
+                if(moment($scope.appointmentDate).isBefore($scope.todayDate, 'day')){
                     alert('Selected Dates is Less than Current Date');
                 }
-                else if($scope.checkDate > $scope.maxAppointmentDate){
+                else if(moment($scope.appointmentDate).isAfter($scope.maxAppointmentDate, 'day')){
                     alert('Sorry');
 
                 }
@@ -230,7 +232,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
                                 calendar: {
                                 //events : $scope.events,
                                 defaultView: 'agendaDay',
-                                defaultDate : $scope.appDate,
+                                defaultDate : $scope.appointmentDate,
                                 //gotoDate : $scope.viewDate,
                                 minTime: moment($scope.minDocTime).format('HH:mm'),
                                 maxTime: "24:00:00",
@@ -266,7 +268,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
                             calendar: {
                             //events : $scope.events,
                             defaultView: 'agendaDay',
-                            defaultDate : $scope.appDate,
+                            defaultDate : $scope.appointmentDate,
                             //gotoDate : $scope.viewDate,
                             minTime: moment($scope.minDocTime).format('HH:mm'),
                             maxTime: moment($scope.maxDoctime).format('HH:mm'),
@@ -321,7 +323,6 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
     }
 
     $scope.eventClick = function(){
-        console.log(clicked);
         alert($scope.events + ' was clicked ');
     }
 
@@ -336,7 +337,13 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
         });
              
 
-        
+        console.log(duration);
+        console.log($scope.maxSlots);
+        console.log($scope.startTime);
+        if(duration == 900000){
+            $scope.availableSlots = $scope.maxSlots - 1;
+        }
+
         $('#myModal').modal('hide');  
         
         $scope.appointment.patientId = $scope.patient._id;
@@ -354,7 +361,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
             data : $scope.appointment
         }).success(function(data) {
             $scope.appointmentData = data;
-            console.log($scope.appointmentData);
+            //console.log($scope.appointmentData);
 
         }).error(function(err) {
             console.log(err);
@@ -368,7 +375,7 @@ app.controller('appointmentDashboardController', function($scope, $http, $sce, u
     
     $scope.fetchAppointments = function(){
 
-            console.log('clicked Doc Id :'+ $scope.docId)
+            //console.log('clicked Doc Id :'+ $scope.docId)
             $http({
                 method : 'GET',
                 url : '/api/appointment'

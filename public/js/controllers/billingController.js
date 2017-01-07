@@ -7,7 +7,7 @@ app.controller('billingController', function($scope, $http) {
     $scope.patient = {};
     $scope.billService = [];
     $scope.billing ={};
-    $scope.billing.date= new Date();
+    $scope.billing.billDate= new Date();
     $('#printbtn').prop('disabled', true);
     
     $scope.fetchPatientRecord = function() {
@@ -24,13 +24,11 @@ app.controller('billingController', function($scope, $http) {
 
     $scope.getPatient = function(patients){
     	$scope.patient = patients;
-        console.log($scope.patient._id);
+        
         $http({
             method: 'GET',
             url: "/api/docsDetail/"+$scope.patient._id,
         }).success(function(data) {
-
-            console.log(data);
             for(i=0; i<data.length; i++){
                 if(data[i].appointmentStatus == 'Booked'){
                     $scope.billing.treatingDocName = data[i].doctorId.firstName + " " + data[i].doctorId.lastName;
@@ -43,16 +41,60 @@ app.controller('billingController', function($scope, $http) {
         });
     }
 
+    $scope.getPreviousBills = function(id){
+        var pId =id;
+        $http({
+            method: 'GET',
+            url: "/api/billing/"+pId,
+        }).success(function(data) {
+
+            $scope.prevBills = data;
+
+            for(i=0;i<$scope.prevBills.length;i++){
+                if($scope.prevBills[i]._id.startsWith('F')) {       
+                    $scope.prevBills[i].amountBalance = 0;
+                }
+               
+            }
+            console.log($scope.prevBills);
+            
+        }).error(function(err) {
+            console.log(err);
+        });
+    }
+
+    $scope.getAdvanceBills = function(id){
+        var pId =id;
+        $http({
+            method: 'GET',
+            url: "/api/advanceBills/"+pId,
+        }).success(function(data) {
+
+            $scope.advanceBills =data;
+            
+        }).error(function(err) {
+            console.log(err);
+        });
+    }
+
+    
+
+
     $scope.getBillingServices = function(){
         $http({
             method:'GET',
             url : '/api/billingService'
         }).success(function(data){
             $scope.allBillServices = data;
+            
+
         }).error(function(err){
             console.log(err)
         })
     };
+
+
+
 
     $scope.getBillDetail = function(name, index){
         for(i= 0 ; i<$scope.allBillServices.length; i++){
@@ -118,12 +160,31 @@ app.controller('billingController', function($scope, $http) {
 
     $scope.billTotal = function(){
         $scope.billing.total =0;
+        
+        
 
-        for(i=0; i<$scope.billing.billService.length; i++){
+        if($scope.billing.billService[0].amount == ""){
+            
+            console.log($scope.prevBills);
+            $scope.billing.total=0;
+            for(i=0;i<$scope.prevBills.length;i++){
+               
+                $scope.billing.total = $scope.billing.total + $scope.prevBills[i].amountBalance;
+                console.log('Total ' +$scope.billing.total);
+            }
+            console.log($scope.billing.total);
+            
+        }
+        else{
+            
+            console.log($scope.billing.billService[0].amount);
+            for(i=0; i<$scope.billing.billService.length; i++){
             
             $scope.billing.total = $scope.billing.total + $scope.billing.billService[i].amount ;
 
+            }
         }
+        
         
     };
     $scope.balanceCalc = function(){
@@ -140,6 +201,9 @@ app.controller('billingController', function($scope, $http) {
     }
 
 
+
+
+
     $scope.createBill = function(){
         $scope.billing.patientId = $scope.patient._id;
         $http({
@@ -147,6 +211,7 @@ app.controller('billingController', function($scope, $http) {
             url : '/api/billing',
             data : $scope.billing
         }).success(function(data){
+            $scope.getPreviousBills();
             $('#printbtn').prop('disabled', false);
             console.log(data)
         }).error(function(err){
